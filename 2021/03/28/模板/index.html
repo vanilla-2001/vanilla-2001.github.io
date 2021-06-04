@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+  
+  <title>模板 - 见到你很高兴♪(๑·◡·๑)♪</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
+  <meta name="description" content="模板的概念模板就是建立通用的模具,大大提高复用性 模板的特点：· 模板不可以直接使用，它只是一个框架· 模板的通用并不是万能的 函数模板语法· C++另一种编程思想称为泛型编程，主要利用的技术就是模板· C++提供两种模板机制函数模型和类模板 函数模板作用：建立一个通用函数，其函数返回值类型和形参类型可以不具体指定，用一个虚拟的类型来代表。 语法： template&lt;typename T&amp;g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模板">
+<meta property="og:url" content="https://vanilla-2001.github.io/2021/03/28/%E6%A8%A1%E6%9D%BF/index.html">
+<meta property="og:site_name" content="见到你很高兴♪(๑·◡·๑)♪">
+<meta property="og:description" content="模板的概念模板就是建立通用的模具,大大提高复用性 模板的特点：· 模板不可以直接使用，它只是一个框架· 模板的通用并不是万能的 函数模板语法· C++另一种编程思想称为泛型编程，主要利用的技术就是模板· C++提供两种模板机制函数模型和类模板 函数模板作用：建立一个通用函数，其函数返回值类型和形参类型可以不具体指定，用一个虚拟的类型来代表。 语法： template&lt;typename T&amp;g">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-03-28T04:37:57.000Z">
+<meta property="article:modified_time" content="2021-03-29T12:56:13.219Z">
+<meta property="article:author" content="vanilla">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
+  
+  <link rel="stylesheet" href="/css/style.css?v=1622805824121">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="vanilla" class="mdui-btn mdui-btn-icon"><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3372245765,175918050&amp;fm=26&amp;gp=0.jpg" alt="vanilla"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="vanilla">
+            <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3372245765,175918050&amp;fm=26&amp;gp=0.jpg" alt="vanilla" alt="vanilla">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>39</div>
+        <div><span>标签</span>7</div>
+        <div><span>分类</span>2</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=site:nexmoe.com" onsubmit="return search();">
+            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/10399692" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C/">C++</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/%E5%A4%A9%E6%A2%AF/" style="font-size: 10px;">天梯</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 16.67px;">算法</a> <a href="/tags/%E8%93%9D%E6%A1%A5/" style="font-size: 13.33px;">蓝桥</a>
+    </div>
+    
+  </div>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">39</span></li></ul>
+    </div>
+  </div>
+
+
+<style>
+.nexmoe-widget .archive-list-count{
+	position : absolute;
+	right: 15px;
+	top:9px;
+	color: #DDD;
+}
+</style>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2021 vanilla
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: 66.66666666666666%;"> 
+          <img data-src="https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg" data-sizes="auto" alt="模板" class="lazyload">
+          <h1>模板</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年03月28日</a>
+    <a><i class="nexmoefont icon-areachart"></i>4,744 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 22 分钟</a>
+</div>
+
+  <div class="nexmoe-post-right">
+    
+  </div>
+
+  <article>
+    <h2 id="模板的概念"><a href="#模板的概念" class="headerlink" title="模板的概念"></a>模板的概念</h2><p>模板就是建立<strong>通用的模具</strong>,大大<strong>提高复用性</strong></p>
+<p>模板的特点：<br><strong>·</strong> 模板不可以直接使用，它只是一个框架<br><strong>·</strong> 模板的通用并不是万能的</p>
+<h2 id="函数模板语法"><a href="#函数模板语法" class="headerlink" title="函数模板语法"></a>函数模板语法</h2><p><strong>·</strong> C++另一种编程思想称为<strong>泛型编程</strong>，主要利用的技术就是模板<br><strong>·</strong> C++提供两种模板机制<strong>函数模型</strong>和<strong>类模板</strong></p>
+<h3 id="函数模板作用："><a href="#函数模板作用：" class="headerlink" title="函数模板作用："></a>函数模板作用：</h3><p>建立一个通用函数，其函数返回值类型和形参类型可以不具体指定，用一个<strong>虚拟的类型</strong>来代表。</p>
+<p><strong>语法：</strong></p>
+<pre><code>template&lt;typename T&gt;
+函数声明或定义</code></pre>
+<p><strong>解释：</strong><br>template — 声明创建模板<br>typename — 表名其后面的符号是一种数据类型，可以用class代替<br>T — 通用的数据类型，名称可以替换，通常为大写字母</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+void swapInt(int &amp;a, int &amp;b) &#123;
+    int temp = a;
+    a = b;
+    b = temp;
+&#125;
+void swapDouble(double &amp;a, double &amp;b) &#123;
+    double temp = a;
+    a = b;
+    b = temp;
+&#125;
+template&lt;typename T&gt;//声明一个模板，告诉编译器后面代码中，紧跟着的T不要报错，T是一个通用数据类型
+void mySwap(T &amp;a,T &amp;b) &#123;
+    T temp = a;
+    a = b;
+    b = temp;
+&#125;
+void test01() &#123;
+    int a = 10;
+    int b = 20;
+    swapInt(a, b);
+    cout &lt;&lt; &quot;a= &quot; &lt;&lt; a &lt;&lt; endl &lt;&lt; &quot;b= &quot; &lt;&lt; b &lt;&lt; endl;
+    double c = 1.1;
+    double d = 2.2;
+    swapDouble(c, d);
+    cout &lt;&lt; &quot;c= &quot; &lt;&lt; c &lt;&lt; endl &lt;&lt; &quot;d= &quot; &lt;&lt; d &lt;&lt; endl;
+    mySwap(a, b);//编译器自动推导
+    cout &lt;&lt; &quot;a= &quot; &lt;&lt; a &lt;&lt; endl &lt;&lt; &quot;b= &quot; &lt;&lt; b &lt;&lt; endl;
+    mySwap&lt;double&gt;(c, d);//显示指定类型
+    cout &lt;&lt; &quot;c= &quot; &lt;&lt; c &lt;&lt; endl &lt;&lt; &quot;d= &quot; &lt;&lt; d &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p><strong>·</strong> 函数模板利用关键字template<br><strong>·</strong> 使用函数模板有两种方式：自动类型推导、显式指定类型<br><strong>·</strong> 模板的目的是为了提高复用性，将类型参数化</p>
+<h2 id="函数模板注意事项"><a href="#函数模板注意事项" class="headerlink" title="函数模板注意事项"></a>函数模板注意事项</h2><p>注意事项：<br><strong>·</strong> 自动类型推导，必须推导出一致的数据类型T，才可以使用</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+template&lt;class T&gt;//typename可以替换成class(效果一样)
+void mySwap(T &amp;a, T &amp;b) &#123;
+    T temp = a;
+    a = b;
+    b = temp;
+&#125;
+void test01() &#123;
+    int a = 10;
+    double b = 20;
+    mySwap(a, b);//报错，a,b类型不一致，推到不出一致的T类型
+    cout &lt;&lt; &quot;a= &quot; &lt;&lt; a &lt;&lt; endl &lt;&lt; &quot;b= &quot; &lt;&lt; b &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><strong>·</strong> 模板必须要确定出T的数据类型，才可以使用</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+template&lt;class T&gt;//typename可以替换成class(效果一样)
+void func()&#123;
+    cout &lt;&lt; &quot;func的调用&quot; &lt;&lt; endl;
+&#125;
+void test01() &#123;
+    func();//报错，无法确定T的类型，不用模板则正确，用了模板则一定要确定T的类型
+    func&lt;int&gt;();//正确
+&#125; 
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<h2 id="函数模板案例"><a href="#函数模板案例" class="headerlink" title="函数模板案例"></a>函数模板案例</h2><p>案例描述：<br><strong>·</strong> 利用函数模板封装一个排序的函数，可以对<strong>不用数据类型数组</strong>进行排序<br><strong>·</strong> 排序规则从大到小，排序算法为<strong>选择排序</strong><br><strong>·</strong> 分别利用<strong>char数组</strong>和<strong>int数组</strong>进行测试</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+template&lt;class T&gt;//typename可以替换成class(效果一样)
+void mySwap(T &amp;a,T &amp;b) &#123;
+    T temp = a;
+    a = b;
+    b = temp;
+&#125;
+template&lt;class T&gt;
+void mySort(T a[],int len) &#123;
+    for (int i = 0;i &lt; len;i++) &#123;
+        int max = i;//认定最大值的下标
+        for (int j = i + 1;j &lt; len;j++) &#123;
+            if (a[max] &lt; a[j]) &#123;//认定的最大值比遍历出的数值小，说明j下标的元素才是真正的最大值
+                max = j;//更新最大值下标
+            &#125;
+        &#125;
+        if (max != i) &#123;
+            //交换max和i下标的元素
+            mySwap(a[max], a[i]);
+        &#125;
+    &#125;
+&#125;
+void test01() &#123;
+    char c[] = &quot;badcfe&quot;;
+    int num = sizeof(c) / sizeof(char);
+    mySort(c,num);
+    cout &lt;&lt; c &lt;&lt; endl;
+    int a[] = &#123; 1,2,3,4,5,6,7 &#125;;
+    int num1 = sizeof(a) / sizeof(int);
+    mySort(a, num1);
+    for (int i = 0;i &lt; num1;i ++ )cout &lt;&lt; a[i] &lt;&lt; &quot; &quot;;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<h2 id="普通函数与函数模板的区别"><a href="#普通函数与函数模板的区别" class="headerlink" title="普通函数与函数模板的区别"></a>普通函数与函数模板的区别</h2><p><strong>普通函数与函数模板的区别：</strong><br><strong>·</strong> 普通函数调用时可以发生自动类型转换(隐式类型转换)<br><strong>·</strong> 函数模板调用时，如果利用自动类型推导，不会发生隐式类型转换<br><strong>·</strong> 如果利用显示指定类型的方式，可以发生隐式类型转换</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+int myAdd01(int a,int b) &#123;
+    return a + b;
+&#125;
+template&lt;class T&gt;
+void myAdd02(T a,T b) &#123;
+    return a + b;
+&#125;
+void test01() &#123;
+    int a = 10;
+    char b = &#39;b&#39;;
+    cout &lt;&lt; myAdd01(a, b) &lt;&lt; endl;//输出108，发生了隐式类型转换
+&#125;
+void test02() &#123;
+    int a = 10;
+    char b = &#39;b&#39;;
+    cout &lt;&lt; myAdd02(a, b) &lt;&lt; endl;//报错，类型不一致，自动类型推导不会发生隐式类型转换
+    cout &lt;&lt; myAdd02&lt;int&gt;(a, b) &lt;&lt; endl;//正确
+&#125;
+int main() &#123;
+    test01();
+    test02();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<h2 id="普通函数和函数模板的调用规则"><a href="#普通函数和函数模板的调用规则" class="headerlink" title="普通函数和函数模板的调用规则"></a>普通函数和函数模板的调用规则</h2><p>调用规则如下：<br>1、如果函数模板和普通函数都可以实现，优先调用普通函数<br>2、可以通过空模板参数列表来强调调用函数模板<br>3、函数模板也可以发生重载<br>4、如果函数模板可以产生更好的匹配，优先调用函数模板</p>
+<h3 id="如果函数模板和普通函数都可以实现，优先调用普通函数"><a href="#如果函数模板和普通函数都可以实现，优先调用普通函数" class="headerlink" title="如果函数模板和普通函数都可以实现，优先调用普通函数"></a>如果函数模板和普通函数都可以实现，优先调用普通函数</h3><pre><code>#include&lt;iostream&gt;
+using namespace std;
+void myPrint(int a ,int b)&#123;
+    cout &lt;&lt; &quot;调用的普通函数&quot; &lt;&lt; endl;
+&#125;
+template&lt;class T&gt;
+void myPrint(T a,T b) &#123;
+    cout &lt;&lt; &quot;调用的模板&quot; &lt;&lt; endl;
+&#125;
+void test01() &#123;
+    int a = 10;
+    int b = 20;
+    myPrint(a, b);//调用的普通函数
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;
+
+#include&lt;iostream&gt;
+using namespace std;
+void myPrint(int a, int b);
+template&lt;class T&gt;
+void myPrint(T a,T b) &#123;
+    cout &lt;&lt; &quot;调用的模板&quot; &lt;&lt; endl;//普通函数的声明
+&#125;
+void test01() &#123;
+    int a = 10;
+    int b = 20;
+    myPrint(a, b);//报错，调用的普通函数，只有声明没用实现
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<h3 id="可以通过空模板参数列表来强调调用函数模板"><a href="#可以通过空模板参数列表来强调调用函数模板" class="headerlink" title="可以通过空模板参数列表来强调调用函数模板"></a>可以通过空模板参数列表来强调调用函数模板</h3><pre><code>#include&lt;iostream&gt;
+using namespace std;
+void myPrint(int a, int b);
+template&lt;class T&gt;
+void myPrint(T a,T b) &#123;
+    cout &lt;&lt; &quot;调用的模板&quot; &lt;&lt; endl;//普通函数的声明
+&#125;
+void test01() &#123;
+    int a = 10;
+    int b = 20;
+    myPrint&lt;&gt;(a, b);//通过空模板参数列表，强制调用模板函数
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<h3 id="函数模板也可以发生重载"><a href="#函数模板也可以发生重载" class="headerlink" title="函数模板也可以发生重载"></a>函数模板也可以发生重载</h3><pre><code>#include&lt;iostream&gt;
+using namespace std;
+template&lt;class T&gt;
+void myPrint(T a,T b) &#123;
+    cout &lt;&lt; &quot;调用2的模板&quot; &lt;&lt; endl;//普通函数的声明
+&#125;
+template&lt;class T&gt;
+void myPrint(T a) &#123;
+    cout &lt;&lt; &quot;调用1的模板&quot; &lt;&lt; endl;//普通函数的声明
+&#125;
+void test01() &#123;
+    int a = 10;
+    int b = 20;
+    myPrint(a);//调用1的模板
+    myPrint(a,b);//调用2的模板
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<h3 id="如果函数模板可以产生更好的匹配，优先调用函数模板"><a href="#如果函数模板可以产生更好的匹配，优先调用函数模板" class="headerlink" title="如果函数模板可以产生更好的匹配，优先调用函数模板"></a>如果函数模板可以产生更好的匹配，优先调用函数模板</h3><pre><code>#include&lt;iostream&gt;
+using namespace std;
+void myPrint(int a ,int b)&#123;
+    cout &lt;&lt; &quot;调用的普通函数&quot; &lt;&lt; endl;
+&#125;
+template&lt;class T&gt;
+void myPrint(T a,T b) &#123;
+    cout &lt;&lt; &quot;调用的模板&quot; &lt;&lt; endl;
+&#125;
+void test01() &#123;
+    char a = &#39;a&#39;;
+    char b = &#39;b&#39;;
+    myPrint(a, b);//调用的模板
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p>总结：既然提供了函数模板，最好不要提供普通函数，否则容易产生二义性</p>
+<h2 id="模板的局限性"><a href="#模板的局限性" class="headerlink" title="模板的局限性"></a>模板的局限性</h2><p><strong>·</strong> 模板的通用性不是万能的</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+class Person &#123;
+public:
+    int a;
+    string name;
+    Person(string n, int A) &#123;
+        this-&gt;name = n;
+        this-&gt;a = A;
+    &#125;
+&#125;;
+template&lt;class T&gt;
+bool myCompare(T &amp;a,T &amp;b) &#123;
+    if (a == b)return true;
+    else return false;
+&#125;
+void test01() &#123;
+    Person a(&quot;jj&quot;,12);
+    Person b(&quot;tt&quot;, 12);
+    myCompare(a, b);
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p>报错<br><strong>解决：</strong><br>1、运算符重载<br>2、利用具体化Person的版本实现代码，具体化优先调用</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+class Person &#123;
+public:
+    int a;
+    string name;
+    Person(string n, int A) &#123;
+        this-&gt;name = n;
+        this-&gt;a = A;
+    &#125;
+&#125;;
+template&lt;class T&gt;
+bool myCompare(T &amp;a,T &amp;b) &#123;
+    if (a == b)return true;
+    else return false;
+&#125;
+template&lt;&gt; bool myCompare(Person &amp;a, Person &amp;b) &#123;
+    if (a.name == b.name&amp;&amp;a.a == b.a)return true;
+    else return false;
+&#125;
+void test01() &#123;
+    Person a(&quot;jj&quot;,12);
+    Person b(&quot;tt&quot;, 12);
+    int rel = myCompare(a, b);
+    if (rel)cout &lt;&lt; &quot;相等&quot; &lt;&lt; endl;
+    else cout &lt;&lt; &quot;不相等&quot; &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><strong>总结：</strong><br><strong>·</strong> 利用具体化的模板，可以解决自定义类型的通用化<br><strong>·</strong> 学习模板不是为了写模板，二十在STL能够运用系统提供的模板</p>
+<h2 id="类模板的语法"><a href="#类模板的语法" class="headerlink" title="类模板的语法"></a>类模板的语法</h2><p>类模板作用：<br><strong>·</strong> 建立一个通用类，类中的成员数据类型可以不具体制定，用一个<strong>虚拟的类型</strong>来代表</p>
+<p><strong>语法：</strong></p>
+<pre><code>TEMPLATE&lt;typename T&gt;
+类</code></pre>
+<p><strong>解释：</strong><br>template — 声明创建模板<br>typename — 表明其后面的符号是一种数据类型，可以用class代替<br>T — 通用的数据类型，名称可以替换，通常为大写字母</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+template&lt;class NameType,class AgeType&gt;
+class Person &#123;
+public:
+    NameType m_name;
+    AgeType m_age;
+    Person(NameType n, AgeType A) &#123;
+        this-&gt;m_name = n;
+        this-&gt;m_age = A;
+    &#125;
+&#125;;
+void test01() &#123;
+    Person&lt;string, int&gt; p1(&quot;tom&quot;, 18);
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p>总结：类模板和函数模板语法相似，在声明模板template后面加类，此类称为类模板</p>
+<h2 id="类模板与函数模板区别"><a href="#类模板与函数模板区别" class="headerlink" title="类模板与函数模板区别"></a>类模板与函数模板区别</h2><p>类模板与函数模板区别主要有两点：<br>1、类模板没有自动类型推导的使用方式<br>2、类模板在模板的参数列表中可以有默认参数</p>
+<h3 id="类模板没有自动类型推导"><a href="#类模板没有自动类型推导" class="headerlink" title="类模板没有自动类型推导"></a>类模板没有自动类型推导</h3><pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+template&lt;class NameType,class AgeType&gt;
+class Person &#123;
+public:
+    NameType m_name;
+    AgeType m_age;
+    Person(NameType n, AgeType A) &#123;
+        this-&gt;m_name = n;
+        this-&gt;m_age = A;
+    &#125;
+    void showPerson() &#123;
+        cout &lt;&lt; &quot;name: &quot; &lt;&lt; this-&gt;m_name &lt;&lt; endl &lt;&lt; &quot;age: &quot; &lt;&lt; this-&gt;m_age &lt;&lt; endl;
+    &#125;
+&#125;;
+void test01() &#123;
+    Person p1(&quot;tom&quot;, 18);//报错，类模板没有自动类型推导
+    Person&lt;string,int&gt; p1(&quot;tom&quot;, 18);//正确，只能用显示指定类型
+    p1.showPerson();
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<h3 id="类模板在模板的参数列表中可以有默认参数"><a href="#类模板在模板的参数列表中可以有默认参数" class="headerlink" title="类模板在模板的参数列表中可以有默认参数"></a>类模板在模板的参数列表中可以有默认参数</h3><pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+template&lt;class NameType,class AgeType=int&gt;//默认AgeType为整型
+class Person &#123;
+public:
+    NameType m_name;
+    AgeType m_age;
+    Person(NameType n, AgeType A) &#123;
+        this-&gt;m_name = n;
+        this-&gt;m_age = A;
+    &#125;
+    void showPerson() &#123;
+        cout &lt;&lt; &quot;name: &quot; &lt;&lt; this-&gt;m_name &lt;&lt; endl &lt;&lt; &quot;age: &quot; &lt;&lt; this-&gt;m_age &lt;&lt; endl;
+    &#125;
+&#125;;
+void test01() &#123;
+    Person&lt;string&gt;p2(&quot;jerry&quot;, 9);//默认有整型，只需输入string
+    p2.showPerson();
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><strong>总结：</strong><br><strong>·</strong> 类模板使用只能显示指定类型方式<br><strong>·</strong> 类模板中的模板参数列表可以有默认参数</p>
+<h2 id="类模板中成员函数创建时机"><a href="#类模板中成员函数创建时机" class="headerlink" title="类模板中成员函数创建时机"></a>类模板中成员函数创建时机</h2><p>类模板中成员函数和普通类中成员函数创建时机是有区别的：<br><strong>·</strong> 普通类中的成员函数一开始就可以创建<br><strong>·</strong> 类模板中的成员函数在调用时才创建</p>
+<h2 id="不调用类模板中的成员函数不会创建"><a href="#不调用类模板中的成员函数不会创建" class="headerlink" title="不调用类模板中的成员函数不会创建"></a>不调用类模板中的成员函数不会创建</h2><pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+class Person1 &#123;
+public:
+    void showPerson1() &#123;
+        cout &lt;&lt; &quot;Person1 show&quot; &lt;&lt; endl;
+    &#125;
+&#125;;
+class Person2 &#123;
+public:
+    void showPerson2() &#123;
+        cout &lt;&lt; &quot;Person2 show&quot; &lt;&lt; endl;
+    &#125;
+&#125;;
+template&lt;class T&gt;
+class MyClass &#123;
+public:
+    T obj;//不会报错，类模板中的成员函数只有在调用时才会创建
+    void func1() &#123;
+        obj.showPerson1();
+    &#125;
+    void func2() &#123;
+        obj.showPerson2();
+    &#125;
+&#125;;
+int main() &#123;
+    system(&quot;pause&quot;);
+    return 0;
+&#125;
+
+#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+class Person1 &#123;
+public:
+    void showPerson1() &#123;
+        cout &lt;&lt; &quot;Person1 show&quot; &lt;&lt; endl;
+    &#125;
+&#125;;
+class Person2 &#123;
+public:
+    void showPerson2() &#123;
+        cout &lt;&lt; &quot;Person2 show&quot; &lt;&lt; endl;
+    &#125;
+&#125;;
+template&lt;class T&gt;
+class MyClass &#123; 
+public:
+    T obj;//不会报错，类模板中的成员函数只有在调用时才会创建
+    void func1() &#123;
+        obj.showPerson1();
+    &#125;
+    void func2() &#123;
+        obj.showPerson2();
+    &#125;
+&#125;;
+void test01() &#123;
+    MyClass&lt;Person1&gt;m;
+    m.func1();//正确
+    m.func2();//报错，showPerson2不是Person1的成员
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><strong>总结：</strong>类模板中的成员函数并不是一开始就创建的，在调用时才去创建</p>
+<h2 id="类模板对象做函数参数"><a href="#类模板对象做函数参数" class="headerlink" title="类模板对象做函数参数"></a>类模板对象做函数参数</h2><p>学习目标：<br><strong>·</strong> 类模板实例化出的对象，向函数传参的方式</p>
+<p>一共有三种传入方式：<br>1、指定传入的类型 — 直接显示对象的数据类型<br>2、参数模板化 — 将对象中的参数变为模板进行传递<br>3、整个类模板化 — 将这个对象类型模板化进行传递</p>
+<h3 id="指定传入的类型"><a href="#指定传入的类型" class="headerlink" title="指定传入的类型"></a>指定传入的类型</h3><pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+template&lt;class T1, class T2&gt;
+class Person &#123;
+public:
+        T1 m_name;T2 m_age;
+    Person(T1 name, T2 age) &#123;
+        this-&gt;m_name = name;
+        this-&gt;m_age = age;
+    &#125;
+    void showPerson() &#123;
+        cout &lt;&lt; &quot;姓名: &quot; &lt;&lt; this-&gt;m_name &lt;&lt; endl &lt;&lt; &quot;年龄: &quot; &lt;&lt; this-&gt;m_age &lt;&lt; endl;
+    &#125;
+&#125;;
+void printPerson(Person&lt;string,int&gt;&amp;p) &#123;
+    p.showPerson();
+&#125;
+void test01() &#123;
+    Person&lt;string, int&gt; p1(&quot;Tom&quot;, 18);
+    printPerson(p1);
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<h3 id="参数模板化"><a href="#参数模板化" class="headerlink" title="参数模板化"></a>参数模板化</h3><pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+template&lt;class T1, class T2&gt;
+class Person &#123;
+public:
+        T1 m_name;T2 m_age;
+    Person(T1 name, T2 age) &#123;
+        this-&gt;m_name = name;
+        this-&gt;m_age = age;
+    &#125;
+    void showPerson() &#123;
+        cout &lt;&lt; &quot;姓名: &quot; &lt;&lt; this-&gt;m_name &lt;&lt; endl &lt;&lt; &quot;年龄: &quot; &lt;&lt; this-&gt;m_age &lt;&lt; endl;
+    &#125;
+&#125;;
+template&lt;class T1,class T2&gt;//参数模板化
+void printPerson(Person&lt;T1,T2&gt;&amp;p) &#123;
+    p.showPerson();
+&#125;
+void test01() &#123;
+    Person&lt;string, int&gt; p1(&quot;Tom&quot;, 18);
+    printPerson(p1);
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p>typeid(模板类名).name()来看具体类型<br>    cout &lt;&lt; “T1的类型为: “ &lt;&lt; typeid(T1).name() &lt;&lt; endl;</p>
+<h3 id="整个类模板化"><a href="#整个类模板化" class="headerlink" title="整个类模板化"></a>整个类模板化</h3><pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+template&lt;class T1, class T2&gt;
+class Person &#123;
+public:
+        T1 m_name;T2 m_age;
+    Person(T1 name, T2 age) &#123;
+        this-&gt;m_name = name;
+        this-&gt;m_age = age;
+    &#125;
+    void showPerson() &#123;
+        cout &lt;&lt; &quot;姓名: &quot; &lt;&lt; this-&gt;m_name &lt;&lt; endl &lt;&lt; &quot;年龄: &quot; &lt;&lt; this-&gt;m_age &lt;&lt; endl;
+    &#125;
+&#125;;
+template&lt;class T&gt;//整个类模板化
+void printPerson(T &amp;p) &#123;
+    p.showPerson();
+&#125;
+void test01() &#123;
+    Person&lt;string, int&gt; p1(&quot;Tom&quot;, 18);
+    printPerson(p1);
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p>方法2、3相当于函数模板配合类模板使用，一般为了方便采用第一种方法即可</p>
+<h3 id="总结：-1"><a href="#总结：-1" class="headerlink" title="总结："></a>总结：</h3><p><strong>·</strong> 通过类模板创建的对象，可以有三种方式像函数中进行传参<br><strong>·</strong> 使用比较广泛是第一种：指定传入的类型</p>
+<h2 id="类模板与继承"><a href="#类模板与继承" class="headerlink" title="类模板与继承"></a>类模板与继承</h2><p>当类模板碰到继承时，需要注意以下绩点：<br><strong>·</strong> 当子类继承的父类是一个类模板时，子类在声明的时候，要指定父类中T的类型<br><strong>·</strong> 如果不指定，编译器无法给子类分配内存<br><strong>·</strong> 如果想灵活指定出父类中T的类型，子类也需变为类模板</p>
+<pre><code>template&lt;class T&gt;
+class Base &#123;
+    T m;
+&#125;;
+class Son:public Base &#123;//报错，必须要知道父类中T的数据类型才能继承给子类
+&#125;;
+
+template&lt;class T&gt;
+class Base &#123;
+T m;
+&#125;;
+class Son:public Base&lt;int&gt; &#123;//正确     
+&#125;;</code></pre>
+<h3 id="灵活指定"><a href="#灵活指定" class="headerlink" title="灵活指定"></a>灵活指定</h3><pre><code>template&lt;class T&gt;
+class Base &#123;
+T m;
+&#125;;
+template&lt;class T1,class T2&gt;
+class Son:public Base&lt;T2&gt; &#123; 
+public:
+    T1 m;
+&#125;;
+void test01() &#123;
+    Son&lt;int,char&gt; S;//int传给T1，char传给T2
+&#125;</code></pre>
+<h2 id="类模板成员函数的类外实现"><a href="#类模板成员函数的类外实现" class="headerlink" title="类模板成员函数的类外实现"></a>类模板成员函数的类外实现</h2><pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+template&lt;class T1,class T2&gt;
+class Person &#123;
+public:
+    T1 m_name;
+    T2 m_age;
+    Person(T1 name, T2 age);
+    void showPerson();
+&#125;;
+//构造函数的类外实现
+template&lt;class T1, class T2&gt;
+Person&lt;T1,T2&gt;::Person(T1 name,T2 age) &#123;
+    this-&gt;m_name = name;
+    this-&gt;m_age = age;
+&#125;
+//成员函数的类外实现
+template&lt;class T1, class T2&gt;
+void Person&lt;T1, T2&gt;::showPerson() &#123;
+    cout &lt;&lt; &quot;姓名： &quot; &lt;&lt; this-&gt;m_name &lt;&lt; endl &lt;&lt; &quot;年龄： &quot; &lt;&lt; this-&gt;m_age;
+&#125;
+void test01() &#123;
+    Person&lt;string,int&gt; p1(&quot;TOM&quot;, 18);
+    p1.showPerson();
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p>总结：要在类名后面加上类模板的参数列表</p>
+<h2 id="类模板的分文件编写"><a href="#类模板的分文件编写" class="headerlink" title="类模板的分文件编写"></a>类模板的分文件编写</h2><p>问题：类模板中成员函数的创建时机是在调用阶段，导致份文件编写时连接不到<br>解决：<br>1、直接包含.cpp源文件<br>2、将声明和实现写到同一个文件中，并更改后缀名为.hpp，hpp是约定的名称，并不强制</p>
+<p><strong>解决方法1：</strong></p>
+<p>.cpp中代码：</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&quot;Person.h&quot;
+using namespace std;
+template&lt;class T1, class T2&gt;
+Person&lt;T1,T2&gt;::Person(T1 name, T2 age) &#123;
+    this-&gt;m_name = name;
+    this-&gt;m_age = age;
+&#125;
+template&lt;class T1, class T2&gt;
+void Person&lt;T1, T2&gt;::showPerson() &#123;
+    cout &lt;&lt; &quot;姓名： &quot; &lt;&lt; this-&gt;m_name &lt;&lt; endl &lt;&lt; &quot;年龄： &quot; &lt;&lt; this-&gt;m_age &lt;&lt; endl;
+&#125;</code></pre>
+<p>.h中代码：</p>
+<pre><code>#pragma once
+#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+template&lt;class T1, class T2&gt;
+class Person &#123;
+public:
+    T1 m_name;
+    T2 m_age;
+    Person(T1 name, T2 age);
+    void showPerson();
+&#125;;</code></pre>
+<p>源文件代码：</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&quot;Person.cpp&quot;//解决方法1
+using namespace std;
+void test01() &#123;
+    Person&lt;string, int&gt;p(&quot;tom&quot;, 19);
+    p.showPerson();
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p>即使没有创建，编译器也能看到所有代码<br>但一般不用这种方法</p>
+<p><strong>解决方法2：</strong></p>
+<p>.hpp中的代码：</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+template&lt;class T1, class T2&gt;
+class Person &#123;
+public:
+    T1 m_name;
+    T2 m_age;
+    Person(T1 name, T2 age);
+    void showPerson();
+&#125;;
+template&lt;class T1, class T2&gt;
+Person&lt;T1, T2&gt;::Person(T1 name, T2 age) &#123;
+    this-&gt;m_name = name;
+    this-&gt;m_age = age;
+&#125;
+template&lt;class T1, class T2&gt;
+void Person&lt;T1, T2&gt;::showPerson() &#123;
+    cout &lt;&lt; &quot;姓名： &quot; &lt;&lt; this-&gt;m_name &lt;&lt; endl &lt;&lt; &quot;年龄： &quot; &lt;&lt; this-&gt;m_age &lt;&lt; endl;
+&#125;</code></pre>
+<p>源文件：</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&quot;Person.hpp&quot;//直接包含.hpp
+using namespace std;
+void test01() &#123;
+    Person&lt;string, int&gt;p(&quot;tom&quot;, 19);
+    p.showPerson();
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<h2 id="类模板与友元"><a href="#类模板与友元" class="headerlink" title="类模板与友元"></a>类模板与友元</h2><p>全局函数类内实现 - 直接在类内声明友元即可</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+template&lt;class T1,class T2&gt;
+class Person &#123;
+    friend void printPerson(Person&lt;T1,T2&gt; p) &#123;
+    cout &lt;&lt; &quot;姓名： &quot; &lt;&lt; p.m_name &lt;&lt; endl &lt;&lt; &quot;年龄： &quot; &lt;&lt; p.m_age &lt;&lt; endl;
+    &#125;
+public:
+    Person(T1 name, T2 age) &#123;
+        this-&gt;m_age = age;
+        this-&gt;m_name = name;
+    &#125;
+private:
+    T1 m_name;
+    T2 m_age;
+&#125;;
+void test01() &#123;
+    Person&lt;string, int&gt;p(&quot;TOM&quot;, 23);
+    printPerson(p);
+&#125;
+int main() &#123;
+    test01();
+    return 0;
+&#125;</code></pre>
+<p>全集函数类外实现 - 需要提前让编译器知道全局函数的存在</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+template&lt;class T1,class T2&gt;
+class Person;//提前让编译器知道Person类的存在
+template&lt;class T1, class T2&gt;
+void printPerson(Person&lt;T1,T2&gt; p)&#123;
+    cout &lt;&lt; &quot;姓名： &quot; &lt;&lt; p.m_name &lt;&lt; endl &lt;&lt; &quot;年龄： &quot; &lt;&lt; p.m_age &lt;&lt; endl;
+&#125;
+template&lt;class T1,class T2&gt;
+class Person &#123;
+    friend void printPerson&lt;&gt;(Person&lt;T1, T2&gt; p);
+    //加空模板参数列表，告诉编译器是函数模板
+    //如果全局函数是类外实现，需要让编译器提前知道这个函数的存在(声明或定义在前面)
+public:
+    Person(T1 name, T2 age) &#123;
+        this-&gt;m_age = age;
+        this-&gt;m_name = name;
+    &#125;
+private:
+    T1 m_name;
+    T2 m_age;
+&#125;;
+void test01() &#123;
+    Person&lt;string, int&gt;p(&quot;Tom&quot;, 23);
+    printPerson(p);
+&#125;
+int main() &#123;
+    test01();
+    return 0;
+&#125;</code></pre>
+<p>总结：建议全局函数做类内实现，用法简单</p>
+<h2 id="类模板案例"><a href="#类模板案例" class="headerlink" title="类模板案例"></a>类模板案例</h2><p>案例描述：实现一个通用的数组类，要求如下：<br><strong>·</strong> 可以对内置数据类型以及自定义数据类型的数据进行存储<br><strong>·</strong> 将数组中的数据存储到堆区<br><strong>·</strong> 构造函数中可以传入数组的容量<br><strong>·</strong> 提供对应的拷贝构造函数以及operator=防止浅拷贝问题<br><strong>·</strong> 提供尾插法和尾删法对数组中的数据进行增加和删除<br><strong>·</strong> 可以通过下标的方式访问数组中的元素<br><strong>·</strong> 可以获取数组中当前元素个数和数组的容量</p>
+<p>.hpp代码：</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+template&lt;class T&gt;
+class myArray &#123;
+private:
+    T * paddress;//指针指向堆区开辟的真实的数组
+    int m_Capacity;
+    int m_size;
+public:
+    myArray(int capacity) &#123;//有参构造，参数 容量
+        this-&gt;m_Capacity = capacity;
+        this-&gt;m_size = 0;
+        this-&gt;paddress = new T[this-&gt;m_Capacity];
+        //cout &lt;&lt; &quot;有参构造调用&quot; &lt;&lt; endl;
+    &#125;
+    //尾插法
+    void pushback(const T&amp; val) &#123;
+        //判断容量是否等于大小
+        if (this-&gt;m_Capacity == this-&gt;m_size)return;
+        this-&gt;paddress[this-&gt;m_size] = val;//在数组末尾插入数据
+        this-&gt;m_size++;//更新数组大小
+    &#125;
+    //尾删法
+    void popback() &#123;
+        //让用户访问不到最后一个元素，即为尾删，逻辑上删除
+        if (this-&gt;m_size == 0) &#123;
+            return;
+        &#125;
+        this-&gt;m_size--;
+    &#125;
+    //通过下标的方式访问数组中的元素，重载[]
+    T&amp; operator[](int index) &#123;//想做左值，得返回引用
+        return this-&gt;paddress[index];
+    &#125;
+    //返回数组的容量
+    int getCapacity()&#123;
+        return this-&gt;m_Capacity;
+    &#125;
+    //返回数组的大小
+    int getsize() &#123;
+        return this-&gt;m_size;
+    &#125;
+    ~myArray() &#123;
+        if (this-&gt;paddress != NULL) &#123;
+            delete[] this-&gt;paddress;
+            this-&gt;paddress = NULL;
+        &#125;
+        //cout &lt;&lt; &quot;析构调用&quot; &lt;&lt; endl;
+    &#125;
+    myArray(const myArray &amp; arr) &#123;
+        this-&gt;m_Capacity = arr.m_Capacity;
+        this-&gt;m_size = arr.m_size;
+        this-&gt;paddress = new T[arr.m_Capacity];//深拷贝
+        for (int i = 0;i &lt; this-&gt;m_size;i++) &#123;
+            this-&gt;paddress[i] = arr.paddress[i];    
+        &#125;
+        //cout &lt;&lt; &quot;拷贝构造调用&quot; &lt;&lt; endl;
+    &#125;
+    //operator=防止浅拷贝问题
+    myArray&amp; operator=(const myArray&amp; arr) &#123;//运算符重载，返回指针
+    //先判断原来堆区是否有数据，如果有，先释放
+        if (this-&gt;paddress != NULL) &#123;
+            delete[] this-&gt;paddress;
+            this-&gt;paddress = NULL;
+            this-&gt;m_Capacity = 0;
+            this-&gt;m_size = 0;
+        &#125;
+        this-&gt;m_Capacity = arr.m_Capacity;
+        this-&gt;m_size = arr.m_size;
+        this-&gt;paddress = new T[arr.m_Capacity];
+        for (int i = 0;i &lt; this-&gt;m_size;i++) &#123;
+            this-&gt;paddress[i] = arr.paddress[i];
+        &#125;
+        //cout &lt;&lt; &quot;=调用&quot; &lt;&lt; endl;
+        return *this;
+    &#125;
+&#125;;</code></pre>
+<p>源文件代码：</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&quot;myArray.hpp&quot;
+using namespace std;
+void printarray(myArray &lt;int&gt; &amp; arr) &#123;
+    for (int i = 0;i &lt; arr.getsize();i++) &#123;
+        cout &lt;&lt; arr[i] &lt;&lt; &quot; &quot;;
+    &#125;
+&#125;
+void test01() &#123;
+    myArray&lt;int&gt;arr1(5);
+    for (int i = 0;i &lt; 5;i++) &#123;
+        arr1.pushback(i);//利用尾插法向数组中插入数据
+    &#125;
+    cout &lt;&lt; &quot;arr1: &quot; &lt;&lt; endl;
+    printarray(arr1);
+    cout &lt;&lt; &quot;arr1的容量为： &quot; &lt;&lt; arr1.getCapacity() &lt;&lt; endl;
+    cout &lt;&lt; &quot;arr1的大小为： &quot; &lt;&lt; arr1.getsize() &lt;&lt; endl;
+    myArray&lt;int&gt;arr2(arr1);
+    printarray(arr2);
+    arr2.popback();
+    cout &lt;&lt; &quot;arr2尾删后： &quot;;
+        printarray(arr2);
+        cout &lt;&lt; &quot;arr2的容量为： &quot; &lt;&lt; arr2.getCapacity() &lt;&lt; endl;
+        cout &lt;&lt; &quot;arr2的大小为： &quot; &lt;&lt; arr2.getsize() &lt;&lt; endl;
+&#125;
+//自定义数据类型测试
+class Person &#123;
+public:
+    Person() &#123;&#125;;
+    Person(string name,int age) &#123;
+        this-&gt;m_age = age;
+        this-&gt;m_name = name;
+    &#125;
+    string m_name;
+int m_age;
+&#125;;
+void arrayperson(myArray&lt;Person&gt;&amp; arr) &#123;
+    for (int i = 0;i &lt; arr.getsize();i++) &#123;
+        cout &lt;&lt; &quot;姓名： &quot; &lt;&lt; arr[i].m_name &lt;&lt; endl &lt;&lt; &quot;年龄： &quot; &lt;&lt; arr[i].m_age &lt;&lt; endl;
+     &#125;
+&#125;
+void test02() &#123;
+    myArray&lt;Person&gt;arr(10);
+    Person p1(&quot;Tom&quot;, 14);
+    Person p2(&quot;Tim&quot;, 13);
+    Person p3(&quot;jim&quot;, 15);
+    //将数据插入到数组中
+    arr.pushback(p1);
+    arr.pushback(p2);
+    arr.pushback(p3);
+    arrayperson(arr);
+    cout &lt;&lt; &quot;arr容量为： &quot; &lt;&lt; arr.getCapacity() &lt;&lt; endl;
+    cout &lt;&lt; &quot;arr大小为： &quot; &lt;&lt; arr.getsize() &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test01();
+    test02();
+    return 0;
+&#125;</code></pre>
+
+  </article>
+
+  
+    
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>vanilla<br>
+    <strong>本文链接：</strong><a href="https://vanilla-2001.github.io/2021/03/28/%E6%A8%A1%E6%9D%BF/" title="https:&#x2F;&#x2F;vanilla-2001.github.io&#x2F;2021&#x2F;03&#x2F;28&#x2F;%E6%A8%A1%E6%9D%BF&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;vanilla-2001.github.io&#x2F;2021&#x2F;03&#x2F;28&#x2F;%E6%A8%A1%E6%9D%BF&#x2F;</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/C/" rel="tag">C++</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+  </div>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+ <script src="/js/app.js?v=1622805824122"></script>
+
+  
+
+
+
+
+
+</body>
+
+</html>

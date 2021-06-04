@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+  
+  <title>运算符重载 - 见到你很高兴♪(๑·◡·๑)♪</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
+  <meta name="description" content="运算符重载概念：对已有的运算符重新进行定义，赋予其另一种功能，以适应不同的数据类型 加号运算符重载1、通过成员函数重载+号#include&lt;iostream&gt; #include&lt;string&gt; using namespace std; class Person &amp;#123; public:     Person operator+(Person &amp;p) &amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="运算符重载">
+<meta property="og:url" content="https://vanilla-2001.github.io/2021/03/10/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/index.html">
+<meta property="og:site_name" content="见到你很高兴♪(๑·◡·๑)♪">
+<meta property="og:description" content="运算符重载概念：对已有的运算符重新进行定义，赋予其另一种功能，以适应不同的数据类型 加号运算符重载1、通过成员函数重载+号#include&lt;iostream&gt; #include&lt;string&gt; using namespace std; class Person &amp;#123; public:     Person operator+(Person &amp;p) &amp;#123;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-03-10T10:22:34.000Z">
+<meta property="article:modified_time" content="2021-03-10T12:49:45.860Z">
+<meta property="article:author" content="vanilla">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
+  
+  <link rel="stylesheet" href="/css/style.css?v=1622805824137">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="vanilla" class="mdui-btn mdui-btn-icon"><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3372245765,175918050&amp;fm=26&amp;gp=0.jpg" alt="vanilla"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="vanilla">
+            <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3372245765,175918050&amp;fm=26&amp;gp=0.jpg" alt="vanilla" alt="vanilla">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>39</div>
+        <div><span>标签</span>7</div>
+        <div><span>分类</span>2</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=site:nexmoe.com" onsubmit="return search();">
+            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/10399692" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C/">C++</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/%E5%A4%A9%E6%A2%AF/" style="font-size: 10px;">天梯</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 16.67px;">算法</a> <a href="/tags/%E8%93%9D%E6%A1%A5/" style="font-size: 13.33px;">蓝桥</a>
+    </div>
+    
+  </div>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">39</span></li></ul>
+    </div>
+  </div>
+
+
+<style>
+.nexmoe-widget .archive-list-count{
+	position : absolute;
+	right: 15px;
+	top:9px;
+	color: #DDD;
+}
+</style>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2021 vanilla
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: 66.66666666666666%;"> 
+          <img data-src="https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg" data-sizes="auto" alt="运算符重载" class="lazyload">
+          <h1>运算符重载</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年03月10日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1,271 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 6 分钟</a>
+</div>
+
+  <div class="nexmoe-post-right">
+    
+  </div>
+
+  <article>
+    <p>运算符重载概念：对已有的运算符重新进行定义，赋予其另一种功能，以适应不同的数据类型</p>
+<h2 id="加号运算符重载"><a href="#加号运算符重载" class="headerlink" title="加号运算符重载"></a>加号运算符重载</h2><h3 id="1、通过成员函数重载-号"><a href="#1、通过成员函数重载-号" class="headerlink" title="1、通过成员函数重载+号"></a>1、通过成员函数重载+号</h3><pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+class Person &#123;
+public:
+    Person operator+(Person &amp;p) &#123;//用operator+代替函数名，实现运算符重载
+        Person temp;
+        temp.m_A = this-&gt;m_A + p.m_A;
+        temp.m_B = this-&gt;m_B + p.m_B;
+        return temp;
+    &#125;
+    int m_A;
+    int m_B;
+&#125;;
+void test01() &#123;
+    Person p1;
+    p1.m_A = 10;
+    p1.m_B = 10;
+    Person p2;
+    p2.m_A = 10;
+    p2.m_B = 10;
+    Person p3 = p1 + p2;//加号运算符重载,本质：Person p3 = p1.operator+(p2);这样写效果相同
+    cout &lt;&lt; &quot;p3.m_A = &quot; &lt;&lt; p3.m_A &lt;&lt; endl;
+    cout &lt;&lt; &quot;p3.m_B = &quot; &lt;&lt; p3.m_B &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<h3 id="2、通过全局函数重载-号"><a href="#2、通过全局函数重载-号" class="headerlink" title="2、通过全局函数重载+号"></a>2、通过全局函数重载+号</h3><pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+class Person &#123;
+public:
+    int m_A;
+    int m_B;
+&#125;;
+Person operator+(Person &amp;p1, Person &amp;p2) &#123;//用operator+代替函数名，实现运算符重载
+    Person temp;
+    temp.m_A = p1.m_A + p2.m_A;
+    temp.m_B = p1.m_B + p2.m_B;
+    return temp;
+&#125;
+void test01() &#123;
+    Person p1;
+    p1.m_A = 10;
+    p1.m_B = 10;
+    Person p2;
+    p2.m_A = 10;
+    p2.m_B = 10;
+    Person p3 = p1 + p2;//加号运算符重载，本质：Person p3 = operator+(p1,p2);这样写效果相同
+    cout &lt;&lt; &quot;p3.m_A = &quot; &lt;&lt; p3.m_A &lt;&lt; endl;
+    cout &lt;&lt; &quot;p3.m_B = &quot; &lt;&lt; p3.m_B &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<h3 id="运算符重载也可以发生函数重载"><a href="#运算符重载也可以发生函数重载" class="headerlink" title="运算符重载也可以发生函数重载"></a>运算符重载也可以发生函数重载</h3><pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+class Person &#123;
+public:
+    int m_A;
+    int m_B;
+&#125;;
+Person operator+(Person &amp;p1, Person &amp;p2) &#123;
+    Person temp;
+    temp.m_A = p1.m_A + p2.m_A;
+    temp.m_B = p1.m_B + p2.m_B;
+    return temp;
+&#125;  
+Person operator+(Person &amp;p1, int num) &#123;
+    Person temp;
+    temp.m_A = p1.m_A + num;
+    temp.m_B = p1.m_B + num;
+    return temp;
+&#125;
+void test01() &#123;
+    Person p1;
+    p1.m_A = 10;
+    p1.m_B = 10;
+    Person p2;
+    p2.m_A = 10;
+    p2.m_B = 10;
+    Person p3 = p1 + p2;
+    Person p4 = p1 + 100;
+    cout &lt;&lt; &quot;p4.m_A = &quot; &lt;&lt; p4.m_A &lt;&lt; endl;
+    cout &lt;&lt; &quot;p4.m_B = &quot; &lt;&lt; p4.m_B &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p>注意：对于内置的数据类型的表达式的运算符是不可能改变的<br>不要滥用运算符重载</p>
+<h2 id="左移运算符重载"><a href="#左移运算符重载" class="headerlink" title="左移运算符重载"></a>左移运算符重载</h2><p>左移运算符：&lt;&lt;<br>作用：可以输出自定义数据类型<br>不会利用成员函数重载左移运算符，因为无法实现cout在左侧，只能利用全局函数来重载左移运算符</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+class Person &#123;
+public:
+    int m_A;
+    int m_B;
+&#125;;
+ostream &amp; operator&lt;&lt;(ostream &amp;cout, Person &amp;p) &#123;
+    cout &lt;&lt; &quot;m_A = &quot; &lt;&lt; p.m_A &lt;&lt; &quot; m_B = &quot; &lt;&lt; p.m_B;
+    return cout;//链式编程
+&#125;
+void test01() &#123;
+    Person p;
+    p.m_A = 10;
+    p.m_B = 10;
+    cout &lt;&lt; p &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<h2 id="递增运算符重载"><a href="#递增运算符重载" class="headerlink" title="递增运算符重载"></a>递增运算符重载</h2><p>作用：通过重载递增运算符，实现自己的整型数据<br>递增运算符：++</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+class MyInteger &#123;
+    friend ostream &amp; operator&lt;&lt;(ostream &amp; cout, MyInteger myint);
+public:
+    MyInteger() &#123;
+        m_Num = 0;
+    &#125;
+    MyInteger&amp; operator++() &#123;//返回引用是为了一直对一个数据进行递增操作，因为值传递形参不会影响实参
+        m_Num++;
+        return *this;//先进行++运算，再返回自身
+    &#125;
+    MyInteger operator++(int) &#123;//局部变量不能返回引用
+        MyInteger temp = *this;//先记录当时结果
+        m_Num++;//后递增
+        return temp;//最后将记录结果做返回
+    &#125;
+private:
+    int m_Num;
+&#125;;
+ostream &amp; operator&lt;&lt;(ostream &amp; cout,MyInteger myint) &#123;
+    cout &lt;&lt; myint.m_Num;
+    return cout;
+&#125;
+void test01() &#123;
+    MyInteger myint;
+    cout &lt;&lt; ++myint &lt;&lt; endl;
+&#125;
+void test02() &#123;
+    MyInteger myint;
+    cout &lt;&lt; myint++ &lt;&lt; endl;
+    cout &lt;&lt; myint &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test01();
+    test02();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<h2 id="赋值运算符重载"><a href="#赋值运算符重载" class="headerlink" title="赋值运算符重载"></a>赋值运算符重载</h2><p>c++编译器至少给一个类添加4个函数<br>1、默认构造函数（无参，函数体为空）<br>2、默认析构函数（无参，函数体为空）<br>3、默认拷贝构造函数，对属性进行值拷贝<br>4、赋值运算符operator=，对属性进行值拷贝<br>如果类中有属性指向堆区，做赋值操作时也会出现深浅拷贝问题</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+class Person &#123;
+public:
+    Person(int age) &#123;
+        m_age = new int(age);
+    &#125;
+    ~Person() &#123;
+        if (m_age != NULL) &#123;
+            delete m_age;
+            m_age = NULL;
+        &#125;
+    &#125;
+    Person &amp; operator=(Person &amp;p) &#123;
+        if (m_age != NULL) &#123;//应该先判断是否有属性在堆区，如果有，先释放内存
+            delete m_age;
+            m_age = NULL;
+        &#125;
+        m_age = new int(*p.m_age);//深拷贝
+        return *this;
+    &#125;
+    int *m_age;
+&#125;;
+void test01() &#123;
+    Person p1(18);
+    Person p2(20);
+    Person p3(30);
+    p3 = p2 = p1;//浅拷贝会重复释放内存
+    cout &lt;&lt; &quot;p1的年龄为： &quot; &lt;&lt; *p1.m_age &lt;&lt; endl;
+    cout &lt;&lt; &quot;p2的年龄为： &quot; &lt;&lt; *p2.m_age &lt;&lt; endl;
+    cout &lt;&lt; &quot;p3的年龄为： &quot; &lt;&lt; *p3.m_age &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<h2 id="关系运算符重载"><a href="#关系运算符重载" class="headerlink" title="关系运算符重载"></a>关系运算符重载</h2><p>作用：重载关系运算符，可以让两个自定义类型对象进行对比操作</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+class Person &#123;
+public:
+    bool operator==(Person &amp; p) &#123;
+        if (m_Age == p.m_Age&amp;&amp;m_Name == p.m_Name) &#123;
+            return true;
+        &#125;
+    else return false;
+    &#125;
+    bool operator!=(Person &amp; p) &#123;
+        if (m_Age != p.m_Age||m_Name != p.m_Name) &#123;
+            return true;
+        &#125;
+        else return false;
+    &#125;
+    Person(string name, int age) &#123;
+        m_Name = name;
+        m_Age = age;
+    &#125;
+    string m_Name;
+    int m_Age;
+&#125;;
+void test01() &#123;
+    Person p1(&quot;Tom&quot;,18);
+    Person p2(&quot;Jerry&quot;, 18);
+    if (p1 == p2) &#123;
+        cout &lt;&lt; &quot;p1和p2相等&quot; &lt;&lt; endl;
+    &#125;
+    else cout &lt;&lt; &quot;p1和p2不相等&quot; &lt;&lt; endl;
+if (p1 != p2) &#123;
+    cout &lt;&lt; &quot;p1和p2不相等&quot; &lt;&lt; endl;
+&#125;
+else cout &lt;&lt; &quot;p1和p2相等&quot; &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<h2 id="函数调用运算符重载"><a href="#函数调用运算符重载" class="headerlink" title="函数调用运算符重载"></a>函数调用运算符重载</h2><p><strong>·</strong> 函数调用运算符()也可以重载<br><strong>·</strong> 由于重载后使用的方式非常像函数的调用，因此称为仿函数<br><strong>·</strong> 仿函数没有固定写法，非常灵活</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+class MyPrint &#123;
+public:
+    void operator()(string test) &#123;
+        cout &lt;&lt; test &lt;&lt; endl;
+    &#125;
+&#125;;
+void test01() &#123;
+    MyPrint myprint;
+    myprint(&quot;hello world&quot;);//由于使用起来非常像函数调用，所以称为仿函数
+&#125;
+class MyAdd &#123;
+public:
+    int operator()(int num1, int num2) &#123;
+        return num1 + num2;
+    &#125;
+&#125;;
+void test02() &#123;
+    MyAdd myadd;
+    int ret = myadd(1, 2);
+    cout &lt;&lt; ret &lt;&lt; endl;
+    cout &lt;&lt; MyAdd()(100, 100) &lt;&lt; endl;//匿名函数对象（匿名对象特点：当前函数执行完后，立即释放）
+&#125;
+int main() &#123;
+    test01();
+    test02();
+    system(&quot;pause&quot;);
+    return 0;
+&#125; </code></pre>
+
+  </article>
+
+  
+    
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>vanilla<br>
+    <strong>本文链接：</strong><a href="https://vanilla-2001.github.io/2021/03/10/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/" title="https:&#x2F;&#x2F;vanilla-2001.github.io&#x2F;2021&#x2F;03&#x2F;10&#x2F;%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;vanilla-2001.github.io&#x2F;2021&#x2F;03&#x2F;10&#x2F;%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD&#x2F;</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/C/" rel="tag">C++</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+  </div>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+ <script src="/js/app.js?v=1622805824138"></script>
+
+  
+
+
+
+
+
+</body>
+
+</html>

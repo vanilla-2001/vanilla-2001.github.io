@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+  
+  <title>蓝桥杯国赛 - 见到你很高兴♪(๑·◡·๑)♪</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
+  <meta name="description" content="TIP:数组范围设置时比题目要求大一点，防止溢出！！！质数拆分2019可以被分解成若干个两两不同的素数，请问不同的分解方案有多少种？注意：分解方案不考虑顺序，如 2 + 2017 &#x3D; 2019 和 2017 + 2 &#x3D; 2019 属于同一种方案。 #include &lt;iostream&gt; #include &lt;string&gt; #include &lt;math.h&gt; #i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="蓝桥杯国赛">
+<meta property="og:url" content="https://vanilla-2001.github.io/2021/04/29/%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%9B%BD%E8%B5%9B/index.html">
+<meta property="og:site_name" content="见到你很高兴♪(๑·◡·๑)♪">
+<meta property="og:description" content="TIP:数组范围设置时比题目要求大一点，防止溢出！！！质数拆分2019可以被分解成若干个两两不同的素数，请问不同的分解方案有多少种？注意：分解方案不考虑顺序，如 2 + 2017 &#x3D; 2019 和 2017 + 2 &#x3D; 2019 属于同一种方案。 #include &lt;iostream&gt; #include &lt;string&gt; #include &lt;math.h&gt; #i">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/1F4BB92BF8D24B149DD37EC1990396DD?method=download&shareKey=2bd3731cfc577ee63be19267ecee7630">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/C20880732147452BA580A31B94F86FF3?method=download&shareKey=c18a237fdd99f61c8a851bee0adc43db">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/3D32B709BBEC41489DAC15AF17D558DD?method=download&shareKey=70ef2ffbfae9be1e0c87217d04b13a38">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/5BCBB7F8BF454417B5B5300BD2EEFC67?method=download&shareKey=1ffffed6dc7bb2fb67556a0434ae27d4">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/653FF3B93E594BE2A2C4267B3890BA95?method=download&shareKey=2c78114fb118ea5500f0a26998a844df">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/FDE4A27CEC2D47AA994C9DF99307FC7B?method=download&shareKey=d469b0adc4c9fd66a643c431b950bf7c">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/A3408A34CBA94ED59E6E8CF6B26A7C76?method=download&shareKey=7f9990eaaf3e4292bfc586843be7ee93">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/2EA20FCCDC4D4984BE357CD0DCAB7026?method=download&shareKey=d75df77f0b2a4b2e1e7c203233339b8b">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/2EA20FCCDC4D4984BE357CD0DCAB7026?method=download&shareKey=d75df77f0b2a4b2e1e7c203233339b8b">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/5332F1E9FDB642D19E8F0940BFD7E9BB?method=download&shareKey=850bcea8172f0e0af2287fde5aa645d2">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/5CA7E440E305420BB1BB50B49C66AD91?method=download&shareKey=2e5e985007a21bc51adbf94b0a9275e8">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/FF14747606EA46C6868376549CD3763B?method=download&shareKey=6842f5fb948160fa1159e087298bd18c">
+<meta property="article:published_time" content="2021-04-29T12:24:54.000Z">
+<meta property="article:modified_time" content="2021-06-04T11:22:33.649Z">
+<meta property="article:author" content="vanilla">
+<meta property="article:tag" content="蓝桥">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/1F4BB92BF8D24B149DD37EC1990396DD?method=download&shareKey=2bd3731cfc577ee63be19267ecee7630">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
+  
+  <link rel="stylesheet" href="/css/style.css?v=1622805824094">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="vanilla" class="mdui-btn mdui-btn-icon"><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3372245765,175918050&amp;fm=26&amp;gp=0.jpg" alt="vanilla"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="vanilla">
+            <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3372245765,175918050&amp;fm=26&amp;gp=0.jpg" alt="vanilla" alt="vanilla">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>39</div>
+        <div><span>标签</span>7</div>
+        <div><span>分类</span>2</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=site:nexmoe.com" onsubmit="return search();">
+            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/10399692" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C/">C++</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/%E5%A4%A9%E6%A2%AF/" style="font-size: 10px;">天梯</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 16.67px;">算法</a> <a href="/tags/%E8%93%9D%E6%A1%A5/" style="font-size: 13.33px;">蓝桥</a>
+    </div>
+    
+  </div>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">39</span></li></ul>
+    </div>
+  </div>
+
+
+<style>
+.nexmoe-widget .archive-list-count{
+	position : absolute;
+	right: 15px;
+	top:9px;
+	color: #DDD;
+}
+</style>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2021 vanilla
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: 66.66666666666666%;"> 
+          <img data-src="https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg" data-sizes="auto" alt="蓝桥杯国赛" class="lazyload">
+          <h1>蓝桥杯国赛</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年04月29日</a>
+    <a><i class="nexmoefont icon-areachart"></i>6,171 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 27 分钟</a>
+</div>
+
+  <div class="nexmoe-post-right">
+    
+  </div>
+
+  <article>
+    <h2 id="TIP-数组范围设置时比题目要求大一点，防止溢出！！！"><a href="#TIP-数组范围设置时比题目要求大一点，防止溢出！！！" class="headerlink" title="TIP:数组范围设置时比题目要求大一点，防止溢出！！！"></a>TIP:数组范围设置时比题目要求大一点，防止溢出！！！</h2><h2 id="质数拆分"><a href="#质数拆分" class="headerlink" title="质数拆分"></a>质数拆分</h2><p>2019可以被分解成若干个两两不同的素数，请问不同的分解方案有多少种？<br>注意：分解方案不考虑顺序，如 2 + 2017 = 2019 和 2017 + 2 = 2019 属于同一种方案。</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;math.h&gt;
+#include&lt;vector&gt;
+using namespace std;
+vector&lt;int&gt;v;
+long long dp[2020] = &#123; 0 &#125;;
+bool is(int x) &#123;
+    if (x == 2)return true;
+    int k = sqrt(x);
+    int flag = 1;
+    for (int i = 2;i &lt;= k;i++) &#123;
+        if (x%i == 0) &#123;
+            flag = 0;break;
+        &#125;
+    &#125;
+    if (flag)return true;
+    else return false;
+&#125;
+int main() &#123;
+    for (int i = 2;i &lt;= 2019;i++) &#123;
+        if (is(i)) &#123;
+            v.push_back(i);
+        &#125;
+    &#125;
+    v.push_back(2020);
+    int len = v.size();
+    dp[0] = 1;
+    for (int i = 0;i &lt; len;i++) &#123;
+        for (int j = 2019;j &gt;= v[i];j--) &#123;
+            dp[j] += dp[j - v[i]];
+        &#125;
+    &#125;
+    cout &lt;&lt; dp[2019];
+&#125;</code></pre>
+<p>dp[i]表示v[i]有多少种拆分方法</p>
+<h3 id="答案：55965365465060"><a href="#答案：55965365465060" class="headerlink" title="答案：55965365465060"></a>答案：55965365465060</h3><h3 id="解析："><a href="#解析：" class="headerlink" title="解析："></a>解析：</h3><pre><code>dp[n]表示n有多少种拆分方法，其中dp[0]算一种
+dp[j] += dp[j - v[i]]表示将j拆分成v[i]和j-v[i],而j-v[i]本身有dp[j-v[i]]种拆分方法。j又可以拆分成许许多多个v[i]和j-v[i](在v[i]&lt;j的前提下)
+j从2019往前计算，防止重复算入</code></pre>
+<h2 id="阶乘约数"><a href="#阶乘约数" class="headerlink" title="阶乘约数"></a>阶乘约数</h2><p>定义阶乘 n! = 1 × 2 × 3 × · · · × n。<br>请问 100! （100 的阶乘）有多少个正约数。</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;math.h&gt;
+using namespace std;
+long long ans = 1;
+int arr[100] = &#123; 0 &#125;;
+bool iszhi(int n) &#123;
+    if (n == 1 || n == 2)return true;
+    int k = sqrt(n);
+    int flag = 1;
+    for (int i = 2;i &lt;= k;i++) &#123;
+        if (n%k == 0) &#123;
+            flag = 0;
+            break;
+        &#125;
+    &#125;
+    if (flag)return true;
+    else return false;
+&#125;
+int main() &#123;
+    for (int i = 2;i &lt;= 100;i++) &#123;
+        int n = i;
+        while (n!=1) &#123;
+            for (int j = 2;j &lt;= n;j++) &#123;
+                if (iszhi(j) &amp;&amp; n%j==0) &#123;
+                    arr[j]++;
+                    n /= j;
+                    break;
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+    for (int i = 2;i &lt;= 100;i++) &#123;
+        if (arr[i]) &#123;
+            ans *= (arr[i] + 1);
+        &#125;
+    &#125;
+    cout &lt;&lt; ans;
+&#125;</code></pre>
+<h3 id="算术基本定理："><a href="#算术基本定理：" class="headerlink" title="算术基本定理："></a>算术基本定理：</h3><p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/1F4BB92BF8D24B149DD37EC1990396DD?method=download&shareKey=2bd3731cfc577ee63be19267ecee7630" alt="avatar" class="lazyload"></p>
+<h3 id="答案：39001250856960000"><a href="#答案：39001250856960000" class="headerlink" title="答案：39001250856960000"></a>答案：39001250856960000</h3><h2 id="本质上升序列"><a href="#本质上升序列" class="headerlink" title="本质上升序列"></a>本质上升序列</h2><pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+long long ans = 0;
+int dp[200];
+int main() &#123;
+    string s;
+    getline(cin, s);
+    int len = s.length();
+    for (int i = 0;i &lt; 200;i++) &#123;
+        dp[i] = 1;
+    &#125;
+    for (int i = 0;i &lt; len;i++) &#123;
+        for (int j = len - 1;j &gt; i;j--) &#123;
+            if (s[j] &gt; s[i]) &#123;
+                dp[j] += dp[i];
+            &#125;
+            if (s[j] == s[i]) &#123;
+                dp[j] -= dp[i];
+            &#125;
+        &#125;
+    &#125;
+    for (int i = 0;i &lt; len;i++) &#123;
+        ans += dp[i];
+    &#125;
+    cout &lt;&lt; ans;
+&#125;</code></pre>
+<h3 id="分析：动态规划"><a href="#分析：动态规划" class="headerlink" title="分析：动态规划"></a>分析：动态规划</h3><pre><code>dp[i]表示：前i个字符串中有多少组递增序列
+自身算一组，所以dp数组初始化为1
+如果s[j]&lt;s[i]，s[j]+=s[i]
+如果相同，s[j]-=s[i]</code></pre>
+<h3 id="答案：3616159"><a href="#答案：3616159" class="headerlink" title="答案：3616159"></a>答案：3616159</h3><h2 id="玩具蛇"><a href="#玩具蛇" class="headerlink" title="玩具蛇"></a>玩具蛇</h2><p>小蓝有一条玩具蛇，一共有 16 节，上面标着数字 1 至 16。每一节都是一<br>个正方形的形状。相邻的两节可以成直线或者成 90 度角。<br>小蓝还有一个 4 × 4 的方格盒子，用于存放玩具蛇，盒子的方格上依次标着<br>字母 A 到 P 共 16 个字母。<br>小蓝可以折叠自己的玩具蛇放到盒子里面。他发现，有很多种方案可以将<br>玩具蛇放进去。<br>下图给出了两种方案：<br><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/C20880732147452BA580A31B94F86FF3?method=download&shareKey=c18a237fdd99f61c8a851bee0adc43db" alt="avatar" class="lazyload"><br>请帮小蓝计算一下，总共有多少种不同的方案。如果两个方案中，存在玩<br>具蛇的某一节放在了盒子的不同格子里，则认为是不同的方案。</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+int flag[4][4] = &#123; 0 &#125;;
+int shu[4] = &#123; 1,0,-1,0 &#125;;
+int heng[4] = &#123; 0,1,0,-1 &#125;;//方向
+bool is(int i,int j) &#123;
+    if (i &gt;= 0 &amp;&amp; i &lt; 4 &amp;&amp; j &gt;= 0 &amp;&amp; j &lt; 4)return true;
+    else return false;
+&#125;
+long long ans = 0;
+void dfs(int a, int b, int x) &#123;
+    if (x == 16) &#123;
+        ans++;
+        return;
+    &#125;
+    for (int i = 0;i &lt; 4;i++) &#123;
+        if (is(a + heng[i], b + shu[i]) &amp;&amp; flag[a + heng[i]][b + shu[i]]==0) &#123;
+            flag[a + heng[i]][b + shu[i]] = 1;
+            dfs(a + heng[i], b + shu[i], x + 1);
+            flag[a + heng[i]][b + shu[i]] = 0;
+        &#125;
+    &#125;
+&#125;
+int main() &#123;
+    for (int i = 0;i &lt; 4;i++) &#123;
+        for (int j = 0;j &lt; 4;j++) &#123;
+            flag[i][j] = 1;
+            dfs(i, j, 1);
+            memset(flag, 0, 16 * 4);
+        &#125;
+    &#125;
+    cout &lt;&lt; ans;
+&#125;</code></pre>
+<h3 id="dfs"><a href="#dfs" class="headerlink" title="dfs"></a>dfs</h3><h3 id="答案：552"><a href="#答案：552" class="headerlink" title="答案：552"></a>答案：552</h3><h2 id="皮亚诺曲线距离"><a href="#皮亚诺曲线距离" class="headerlink" title="皮亚诺曲线距离"></a>皮亚诺曲线距离</h2><p>皮亚诺曲线是一条平面内的曲线。<br>下图给出了皮亚诺曲线的 1 阶情形，它是从左下角出发，经过一个 3 × 3 的方格中的每一个格子，最终到达右上角的一条曲线<br><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/3D32B709BBEC41489DAC15AF17D558DD?method=download&shareKey=70ef2ffbfae9be1e0c87217d04b13a38" alt="avatar" class="lazyload"><br>下图给出了皮亚诺曲线的 2 阶情形，它是经过一个 3^2^ × 3^2^ 的方格中的每一个格子的一条曲线。它是将 1 阶曲线的每个方格由 1 阶曲线替换而成。<br><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/5BCBB7F8BF454417B5B5300BD2EEFC67?method=download&shareKey=1ffffed6dc7bb2fb67556a0434ae27d4" alt="avatar" class="lazyload"><br>下图给出了皮亚诺曲线的 3 阶情形，它是经过一个 33 × 33 的方格中的每一个格子的一条曲线。它是将 2 阶曲线的每个方格由 1 阶曲线替换而成。<br><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/653FF3B93E594BE2A2C4267B3890BA95?method=download&shareKey=2c78114fb118ea5500f0a26998a844df" alt="avatar" class="lazyload"><br>皮亚诺曲线总是从左下角开始出发，最终到达右上角。<br>我们将这些格子放到坐标系中，对于 k 阶皮亚诺曲线，左下角的坐标是(0, 0)，右上角坐标是 (3k − 1, 3k − 1)，右下角坐标是 (3k − 1, 0)，左上角坐标是(0, 3k − 1)。<br>给定 k 阶皮亚诺曲线上的两个点的坐标，请问这两个点之间，如果沿着皮亚诺曲线走，距离是到少？<br>【输入格式】<br>输入的第一行包含一个正整数 k，皮亚诺曲线的阶数。第二行包含两个整数 x1, y1，表示第一个点的坐标。<br>第十一届蓝桥杯大赛软件类决赛 C/C++ 大学 B 组第三行包含两个整数 x2, y2，表示第二个点的坐标。<br>【输出格式】<br>输出一个整数，表示给定的两个点之间的距离。<br>【样例输入】<br>1<br>0 0<br>2 2<br>【样例输出】<br>8<br>【样例输入】<br>2<br>0 2<br>0 3<br>【样例输出】<br>13<br>【评测用例规模与约定】<br>对于 30% 的评测用例，0 ≤ k ≤ 10。<br>对于 50% 的评测用例，0 ≤ k ≤ 20。<br>对于所有评测用例，0 ≤ k ≤ 100, 0 ≤ x1, y1, x2, y2 &lt; 3k, x1, y1, x2, y2 ≤ 1018。<br>数据保证答案不超过 1018。</p>
+<p>代码：</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;math.h&gt;
+using namespace std;
+long long id(long long x, long long y) &#123;
+    if (x == 0) &#123;
+        if (y == 0)return 1;
+        if (y == 1)return 2;
+        if (y == 2)return 3;
+    &#125;
+    else if (x == 1) &#123;
+        if (y == 0)return 6;
+        if (y == 1)return 5;
+        if (y == 2)return 4;
+    &#125;
+    else if (x == 2) &#123;
+        if (y == 0)return 7;
+        if (y == 1)return 8;
+        if (y == 2)return 9;
+    &#125;
+&#125;
+long long fun(long long n, long long x, long long y) &#123;
+    long long k = id(x / (long long)pow(3, n - 1), y / (long long)pow(3, n - 1));
+    if (n == 1)return k - 1;
+    long long xx, yy;
+    xx = x % (long long)pow(3, n - 1);
+    yy = y % (long long)pow(3, n - 1);
+    switch (k) &#123;
+    case 2:case 8:xx = (long long)pow(3, n - 1) - 1 - xx;break;
+    case 4:case 6:yy = (long long)pow(3, n - 1) - 1 - yy;break;
+    case 5:xx = (long long)pow(3, n - 1) - 1 - xx;yy = (long long)pow(3, n - 1) - 1 - yy;break;
+    &#125;
+    return (k - 1)*(long long)pow(3, n - 1)*(long long)pow(3, n - 1) + fun(n - 1, xx, yy);
+&#125;
+int main() &#123;
+    long long n, x1, y1, x2, y2;
+    cin &gt;&gt; n &gt;&gt; x1 &gt;&gt; y1 &gt;&gt; x2 &gt;&gt; y2;
+    long long ans;
+    ans = fabs(fun(n, x2, y2) - fun(n, x1, y1));
+    cout &lt;&lt; ans;
+&#125;</code></pre>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>递归。<br>fun(n,x,y)表示，在n阶曲线中，从(0,0)到(x,y)要走的步数。<br><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/FDE4A27CEC2D47AA994C9DF99307FC7B?method=download&shareKey=d469b0adc4c9fd66a643c431b950bf7c" alt="avatar" class="lazyload"><br>每一次递归，将图形分为9各部分，k表示(x,y)在第k部分，从(0,0)到(x,y)要走的步数为：(k-1)x每个部分的格子数+fun(n-1,xx,yy)。<br>xx和yy为(x,y)在第k部分中的新坐标，注意翻转。</p>
+<h2 id="游园安排"><a href="#游园安排" class="headerlink" title="游园安排"></a>游园安排</h2><p>L 星球游乐园非常有趣，吸引着各个星球的游客前来游玩。小蓝是 L 星球游乐园的管理员。<br>为了更好的管理游乐园，游乐园要求所有的游客提前预约，小蓝能看到系统上所有预约游客的名字。每个游客的名字由一个大写英文字母开始，后面跟0 个或多个小写英文字母。游客可能重名。<br>小蓝特别喜欢递增的事物。今天，他决定在所有预约的游客中，选择一部分游客在上午游玩，其他的游客都在下午游玩，在上午游玩的游客要求按照预约的顺序排列后，名字是单调递增的，即排在前面的名字严格小于排在后面的名字。<br>一个名字 A 小于另一个名字 B 是指：存在一个整数 i，使得 A 的前 i 个字母与 B 的前 i 个字母相同，且 A 的第 i+ 1 个字母小于 B 的第 i+ 1 个字母。（如果 A 不存在第 i + 1 个字母且 B 存在第 i + 1 个字母，也视为 A 的第 i + 1 个字母小于 B 的第 i + 1 个字母）<br>作为小蓝的助手，你要按照小蓝的想法安排游客，同时你又希望上午有尽量多的游客游玩，请告诉小蓝让哪些游客上午游玩。如果方案有多种，请输出上午游玩的第一个游客名字最小的方案。如果此时还有多种方案，请输出第一个游客名字最小的前提下第二个游客名字最小的方案。如果仍然有多种，依此类推选择第三个、第四个……游客名字最小的方案。<br>【输入格式】<br>输入包含一个字符串，按预约的顺序给出所有游客的名字，相邻的游客名字之间没有字符分隔。<br>【输出格式】<br>按预约顺序输出上午游玩的游客名单，中间不加任何分隔字符。<br>【样例输入】<br>WoAiLanQiaoBei<br>【样例输出】<br>AiLanQiao<br>【评测用例规模与约定】<br>对于 20% 的评测数据，输入的总长度不超过 20 个字母。<br>对于 50% 的评测数据，输入的总长度不超过 300 个字母。<br>对于 70% 的评测数据，输入的总长度不超过 10000 个字母。<br>对于所有评测数据，每个名字的长度不超过 10 个字母，输入的总长度不超过 1000000 个字母。</p>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+string id[1000000];
+int n = 0;
+int maxi;
+int ans[1000000] = &#123; 0 &#125;;
+int xulie[1000000];
+bool daxie(char c) &#123;
+    if (c &gt;= &#39;A&#39;&amp;&amp;c &lt;= &#39;Z&#39;)return true;
+    else return false;
+&#125;
+bool is(string a, string b) &#123;
+    a[0] += 32;
+    b[0] += 32;
+    for (int i = 0;i &lt; a.length();i++) &#123;
+        if (a[i] &gt; b[i])return true;
+        else if (a[i] == b[i])continue;
+        else if (a[i] &lt; b[i])return false;
+    &#125;
+&#125;
+void dfs(int cur)
+&#123;
+    if (ans[maxi]--) &#123;
+        dfs(xulie[cur]);
+        cout &lt;&lt; id[cur];
+    &#125;
+&#125;
+int main() &#123;
+    string str;
+    getline(cin, str);
+    for (int i = 0;i &lt; str.length();i++) &#123;
+        if (daxie(str[i])) &#123;
+            id[n] += str[i];
+            for (int j = 1;i+j &lt; str.length();j++) &#123;
+                if (daxie(str[i+j])) &#123;
+                    i = i+j - 1;
+                    break;
+                &#125;
+                id[n] += str[i+j];
+            &#125;
+            n++;
+        &#125;
+    &#125;
+    for (int i = 0;i &lt; n;i++) &#123;
+        ans[i] = 1;
+        for (int j = 0;j &lt;i;j++) &#123;
+            if (is(id[i], id[j])) &#123;
+                if (ans[j] + 1 &gt; ans[i]) &#123;
+                    xulie[i] = j;
+                    ans[i] = ans[j] + 1;
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+    int max = ans[0];
+    for (int i = 1;i &lt; n;i++) &#123;
+        if (ans[i] &gt; max) &#123;
+            max = ans[i];
+            maxi = i;
+        &#125;
+    &#125;
+    dfs(maxi);
+&#125;</code></pre>
+<h3 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h3><p>ans[i]表示以id[i]结尾的最长序列有多少个人<br>ans[j]+1表示加上id[j]这个人<br>xulie[i]=j，id[j]为以id[j]结尾的最长序列的倒数第二个人名<br>通过dfs从最大序列最后一个id不断向前搜索</p>
+<h2 id="激光样式"><a href="#激光样式" class="headerlink" title="激光样式"></a>激光样式</h2><p>x星球的盛大节日为增加气氛，用30台机光器一字排开，向太空中打出光柱。安装调试的时候才发现，不知什么原因，相邻的两台激光器不能同时打开！国王很想知道，在目前这种bug存在的情况下，一共能打出多少种激光效果？<br>显然，如果只有3台机器，一共可以成5种样式，即：<br>全都关上（sorry, 此时无声胜有声，这也算一种）开一台，共3种<br>开两台，只1种<br>30台就不好算了，国王只好请你帮忙了。<br>要求提交一个整数，表示30台激光器能形成的样式种数。<br>注意，只提交一个整数，不要填写任何多余的内容。</p>
+<h3 id="代码：-1"><a href="#代码：-1" class="headerlink" title="代码："></a>代码：</h3><pre><code>#include&lt;iostream&gt;
+#include&lt;queue&gt;
+#include&lt;math.h&gt;
+using namespace std;
+long long ans = 0;
+void dfs(int last,int n) &#123;
+    if (n == 30) &#123;
+        ans++;
+        return;
+    &#125;
+    if (last == 1) &#123;
+        dfs(0, n+1);
+    &#125;
+    else &#123;
+        dfs(0, n + 1);
+        dfs(1, n + 1);
+    &#125;
+&#125;
+int main() &#123;
+    dfs(0, 1);
+    dfs(1, 1);
+    cout &lt;&lt; ans;
+&#125;</code></pre>
+<h3 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h3><p>dfs<br>1表示开灯，0表示不开<br>last表示左灯的状态，如果是1开灯，则边上的不能开，只能代0<br>如果0，则可开可不开</p>
+<h3 id="答案：2178309"><a href="#答案：2178309" class="headerlink" title="答案：2178309"></a>答案：2178309</h3><h2 id="最优包含"><a href="#最优包含" class="headerlink" title="最优包含"></a>最优包含</h2><p>我们称一个字符串 S 包含字符串 T 是指 T 是 S 的一个子序列，即可以从字符串 S 中抽出若干个字符，它们按原来的顺序组合成一个新的字符串与 T 完全一样。<br>给定两个字符串 S 和 T，请问最少修改 S 中的多少个字符，能使 S 包含 T？<br>输入格式<br>输入两行，每行一个字符串。</p>
+<p>第一行的字符串为 S，第二行的字符串为 T。</p>
+<p>两个字符串均非空而且只包含大写英文字母。</p>
+<p>输出格式<br>输出一个整数，表示答案。</p>
+<p>数据范围<br>1≤|T|≤|S|≤1000<br>输入样例：<br>ABCDEABCD<br>XAABZ<br>输出样例：<br>3</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+int dp[1005][1005];
+int min(int a, int b) &#123;
+    if (a &lt; b)return a;
+    else return b;
+&#125;
+int main() &#123;
+    string s1, s2;
+    getline(cin, s1);
+    getline(cin, s2);
+    for(int i=0;i&lt;1001;i++)
+        for (int j = 0;j &lt; 1001;j++) &#123;
+            dp[i][j] = 9999;
+        &#125;//初始化
+    for (int i = 0;i &lt; s1.length();i++) &#123;
+        if (s1[i] == s2[0])dp[i][0] = 0;//相同无需改变，为0
+        else if(i&gt;0)dp[i][0] = min(1,dp[i-1][0]);
+        else dp[i][0]=1;//不同需要改变，为1
+    &#125;//初始化
+    for (int i = 1;i &lt; s1.length();i++) &#123;
+        for (int j = 1;j &lt; s2.length();j++) &#123;
+            if (s1[i] == s2[j]) &#123;
+                dp[i][j] = dp[i - 1][j - 1];
+            &#125;
+            else &#123;
+                dp[i][j] = min(dp[i - 1][j - 1] + 1, dp[i - 1][j]);
+            &#125;
+        &#125;
+    &#125;
+    cout &lt;&lt; dp[s1.length()-1][ s2.length()-1];
+&#125;</code></pre>
+<h3 id="解析：-1"><a href="#解析：-1" class="headerlink" title="解析："></a>解析：</h3><pre><code>动态规划
+dp[i][j]表示要使S的前i+1个字母包含T的前j+1个字母，需要修改多少个字母
+每次循环选择最小
+相同：不用改变，和前S前i个字母包含T的j个字母需要改变的字母一样，即dp[i-1][j-1]
+不通：1、和S前i个字母包含T的j个字母需要改变的字母增加1，因为要改变S[i],即dp[i-1][j-1]+1
+     2、不管S[i]，从前i-1的序列中改变字母，使S的前i-1个字母包含T的前j个字母，即dp[i-1][j]</code></pre>
+<h2 id="排列数"><a href="#排列数" class="headerlink" title="排列数"></a>排列数</h2><p>在一个排列中，一个折点是指排列中的一个元素，它同时小于两边的元素，或者同时大于两边的元素。<br>对于一个 1∼n 的排列，如果可以将这个排列中包含 t 个折点，则它称为一个 t+1 单调序列。<br>例如，排列 (1,4,2,3) 是一个 3 单调序列，其中 4 和 2 都是折点。<br>给定 n 和 k，请问 1∼n 的所有排列中有多少个 k 单调队列？<br>输入格式<br>输入一行包含两个整数 n,k。</p>
+<p>输出格式<br>输出一个整数，表示答案。</p>
+<p>答案可能很大，你可需要输出满足条件的排列数量除以 123456 的余数即可。</p>
+<p>数据范围<br>1≤k≤n≤500<br>输入样例：<br>4 2<br>输出样例：<br>12</p>
+<h3 id="代码：-2"><a href="#代码：-2" class="headerlink" title="代码："></a>代码：</h3><pre><code>#include&lt;iostream&gt;
+using namespace std;
+int dp[501][501];
+int main() &#123;
+    int n, k;
+    cin &gt;&gt; n &gt;&gt; k;
+    dp[1][1] = 1;
+    dp[2][1] = 2;
+    for (int i = 3;i &lt;= n;i++) &#123;
+        for (int j = 1;j &lt;= k;j++) &#123;
+            dp[i][j] = dp[i - 1][j] * j + dp[i - 1][j - 1] * 2 + dp[i - 1][j - 2] * (i - j);
+            dp[i][j] %= 123456;
+        &#125;
+    &#125;
+    cout &lt;&lt; dp[n][k];
+&#125;</code></pre>
+<h3 id="解析：-2"><a href="#解析：-2" class="headerlink" title="解析："></a>解析：</h3><pre><code>dp[i][j]表示1~i中j单调队列的方案数
+动态分析，考虑从i-1到i会增加多少方案
+
+经过分类讨论，一共有三种情况：增加0个、1个、2个折点</code></pre>
+<h3 id="i加在山谷边上"><a href="#i加在山谷边上" class="headerlink" title="i加在山谷边上"></a>i加在山谷边上</h3><p>1、<img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/A3408A34CBA94ED59E6E8CF6B26A7C76?method=download&shareKey=7f9990eaaf3e4292bfc586843be7ee93" alt="avatar" class="lazyload"><br>1变3，增加了2个<br>2、<img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/2EA20FCCDC4D4984BE357CD0DCAB7026?method=download&shareKey=d75df77f0b2a4b2e1e7c203233339b8b" alt="avatar" class="lazyload"><br>2变2，增加了0个</p>
+<h3 id="i加在山峰边上"><a href="#i加在山峰边上" class="headerlink" title="i加在山峰边上"></a>i加在山峰边上</h3><p>1、<img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/2EA20FCCDC4D4984BE357CD0DCAB7026?method=download&shareKey=d75df77f0b2a4b2e1e7c203233339b8b" alt="avatar" class="lazyload"><br>2变2，增加了0个<br>2、<img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/5332F1E9FDB642D19E8F0940BFD7E9BB?method=download&shareKey=850bcea8172f0e0af2287fde5aa645d2" alt="avatar" class="lazyload"><br>1变1，增加了0个</p>
+<h3 id="其他情况"><a href="#其他情况" class="headerlink" title="其他情况"></a>其他情况</h3><p>1、<img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/5CA7E440E305420BB1BB50B49C66AD91?method=download&shareKey=2e5e985007a21bc51adbf94b0a9275e8" alt="avatar" class="lazyload"><br>0变2，增加了2个<br>2、<img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/FF14747606EA46C6868376549CD3763B?method=download&shareKey=6842f5fb948160fa1159e087298bd18c" alt="avatar" class="lazyload"><br>0变1，增加了1个</p>
+<pre><code>所以：dp[i][j]=dp[i-1][j]*x(增加0个折点)+dp[i-1][j-1]*y(增加1个折点)+dp[i-1][j-2]*z(增加2个折点)
+需要找x，y，z的表达式、</code></pre>
+<h3 id="增加0个折点有几种方案-x-："><a href="#增加0个折点有几种方案-x-：" class="headerlink" title="增加0个折点有几种方案(x)："></a>增加0个折点有几种方案(x)：</h3><p>1、将i加在山峰两边各为一种方案，即山峰数<em>2<br>2、最左的两个数递减时，加在最左，或最右的两个数递增时，加在最右<br>x=山峰数</em>2+[最左两数递减为真]+[最右两数递增为真]<br>当山峰数=山谷数时，最左两数和最右两数要么都递增，要么都递减,只会满足其一为真。此时x=(j-1)/2<em>2+1<br>当山峰数=山谷数+1时，最左递增，最右递减，两个都为假。此时x=j/2</em>2=j<br>当山峰数=山谷数-1时，最左递减，最右递增，两个都为真。此时x=(j/2-1)*2+2=j<br>综上，x=j</p>
+<h3 id="增加1个折点有几种方案-y-："><a href="#增加1个折点有几种方案-y-：" class="headerlink" title="增加1个折点有几种方案(y)："></a>增加1个折点有几种方案(y)：</h3><p>1、放在最左两个数之间<br>2、放在最右两个数之间<br>y=2</p>
+<h3 id="增加2个折点有几种方案-z-："><a href="#增加2个折点有几种方案-z-：" class="headerlink" title="增加2个折点有几种方案(z)："></a>增加2个折点有几种方案(z)：</h3><pre><code>在i-1个数中，一共有i种放i的方法
+在dp[i-1][j-2]中，有j-2中方法使折点加0，有2种方法使折点加1
+所以z=i-(j-2)-2=i-j</code></pre>
+<h3 id="dp-i-j-dp-i-1-j-j-dp-i-1-j-1-2-dp-i-1-j-2-i-j"><a href="#dp-i-j-dp-i-1-j-j-dp-i-1-j-1-2-dp-i-1-j-2-i-j" class="headerlink" title="dp[i][j] = dp[i - 1][j] * j + dp[i - 1][j - 1] * 2 + dp[i - 1][j - 2] * (i - j);"></a>dp[i][j] = dp[i - 1][j] * j + dp[i - 1][j - 1] * 2 + dp[i - 1][j - 2] * (i - j);</h3><h2 id="磁砖样式"><a href="#磁砖样式" class="headerlink" title="磁砖样式"></a>磁砖样式</h2><p>小明家的一面装饰墙原来是 3<em>10 的小方格。<br>现在手头有一批刚好能盖住2个小方格的长方形瓷砖。<br>瓷砖只有两种颜色：黄色和橙色。<br>小明想知道，对于这么简陋的原料，可以贴出多少种不同的花样来。<br>小明有个小小的强迫症：忍受不了任何2</em>2的小格子是同一种颜色。<br>（瓷砖不能切割，不能重叠，也不能只铺一部分。另外，只考虑组合图案，请忽略瓷砖的拼缝）<br>显然，对于 2<em>3 个小格子来说，口算都可以知道：一共10种贴法，如【p1.png所示】<br>但对于 3</em>10 的格子呢？肯定是个不小的数目，请你利用计算机的威力算出该数字。</p>
+<h3 id="代码：-3"><a href="#代码：-3" class="headerlink" title="代码："></a>代码：</h3><pre><code>#include &lt;iostream&gt;
+#include&lt;map&gt;
+using namespace std;
+long long ans = 0;
+int gezi[3][10];
+map&lt;int, int&gt;m;
+bool check() &#123;
+    for (int i = 0;i &lt; 2;i++) &#123;
+        for (int j = 0;j &lt; 9;j++) &#123;
+            if (gezi[i][j] == gezi[i + 1][j + 1] &amp;&amp; gezi[i][j] == gezi[i + 1][j] &amp;&amp; gezi[i][j] == gezi[i][j + 1]) &#123;
+                return false;
+            &#125;
+        &#125;
+    &#125;
+    int t = 1;
+    long long num = 0;
+    for (int i = 0;i &lt; 3;i++) &#123;
+        for (int j = 0;j &lt; 10;j++) &#123;
+            num += t * gezi[i][j];
+            t *= 2;
+        &#125;
+    &#125;
+    if (!m[num]) &#123;
+        m[num] = 1;
+        return true;
+    &#125;
+    else return false;
+&#125;
+void fill(int i, int j) &#123;
+    if (i &gt; 2) &#123;
+        if (check()) &#123;
+            ans++;
+        &#125;
+        return;
+    &#125;
+    if (gezi[i][j] == -1) &#123;
+        if (j &lt; 9 &amp;&amp; gezi[i][j + 1] == -1) &#123;//横着
+            for (int n = 0;n &lt; 2;n++) &#123;
+                gezi[i][j] = n;
+                gezi[i][j + 1] = n;
+                if (j + 1 &lt; 9) &#123;
+                    fill(i, j + 2);
+                &#125;
+                else &#123;
+                    fill(i + 1, 0);
+                &#125;
+                gezi[i][j] = -1;
+                gezi[i][j + 1] = -1;
+            &#125;
+        &#125;
+        if (i &lt; 2 &amp;&amp; gezi[i + 1][j] == -1) &#123;//竖着
+            for (int n = 0;n &lt; 2;n++) &#123;
+                gezi[i][j] = n;
+                gezi[i + 1][j] = n;
+                if (j &lt; 9) &#123;
+                    fill(i, j + 1);
+                &#125;
+                else &#123;
+                    fill(i + 1, 0);
+                &#125;
+                gezi[i][j] = -1;
+                gezi[i + 1][j] = -1;
+            &#125;
+        &#125;
+    &#125;
+    else if (j &lt; 9) &#123;
+        fill(i, j + 1);
+    &#125;
+    else if (j &gt;= 9) &#123;
+        fill(i + 1, 0);
+    &#125;
+&#125;
+int main() &#123;
+    memset(gezi, -1, sizeof(gezi));
+    fill(0, 0);
+    cout &lt;&lt; ans;
+&#125;</code></pre>
+<h3 id="答案：101466"><a href="#答案：101466" class="headerlink" title="答案：101466"></a>答案：101466</h3><h3 id="分析：dfs-hash"><a href="#分析：dfs-hash" class="headerlink" title="分析：dfs+hash"></a>分析：dfs+hash</h3><pre><code>gezi[3][10]表示一个3行10列的墙，每个格子初始化为-1，表示未被填入颜色
+按照从左往右，从上往下的顺序填格子
+可以横竖，每次横竖可以选择两种颜色(用for循环两次实现，0和1各代表一种颜色)
+如果j=9，则表示这一行填满了，要填下一行，转到fill(i+1,0)
+如果j&lt;9，在横着填的情况下，直接跳过下一个，转到fill(i,j+2);在竖着填的情况下，转到下一个fill(i,j+1)
+如果该格子不为-1，表示已经被填过了(由上一行竖着填的某个引起),则直接转到下一个，如果以满，转到下一行第一个
+i一旦大于2，则表示全部填完，用check函数检验已经填满的是否符合
+符合条件：1、相邻的四个不能相同；2、确保不是已有过的填法，用hash实现记录已有填法
+在横竖的分支语句中，最后要回溯到-1，不然后续无法判断是否已经填色</code></pre>
+<h2 id="发现环"><a href="#发现环" class="headerlink" title="发现环"></a>发现环</h2><p>问题描述<br>　　小明的实验室有N台电脑，编号1~N。原本这N台电脑之间有N-1条数据链接相连，恰好构成一个树形网络。在树形网络上，任意两台电脑之间有唯一的路径相连。<br>　　不过在最近一次维护网络时，管理员误操作使得某两台电脑之间增加了一条数据链接，于是网络中出现了环路。环路上的电脑由于两两之间不再是只有一条路径，使得这些电脑上的数据传输出现了BUG。<br>　　为了恢复正常传输。小明需要找到所有在环路上的电脑，你能帮助他吗？</p>
+<p>输入格式<br>　　第一行包含一个整数N。<br>　　以下N行每行两个整数a和b，表示a和b之间有一条数据链接相连。</p>
+<p>　　对于30%的数据，1 &lt;= N &lt;= 1000<br>　　对于100%的数据, 1 &lt;= N &lt;= 100000， 1 &lt;= a, b &lt;= N</p>
+<p>　　输入保证合法。</p>
+<p>输出格式<br>　　按从小到大的顺序输出在环路上的电脑的编号，中间由一个空格分隔。</p>
+<p>样例输入<br>5<br>1 2<br>3 1<br>2 4<br>2 5<br>5 3<br>样例输出<br>1 2 3 5</p>
+<h3 id="代码：-4"><a href="#代码：-4" class="headerlink" title="代码："></a>代码：</h3><pre><code>#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;queue&gt;
+using namespace std;
+vector&lt;int&gt;mp[100005];
+queue&lt;int&gt;que;
+int degree[100005] = &#123; 0 &#125;;
+int flag[100005] = &#123; 0 &#125;;
+int main() &#123;
+    int n;
+    cin &gt;&gt; n;
+    int len = n;
+    while (n--) &#123;
+        int x, y;
+        cin &gt;&gt; x &gt;&gt; y;
+        degree[x]++;
+        degree[y]++;
+        mp[x].push_back(y);
+        mp[y].push_back(x);
+    &#125;
+    for (int i = 1;i &lt;= len;i++) &#123;
+        if (degree[i] == 1) &#123;
+            que.push(i);
+            flag[i] = 1;
+        &#125;
+    &#125;
+    while (!que.empty()) &#123;
+        int temp = que.front();
+        que.pop();
+        for (int i = 0;i &lt; mp[temp].size();i++) &#123;
+            degree[mp[temp][i]]--;
+            if (degree[mp[temp][i]] == 1) &#123;
+                que.push(mp[temp][i]);
+                flag[mp[temp][i]] = 1;
+            &#125;
+        &#125;
+    &#125;
+    for (int i = 1;i &lt;= len;i++) &#123;
+        if (flag[i] == 0) &#123;
+            cout &lt;&lt; i &lt;&lt; &quot; &quot;;
+        &#125;
+    &#125;
+&#125;</code></pre>
+<h3 id="分析：拓扑排序"><a href="#分析：拓扑排序" class="headerlink" title="分析：拓扑排序"></a>分析：拓扑排序</h3><pre><code>初始化flag数组为0
+将正常路线上的flag设为1，剩下的就是在回路上的电脑
+从度初始就为1的节点开始寻找正常节点(只有一个前驱，一个后继)；将下一个度自减1，通过自减后的度是否为1判断是否在正常线路上</code></pre>
+<h2 id="对局匹配"><a href="#对局匹配" class="headerlink" title="对局匹配"></a>对局匹配</h2><p>问题描述<br>　　小明喜欢在一个围棋网站上找别人在线对弈。这个网站上所有注册用户都有一个积分，代表他的围棋水平。<br>　　小明发现网站的自动对局系统在匹配对手时，只会将积分差恰好是K的两名用户匹配在一起。如果两人分差小于或大于K，系统都不会将他们匹配。<br>　　现在小明知道这个网站总共有N名用户，以及他们的积分分别是A1, A2, … AN。<br>　　小明想了解最多可能有多少名用户同时在线寻找对手，但是系统却一场对局都匹配不起来(任意两名用户积分差不等于K)？<br>输入格式<br>　　第一行包含两个个整数N和K。<br>　　第二行包含N个整数A1, A2, … AN。<br>　　对于30%的数据，1 &lt;= N &lt;= 10<br>　　对于100%的数据，1 &lt;= N &lt;= 100000, 0 &lt;= Ai &lt;= 100000, 0 &lt;= K &lt;= 100000<br>输出格式<br>　　一个整数，代表答案。<br>样例输入<br>10 0<br>1 4 2 8 5 7 1 4 2 8<br>样例输出<br>6</p>
+<h3 id="代码：-5"><a href="#代码：-5" class="headerlink" title="代码："></a>代码：</h3><pre><code>#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+int num[100005] = &#123; 0 &#125;;
+int m = 0;
+int max(int a, int b, int c) &#123;
+    if (a &gt; b&amp;&amp;a &gt; c)return a;
+    else if (b &gt; c)return b;
+    else return c;
+&#125;
+int main() &#123;
+    int n, k;
+    int ans = 0;
+    cin &gt;&gt; n &gt;&gt; k;
+    if (k != 0) &#123;
+        for (int i = 0;i &lt; n;i++) &#123;
+            int temp;
+            cin &gt;&gt; temp;
+            num[temp]++;
+            if (temp &gt; m)m = temp;
+        &#125;
+        for (int j = 0;j &lt; k;j++) &#123;
+            int count = 0;int dp[100005] = &#123; 0 &#125;;int team[100005] = &#123; 0 &#125;;
+            for (int i = j;i &lt;= m;i += k) &#123;
+                team[count++] += num[i];
+            &#125;
+            dp[0] = team[0];
+            if (team[0] &gt; team[1])dp[1] = dp[0];
+            else dp[1] = team[1];
+            for (int i = 2;i &lt; count;i++) &#123;
+                 dp[i] = max(dp[i - 1], dp[i - 2] + team[i], team[i]);
+            &#125;
+            ans += dp[count - 1];
+            &#125;
+        cout &lt;&lt; ans;
+    &#125;
+    else &#123;
+        for (int i = 0;i &lt; n;i++) &#123;
+            int temp;
+            cin &gt;&gt; temp;
+            num[temp]++;
+        &#125;
+        for (int i = 0;i &lt; 100000;i++) &#123;
+            if (num[i])ans++;
+        &#125;
+        cout &lt;&lt; ans;
+    &#125;
+&#125;</code></pre>
+<h3 id="解析：动态规划"><a href="#解析：动态规划" class="headerlink" title="解析：动态规划"></a>解析：动态规划</h3><pre><code>num[n]表示积分为n的人数
+分为k组，每组的成员分别是0+k的倍数、1+k的倍数、2+k的倍数......(k-1)+k的倍数
+同时选择不同组的成员必然不会匹配，在同组中，差值不为k也不会匹配到，所以需要把各组能取的最大人数加起来
+dp[i]表示在第j组，前i个数(从小到大排)中，可以取的最多人数，所以相邻的只可取其一
+team[i]表示分数为i的人数
+dp[i] = max(dp[i - 1], dp[i - 2] + team[i], team[i])
+dp[i-1]表示不取分数为i的人数，dp[i-2]+team[i]表示取分数为i的人数，team[i]防止前面的人数都是0</code></pre>
+
+  </article>
+
+  
+    
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>vanilla<br>
+    <strong>本文链接：</strong><a href="https://vanilla-2001.github.io/2021/04/29/%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%9B%BD%E8%B5%9B/" title="https:&#x2F;&#x2F;vanilla-2001.github.io&#x2F;2021&#x2F;04&#x2F;29&#x2F;%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%9B%BD%E8%B5%9B&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;vanilla-2001.github.io&#x2F;2021&#x2F;04&#x2F;29&#x2F;%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%9B%BD%E8%B5%9B&#x2F;</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E8%93%9D%E6%A1%A5/" rel="tag">蓝桥</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+  </div>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+ <script src="/js/app.js?v=1622805824097"></script>
+
+  
+
+
+
+
+
+</body>
+
+</html>

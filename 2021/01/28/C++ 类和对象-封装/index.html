@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+  
+  <title>C++ 类和对象-封装 - 见到你很高兴♪(๑·◡·๑)♪</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
+  <meta name="description" content="C++面向对象的三大特性为：封装、继承、多态C++认为万事万物皆为对象，对象上有其属性和行为 例如：人可以作为对象，属性有姓名、年龄、身高、体重…，行为有走、跑、跳、吃饭、唱歌…车也可以作为对象，属性有轮胎、方向盘、车灯…，行为有载人、放音乐、放空调…具有相同属性的对象，我们可以抽象称为类，人属于人类，车属于车类 封装的意义封装是C++面向对象的三大特性之一封装的意义：· 将属性和行为作为一个整体">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 类和对象-封装">
+<meta property="og:url" content="https://vanilla-2001.github.io/2021/01/28/C++%20%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1-%E5%B0%81%E8%A3%85/index.html">
+<meta property="og:site_name" content="见到你很高兴♪(๑·◡·๑)♪">
+<meta property="og:description" content="C++面向对象的三大特性为：封装、继承、多态C++认为万事万物皆为对象，对象上有其属性和行为 例如：人可以作为对象，属性有姓名、年龄、身高、体重…，行为有走、跑、跳、吃饭、唱歌…车也可以作为对象，属性有轮胎、方向盘、车灯…，行为有载人、放音乐、放空调…具有相同属性的对象，我们可以抽象称为类，人属于人类，车属于车类 封装的意义封装是C++面向对象的三大特性之一封装的意义：· 将属性和行为作为一个整体">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/425BCDF0E8B349DC89F1552DC597C41B?method=download&shareKey=ac33d663777a01a8ff55d5758d8d12ea">
+<meta property="article:published_time" content="2021-01-28T05:56:24.000Z">
+<meta property="article:modified_time" content="2021-01-28T08:02:01.656Z">
+<meta property="article:author" content="vanilla">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/425BCDF0E8B349DC89F1552DC597C41B?method=download&shareKey=ac33d663777a01a8ff55d5758d8d12ea">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
+  
+  <link rel="stylesheet" href="/css/style.css?v=1622805824144">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="vanilla" class="mdui-btn mdui-btn-icon"><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3372245765,175918050&amp;fm=26&amp;gp=0.jpg" alt="vanilla"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="vanilla">
+            <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3372245765,175918050&amp;fm=26&amp;gp=0.jpg" alt="vanilla" alt="vanilla">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>39</div>
+        <div><span>标签</span>7</div>
+        <div><span>分类</span>2</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=site:nexmoe.com" onsubmit="return search();">
+            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/10399692" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C/">C++</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/%E5%A4%A9%E6%A2%AF/" style="font-size: 10px;">天梯</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 16.67px;">算法</a> <a href="/tags/%E8%93%9D%E6%A1%A5/" style="font-size: 13.33px;">蓝桥</a>
+    </div>
+    
+  </div>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">39</span></li></ul>
+    </div>
+  </div>
+
+
+<style>
+.nexmoe-widget .archive-list-count{
+	position : absolute;
+	right: 15px;
+	top:9px;
+	color: #DDD;
+}
+</style>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2021 vanilla
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: NaN%;"> 
+          <img data-src="https://note.youdao.com/yws/api/personal/file/A4C6DA4F70A3452AB3A6C452979657C0?method=download&shareKey=003485de03acca146ed8042c1f2baee1" data-sizes="auto" alt="C++ 类和对象-封装" class="lazyload">
+          <h1>C++ 类和对象-封装</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年01月28日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1,647 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 7 分钟</a>
+</div>
+
+  <div class="nexmoe-post-right">
+    
+  </div>
+
+  <article>
+    <p>C++面向对象的三大特性为：<font color=#FF7171><strong>封装、继承、多态</strong></font><br>C++认为万事万物皆为对象，对象上有其属性和行为</p>
+<p><strong>例如：</strong><br>人可以作为对象，属性有姓名、年龄、身高、体重…，行为有走、跑、跳、吃饭、唱歌…<br>车也可以作为对象，属性有轮胎、方向盘、车灯…，行为有载人、放音乐、放空调…<br>具有相同属性的<font color=#FF7171><strong>对象</strong></font>，我们可以抽象称为<font color=#FF7171><strong>类</strong></font>，人属于人类，车属于车类</p>
+<h2 id="封装的意义"><a href="#封装的意义" class="headerlink" title="封装的意义"></a>封装的意义</h2><p>封装是C++面向对象的三大特性之一<br>封装的意义：<br><strong>·</strong> 将属性和行为作为一个整体，表现生活中的事物<br><strong>·</strong> 将属性和行为加以权限控制</p>
+<h3 id="封装意义一："><a href="#封装意义一：" class="headerlink" title="封装意义一："></a>封装意义一：</h3><p>在设计类的时候，属性和行为写在一起，表现事物<br>语法：class 类名{  访问权限：属性 /行为};</p>
+<p>示例1：设计一个圆类，求圈的周长</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+const double PI = 3.14;
+//class代表设计一个类，类后面紧跟的就是类名
+class circle &#123;
+    //访问权限
+    public://公共权限
+    //属性
+    int r;
+    //行为
+    double calculateC() &#123;
+        return 2 * PI * r;
+    &#125;//获取圆的周长
+&#125;;
+int main() &#123;
+    //通过圆类，创建具体的圆（对象）
+    //实例化
+    circle c1;
+    //给圆对象的属性进行赋值
+    c1.r = 10;
+    cout &lt;&lt; &quot;圆的周长为： &quot; &lt;&lt; c1.calculateC() &lt;&lt; endl;
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p>示例2：设计一个学生类，属性有姓名和学号，可以给姓名和学号赋值，可以显示学生的姓名和学号</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+//设计学生类
+class student &#123;
+public://公共权限
+    //属性
+    string name;
+    int id;
+    //行为
+    //显示姓名和学号
+    void showstudent() &#123;
+        cout &lt;&lt; &quot;姓名： &quot; &lt;&lt; name &lt;&lt;&quot;\t&quot;&lt;&lt; &quot;学号：&quot; &lt;&lt; id &lt;&lt; endl;
+    &#125;
+    void setname(string Name) &#123;
+        name = Name;
+    &#125;
+&#125;;
+int main() &#123;
+    //创建一个具体的学生  实例化对象
+    student s1;
+    //给s1对象进行属性赋值操作
+    s1.setname(&quot;张三&quot;);//调用函数赋值
+    s1.id = 1;
+    s1.showstudent();
+    student s2;
+    s2.name = &quot;李四&quot;;//直接赋值
+    s2.id = 2;
+    s2.showstudent();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p>类中的属性和行为，我们统一称为成员<br><font color=#FF7171>属性</font>也称为<font color=#FF7171>成员属性、成员变量</font><br><font color=#FF7171>行为</font>也称为<font color=#FF7171>成员函数、成员方法</font></p>
+<h3 id="封装意义二："><a href="#封装意义二：" class="headerlink" title="封装意义二："></a>封装意义二：</h3><p>类在设计时，可以把属性和行为放在不同的权限下，加以控制<br>访问权限有三种：<br>1、puclic    公共权限    类内可以访问    类外可以访问<br>2、protected 保护权限    类内可以访问    类外不可以访问    儿子也可以访问父亲中的保护内容<br>3、private   私有权限    类内可以访问    类外不可以访问    儿子不可以访问父亲中的私有内容</p>
+<pre><code>class person &#123;
+public://公共权限
+    string name;
+protected://保护权限
+    string car;
+private://私有权限
+    int password;
+public:
+    void func() &#123;
+        name = &quot;张三&quot;;
+        car = &quot;拖拉机&quot;;
+        password = 123456;
+    &#125;//类内全可以访问，合法
+&#125;;
+int main() &#123;
+    person p1;//实例化具体对象
+    p1.name = &quot;李四&quot;;//合法
+    p1.car = &quot;奔驰&quot;;//非法报错，保护权限的内容在类外无法访问
+    p1.password = 123;//非法报错，私有权限的内容在类外无法访问
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<h2 id="struct和class区别"><a href="#struct和class区别" class="headerlink" title="struct和class区别"></a>struct和class区别</h2><p>在C++中struct和class唯一的<strong>区别</strong>就在于<strong>默认的访问权限不同</strong><br>区别：<br><strong>·</strong> struct默认权限为公开<br><strong>·</strong> class默认权限为私有</p>
+<pre><code>class c1 &#123;
+    int a;//默认是私有权限private
+&#125;;
+struct c2 &#123;
+    int a;//默认是公共权限public
+&#125;;
+int main() &#123;
+    c1 x;
+    x.a = 100;//非法，报错，在class里默认权限是私有，类外不可访问
+    c2 y;
+    y.a = 100;//合法，在struct里默认权限是公共，类外可以访问
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<h2 id="成员属性私有化"><a href="#成员属性私有化" class="headerlink" title="成员属性私有化"></a>成员属性私有化</h2><p><strong>优点1：</strong>将所有成员属性设置为私有，可以自己控制读写权限<br><strong>优点2：</strong>对于写权限，我们可以检测数据的有效性</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+class person &#123;
+public:
+    //设置姓名
+    void setname(string Name) &#123;
+        name = Name;
+    &#125;
+    //获取姓名
+    string getname() &#123;
+        return name;
+    &#125;
+    //设置年龄
+    void setage(int Age) &#123;
+        if (Age &lt; 0 || Age &gt; 150) &#123;
+            return;
+        &#125;
+        age = Age;
+    &#125;
+    //获取年龄
+    int getage() &#123;
+        return age;
+    &#125;
+    //设置情人 只写
+    void setlover(string Lover) &#123;
+        lover = Lover;
+    &#125;
+private:
+    string name;//可读可写
+    int age;//可读可写
+    string lover;//只写
+&#125;;
+int main() &#123;
+    person p;
+    p.setname(&quot;张三&quot;);
+    cout &lt;&lt; &quot;姓名为： &quot; &lt;&lt; p.getname() &lt;&lt; endl;
+    p.setage(15);
+    cout &lt;&lt; &quot;年龄为： &quot; &lt;&lt; p.getage() &lt;&lt; endl;
+    p.setlover(&quot;苍井&quot;);
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<h2 id="练习案例1：设计立方体类"><a href="#练习案例1：设计立方体类" class="headerlink" title="练习案例1：设计立方体类"></a>练习案例1：设计立方体类</h2><p>设计立方体类<br>求出立方体的面积和体积<br>分别用全局函数和成员函数判断两个立方体是否相等</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+class cube &#123;
+public:
+    //行为
+    //设置获取长宽高
+    void setl(int l) &#123;
+        m_l = l;
+    &#125;
+    void setw(int w) &#123;
+        m_w = w;
+    &#125;
+    void seth(int h) &#123;
+        m_h = h;
+    &#125;
+    int getl() &#123;
+        return m_l;
+    &#125;
+    int getw() &#123;
+        return m_w;
+    &#125;
+    int geth() &#123;
+        return m_h;
+    &#125;
+    //获取立方体面积
+    int calculates() &#123;
+        return 2 * m_l * m_w + 2 * m_l * m_h + 2 * m_w * m_h;
+    &#125;
+    //获取立方体体积
+    int calculatev() &#123;
+        return m_l * m_w * m_h;
+    &#125;
+    //利用成员函数来判断两个立方体是否相等
+    bool issamebyclass(cube &amp;c) &#123;
+        if (m_l == c.getl() &amp;&amp; m_w == c.getw() &amp;&amp; m_h == c.geth())
+            return true;
+        else return false;
+    &#125;
+private:
+    //属性
+    int m_l;
+    int m_w;
+    int m_h;
+&#125;;
+//利用全局函数来判断两个立方体是否相等
+bool issame(cube &amp;c1,cube &amp;c2) &#123;
+    if (c1.getl() == c2.getl() &amp;&amp; c1.getw() == c2.getw() &amp;&amp; c1.geth() == c2.geth())
+        return true;
+    else return false;
+&#125;
+int main() &#123;
+    cube c1;//创建立方体对象
+    c1.seth(10);
+    c1.setl(10);
+    c1.setw(10);
+    cube c2;//创建第二个立方体对象
+    c2.seth(10);
+    c2.setl(10);
+    c2.setw(11);
+    //利用全局函数判断
+    bool ret1 = issame(c1, c2);
+    if (ret1) &#123;
+        cout &lt;&lt; &quot;全局函数  相等&quot; &lt;&lt; endl;
+    &#125;
+    else cout &lt;&lt; &quot;全局函数  不相等&quot; &lt;&lt; endl;
+    //利用成员函数判断
+    bool ret2 = c1.issamebyclass(c2);
+    if (ret2) &#123;
+        cout &lt;&lt; &quot;成员函数  相等&quot; &lt;&lt; endl;
+    &#125;
+    else cout &lt;&lt; &quot;成员函数  不相等&quot; &lt;&lt; endl;
+    cout &lt;&lt; &quot;c1的面积为&quot; &lt;&lt; c1.calculates() &lt;&lt; endl;
+    cout &lt;&lt; &quot;c1的体积为&quot; &lt;&lt; c1.calculatev() &lt;&lt; endl;
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/425BCDF0E8B349DC89F1552DC597C41B?method=download&shareKey=ac33d663777a01a8ff55d5758d8d12ea" alt="avatar" class="lazyload"></p>
+<h2 id="练习案例2-点和圆的关系"><a href="#练习案例2-点和圆的关系" class="headerlink" title="练习案例2:点和圆的关系"></a>练习案例2:点和圆的关系</h2><p>设计一个圆类，和一个点类，计算点和圆的关系</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+//点类
+class point &#123;
+public:
+    void setx(int x) &#123;
+        m_x = x;
+    &#125;
+    int getx() &#123;
+        return m_x;
+    &#125;
+    void sety(int y) &#123;
+        m_y = y;
+    &#125;
+    int gety() &#123;
+        return m_y;
+    &#125;
+private:
+    int m_x;
+    int m_y;
+&#125;;
+//圆类
+class circle &#123;
+public:
+    void setr(int r) &#123;
+        m_r = r;
+    &#125;
+    int getr() &#123;
+        return m_r;
+    &#125;
+    void setcenter(point center) &#123;
+        m_center = center;
+    &#125;
+     point getcenter() &#123;
+        return m_center;
+    &#125;
+private:
+    int m_r;
+    point m_center;//在类中，可以让另一个类作为本类中的成员
+&#125;;
+//判断点和圆关系
+void isin(circle &amp;c, point &amp;p) &#123;
+    //计算两点之间距离的平方
+    int distance = (c.getcenter().getx() - p.getx())*(c.getcenter().getx() - p.getx()) + (c.getcenter().gety() - p.gety())*(c.getcenter().gety() - p.gety());
+        //半径的平方
+    int rdistance = c.getr()*c.getr();
+    //判断关系
+    if (distance == rdistance) &#123;
+        cout &lt;&lt; &quot;点在圆上&quot; &lt;&lt; endl;
+    &#125;  
+    else if (distance &gt; rdistance) &#123;
+        cout &lt;&lt; &quot;点在圆外&quot; &lt;&lt; endl;
+    &#125;
+    else cout &lt;&lt; &quot;点在圆内&quot; &lt;&lt; endl;
+&#125;
+    int main() &#123;
+    //创建圆
+    circle c;
+    c.setr(10);
+    point center;
+    center.setx(10);
+    center.sety(0);
+      c.setcenter(center);
+    //创建点
+    point p;
+    p.setx(10);
+    p.sety(10);
+    //判断关系
+    isin(c, p);
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+
+  </article>
+
+  
+    
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>vanilla<br>
+    <strong>本文链接：</strong><a href="https://vanilla-2001.github.io/2021/01/28/C++%20%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1-%E5%B0%81%E8%A3%85/" title="https:&#x2F;&#x2F;vanilla-2001.github.io&#x2F;2021&#x2F;01&#x2F;28&#x2F;C++%20%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1-%E5%B0%81%E8%A3%85&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;vanilla-2001.github.io&#x2F;2021&#x2F;01&#x2F;28&#x2F;C++%20%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1-%E5%B0%81%E8%A3%85&#x2F;</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/C/">C++</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/C/" rel="tag">C++</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+  </div>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+ <script src="/js/app.js?v=1622805824145"></script>
+
+  
+
+
+
+
+
+</body>
+
+</html>

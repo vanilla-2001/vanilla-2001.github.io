@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+  
+  <title>C++ 对象模型和this指针 - 见到你很高兴♪(๑·◡·๑)♪</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
+  <meta name="description" content="成员变量和成员函数分开存储在C++中，类内的成员变量和成员函数分开存储只有非静态成员变量才属于类的对象上 #include&lt;iostream&gt; using namespace std; class Person &amp;#123; &amp;#125;; void test01() &amp;#123;     Person p;     cout &lt;&lt; &quot;size of p &#x3D; &amp;q">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 对象模型和this指针">
+<meta property="og:url" content="https://vanilla-2001.github.io/2021/03/09/C-%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B%E5%92%8Cthis%E6%8C%87%E9%92%88/index.html">
+<meta property="og:site_name" content="见到你很高兴♪(๑·◡·๑)♪">
+<meta property="og:description" content="成员变量和成员函数分开存储在C++中，类内的成员变量和成员函数分开存储只有非静态成员变量才属于类的对象上 #include&lt;iostream&gt; using namespace std; class Person &amp;#123; &amp;#125;; void test01() &amp;#123;     Person p;     cout &lt;&lt; &quot;size of p &#x3D; &amp;q">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/1DFF705E6F334E52942D8520D0836886?method=download&shareKey=a297e6e86699ec14c9b7fcf5c6d9a0d6">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/AAECFD6EE9744DA3BD05F8703F047B04?method=download&shareKey=1ab3bbfa6cfda7bcd72dd6594f1c12ec">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/AAECFD6EE9744DA3BD05F8703F047B04?method=download&shareKey=1ab3bbfa6cfda7bcd72dd6594f1c12ec">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/AAECFD6EE9744DA3BD05F8703F047B04?method=download&shareKey=1ab3bbfa6cfda7bcd72dd6594f1c12ec">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/AAECFD6EE9744DA3BD05F8703F047B04?method=download&shareKey=1ab3bbfa6cfda7bcd72dd6594f1c12ec">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/BE82CEA31DCD4FBFB0D78BA72DBC7B2B?method=download&shareKey=0c6114c02a54effa8680188fb850c2b0">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/EDF8C470857A4F709341B0E862346BD9?method=download&shareKey=92aa4bad0c7590bcd7baa64fe0af2e6e">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/203AA3F6CA3547CABA0489DB569799AF?method=download&shareKey=f43e8fa666d1dde4273a301586a4a5b5">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/0AD458C4AF604A989D3BA931E2F2F3E4?method=download&shareKey=11bcb6dd7d906acbe52dea4747f4d43b">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/A0E57DCE0E4F41718AC1D9B76BC16ABC?method=download&shareKey=9bf7e7d6faa361b784457454c3baef21">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/B3DBF24483064B0B845823F0D6BD294C?method=download&shareKey=f4731c34c614455a624f6062a1a40cf5">
+<meta property="article:published_time" content="2021-03-09T11:38:52.000Z">
+<meta property="article:modified_time" content="2021-03-09T14:00:45.776Z">
+<meta property="article:author" content="vanilla">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/1DFF705E6F334E52942D8520D0836886?method=download&shareKey=a297e6e86699ec14c9b7fcf5c6d9a0d6">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
+  
+  <link rel="stylesheet" href="/css/style.css?v=1622805824140">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="vanilla" class="mdui-btn mdui-btn-icon"><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3372245765,175918050&amp;fm=26&amp;gp=0.jpg" alt="vanilla"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="vanilla">
+            <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3372245765,175918050&amp;fm=26&amp;gp=0.jpg" alt="vanilla" alt="vanilla">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>39</div>
+        <div><span>标签</span>7</div>
+        <div><span>分类</span>2</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=site:nexmoe.com" onsubmit="return search();">
+            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/10399692" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C/">C++</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/%E5%A4%A9%E6%A2%AF/" style="font-size: 10px;">天梯</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 16.67px;">算法</a> <a href="/tags/%E8%93%9D%E6%A1%A5/" style="font-size: 13.33px;">蓝桥</a>
+    </div>
+    
+  </div>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">39</span></li></ul>
+    </div>
+  </div>
+
+
+<style>
+.nexmoe-widget .archive-list-count{
+	position : absolute;
+	right: 15px;
+	top:9px;
+	color: #DDD;
+}
+</style>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2021 vanilla
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: 66.66666666666666%;"> 
+          <img data-src="https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg" data-sizes="auto" alt="C++ 对象模型和this指针" class="lazyload">
+          <h1>C++ 对象模型和this指针</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年03月09日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1,484 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 7 分钟</a>
+</div>
+
+  <div class="nexmoe-post-right">
+    
+  </div>
+
+  <article>
+    <h2 id="成员变量和成员函数分开存储"><a href="#成员变量和成员函数分开存储" class="headerlink" title="成员变量和成员函数分开存储"></a>成员变量和成员函数分开存储</h2><p>在C++中，类内的成员变量和成员函数分开存储<br>只有非静态成员变量才属于类的对象上</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+class Person &#123;
+&#125;;
+void test01() &#123;
+    Person p;
+    cout &lt;&lt; &quot;size of p = &quot; &lt;&lt; sizeof(p) &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/1DFF705E6F334E52942D8520D0836886?method=download&shareKey=a297e6e86699ec14c9b7fcf5c6d9a0d6" alt="avatar" class="lazyload"><br>空对象占用一个字节<br>C++编译器会给每个空对象也分配一个字节空间，是为了区分空对象占内存的位置<br>每个空对象也应该有一个独一无二的内存地址</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+class Person &#123;
+    int m_A;
+&#125;;
+void test02() &#123;
+    Person p;
+cout &lt;&lt; &quot;size of p = &quot; &lt;&lt; sizeof(p) &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test02();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/AAECFD6EE9744DA3BD05F8703F047B04?method=download&shareKey=1ab3bbfa6cfda7bcd72dd6594f1c12ec" alt="avatar" class="lazyload"><br>说明非静态成员对象属于类的对象</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+class Person &#123;
+    int m_A;
+    static int m_B;
+&#125;;
+int Person::m_B = 1;
+void test02() &#123;
+    Person p;
+    cout &lt;&lt; &quot;size of p = &quot; &lt;&lt; sizeof(p) &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test02();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/AAECFD6EE9744DA3BD05F8703F047B04?method=download&shareKey=1ab3bbfa6cfda7bcd72dd6594f1c12ec" alt="avatar" class="lazyload"><br>结果依然是4<br>说明静态成员对象不属于类的对象</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+class Person &#123;
+    int m_A;
+    static int m_B;
+    void func()&#123;&#125;
+&#125;;
+int Person::m_B = 1;
+void test02() &#123;
+    Person p;
+    cout &lt;&lt; &quot;size of p = &quot; &lt;&lt; sizeof(p) &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test02();
+    system(&quot;pause&quot;);
+    return 0;
+&#125; </code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/AAECFD6EE9744DA3BD05F8703F047B04?method=download&shareKey=1ab3bbfa6cfda7bcd72dd6594f1c12ec" alt="avatar" class="lazyload"><br>结果依然是4<br>说明非静态成员函数不属于类的对象</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+class Person &#123;
+    int m_A;
+    static int m_B;
+    static void func()&#123;&#125;
+&#125;;
+int Person::m_B = 1;
+void test02() &#123;
+    Person p;
+    cout &lt;&lt; &quot;size of p = &quot; &lt;&lt; sizeof(p) &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test02();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/AAECFD6EE9744DA3BD05F8703F047B04?method=download&shareKey=1ab3bbfa6cfda7bcd72dd6594f1c12ec" alt="avatar" class="lazyload"><br>结果依然是4<br>说明静态成员函数不属于类的对象</p>
+<h3 id="总结：只有非静态成员对象属于类的对象上"><a href="#总结：只有非静态成员对象属于类的对象上" class="headerlink" title="总结：只有非静态成员对象属于类的对象上"></a>总结：只有非静态成员对象属于类的对象上</h3><h2 id="this指针概念"><a href="#this指针概念" class="headerlink" title="this指针概念"></a>this指针概念</h2><p>在C++中成员变量和成员函数是分开存储的<br>每一个非静态成员函数只会诞生一份函数实例，也就是说多个同类型的对象会共用一块代码<br>c++通过提供特殊的对象指针，<strong>this指针</strong>，解决区分哪个对象调用自己的问题，**this指针指向被调用的成员函数所属的对象<br>this指针是隐含每一个非静态成员函数内的一种指针<br>this指针不需要定义，直接使用即可</p>
+<p>this指针的用途：<br><strong>·</strong> 当形参和成员变量同名时，可用this指针来区分<br><strong>·</strong> 在类的非静态成员函数中返回对象本身，可用return *this</p>
+<h3 id="解决名称冲突"><a href="#解决名称冲突" class="headerlink" title="解决名称冲突"></a>解决名称冲突</h3><pre><code>#include&lt;iostream&gt;
+using namespace std;
+class Person &#123;
+public:
+    Person(int age) &#123;
+        age = age;
+    &#125;
+    int age;
+&#125;;
+void test01() &#123;
+    Person p1(18);
+    cout &lt;&lt; &quot;p1的年龄为： &quot; &lt;&lt; p1.age &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/BE82CEA31DCD4FBFB0D78BA72DBC7B2B?method=download&shareKey=0c6114c02a54effa8680188fb850c2b0" alt="avatar" class="lazyload"><br><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/EDF8C470857A4F709341B0E862346BD9?method=download&shareKey=92aa4bad0c7590bcd7baa64fe0af2e6e" alt="avatar" class="lazyload"><br>编译器未正确区分age</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+class Person &#123;
+public:
+    Person(int age) &#123;
+        this-&gt;age = age;//this指针指向的是被调用的成员函数所属的对象(p1)
+    &#125;
+    int age;
+&#125;;
+void test01() &#123;
+    Person p1(18);
+    cout &lt;&lt; &quot;p1的年龄为： &quot; &lt;&lt; p1.age &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+return 0;
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/203AA3F6CA3547CABA0489DB569799AF?method=download&shareKey=f43e8fa666d1dde4273a301586a4a5b5" alt="avatar" class="lazyload"><br><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/0AD458C4AF604A989D3BA931E2F2F3E4?method=download&shareKey=11bcb6dd7d906acbe52dea4747f4d43b" alt="avatar" class="lazyload"></p>
+<h3 id="返回对象本身用-this"><a href="#返回对象本身用-this" class="headerlink" title="返回对象本身用*this"></a>返回对象本身用*this</h3><pre><code>#include&lt;iostream&gt;
+using namespace std;
+class Person &#123;
+public:
+    Person(int age) &#123;
+        this-&gt;age = age;
+    &#125;
+    Person&amp; PersonAddAge(Person &amp;p) &#123;
+        this-&gt;age += p.age;
+        return *this;//this指向p2的指针，而*this指向的就是p2这个对象本体
+    &#125;
+    int age;
+&#125;;
+void test01() &#123;
+    Person p1(18);
+    Person p2(18);
+    p2.PersonAddAge(p1).PersonAddAge(p1).PersonAddAge(p1);//链式编程思想
+    cout &lt;&lt; &quot;p2的年龄为：&quot; &lt;&lt; p2.age &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/A0E57DCE0E4F41718AC1D9B76BC16ABC?method=download&shareKey=9bf7e7d6faa361b784457454c3baef21" alt="avatar" class="lazyload"></p>
+<p>当返回的是值而不是引用时：</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+class Person &#123;
+public:
+    Person(int age) &#123;
+        this-&gt;age = age;
+    &#125;
+    Person PersonAddAge(Person &amp;p) &#123;
+        this-&gt;age += p.age;
+        return *this;//this指向p2的指针，而*this指向的就是p2这个对象本体
+    &#125;
+    int age;
+&#125;;
+void test01() &#123;
+    Person p1(18);
+    Person p2(18);
+    p2.PersonAddAge(p1).PersonAddAge(p1).PersonAddAge(p1);//链式编程思想
+    cout &lt;&lt; &quot;p2的年龄为：&quot; &lt;&lt; p2.age &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/B3DBF24483064B0B845823F0D6BD294C?method=download&shareKey=f4731c34c614455a624f6062a1a40cf5" alt="avatar" class="lazyload"><br>值传递用拷贝构造函数，创建新对象，而不是返回了p2</p>
+<h2 id="空指针访问成员函数"><a href="#空指针访问成员函数" class="headerlink" title="空指针访问成员函数"></a>空指针访问成员函数</h2><p>C++中空指针也是可以调用成员函数的，但是也要注意有没有用到this指针<br>如果用到this指针，需要加以判断保证代码的健壮性</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+class Person &#123;
+public:
+    void showClassName() &#123;
+        cout &lt;&lt; &quot;this is Person class&quot; &lt;&lt; endl;
+    &#125;
+    void showPersonAge() &#123;
+        cout &lt;&lt; &quot;age = &quot; &lt;&lt; m_age &lt;&lt; endl;//默认加上this-&gt;,成为this-&gt;m_age,报错原因是因为传入的指针为空
+    &#125;
+    int m_age;
+&#125;;
+void test01() &#123;
+    Person * p = NULL;
+    p-&gt;showClassName();//正常
+    p-&gt;showPersonAge();//运行时崩溃
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p>防止出错：加上if语句</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+class Person &#123;
+public:
+    void showClassName() &#123;
+        cout &lt;&lt; &quot;this is Person class&quot; &lt;&lt; endl;
+    &#125;
+    void showPersonAge() &#123;
+        if(this == NULL)&#123;
+            return;
+        &#125;//防止程序崩溃
+        cout &lt;&lt; &quot;age = &quot; &lt;&lt; m_age &lt;&lt; endl;//默认加上this-&gt;,成为this-&gt;m_age,报错原因是因为传入的指针为空
+    &#125;
+    int m_age;
+&#125;;
+void test01() &#123;
+    Person * p = NULL;
+    p-&gt;showClassName();//正常
+    p-&gt;showPersonAge();//运行时崩溃
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<h2 id="const修饰成员函数"><a href="#const修饰成员函数" class="headerlink" title="const修饰成员函数"></a>const修饰成员函数</h2><p><strong>常函数：</strong><br><strong>·</strong> 成员函数后加const后我们称这个函数为常函数<br><strong>·</strong> 常函数内不可以修改成员属性<br><strong>·</strong> 成员属性声明时加关键字mutable后，在常函数中依然可以修改<br><strong>常对象：</strong><br><strong>·</strong> 声明对象前加const称该对象为常对象<br><strong>·</strong> 常对象只能调用常函数</p>
+<h3 id="常函数"><a href="#常函数" class="headerlink" title="常函数"></a>常函数</h3><pre><code>#include&lt;iostream&gt;
+using namespace std;
+class Person &#123;
+public:
+    void showPerson() const&#123;
+        m_A = 100;//报错，常函数内不可修改
+        //this指针的本质是指针常量，指针的指向是不可修改的
+        //相当于const(此const相当于上面那个const) Person * const this;
+        //所以在成员函数后面加const，修饰的是this指针，让指针指向的值也不可修改
+        this = NULL;/*报错，this指针不可以修改指针的指向，但this指针指向的值可以修改，若不加const上一句正确*/
+        m_B = 100;//正确，m_B加了mutable
+    &#125;
+    int m_A;
+    mutable int m_B;//特殊变量即使在常函数中也可以修改值
+&#125;;
+void test01() &#123;
+    Person p;
+    p.showPerson();
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<h3 id="常对象"><a href="#常对象" class="headerlink" title="常对象"></a>常对象</h3><pre><code>#include&lt;iostream&gt;
+using namespace std;
+class Person &#123;
+public:
+    int m_A;
+    mutable int m_B;//在常函数和常对象下都可以修改
+    void func() &#123;
+
+    &#125;
+&#125;;
+void test01() &#123;
+    const Person p;//在对象前加上const，变为常对象
+    p.m_A = 100;//报错，常对象的属性不可修改
+    p.m_B = 100;//正确，m_B前面有mutable
+    //常对象只能调用常函数
+    p.func();//报错，常对象不可以调用普通成员函数，因为普通成员函数可以修改属性
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+
+  </article>
+
+  
+    
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>vanilla<br>
+    <strong>本文链接：</strong><a href="https://vanilla-2001.github.io/2021/03/09/C-%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B%E5%92%8Cthis%E6%8C%87%E9%92%88/" title="https:&#x2F;&#x2F;vanilla-2001.github.io&#x2F;2021&#x2F;03&#x2F;09&#x2F;C-%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B%E5%92%8Cthis%E6%8C%87%E9%92%88&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;vanilla-2001.github.io&#x2F;2021&#x2F;03&#x2F;09&#x2F;C-%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B%E5%92%8Cthis%E6%8C%87%E9%92%88&#x2F;</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/C/">C++</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/C/" rel="tag">C++</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+  </div>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+ <script src="/js/app.js?v=1622805824140"></script>
+
+  
+
+
+
+
+
+</body>
+
+</html>

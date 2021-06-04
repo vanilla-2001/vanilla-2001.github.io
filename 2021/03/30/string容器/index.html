@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+  
+  <title>string容器 - 见到你很高兴♪(๑·◡·๑)♪</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
+  <meta name="description" content="本质：· string是C++风格的字符串，而string本质上是一个类string和char区别：**· char *是一个指针*· string是一个类，类内部封装了char，管理这个字符串，是一个char型的容器特点：string类内部封装了很多成员方法例如：查找find，拷贝copy，删除delete，替换replace，插入insertstring管理char*所分配的内存，所以不用担心">
+<meta property="og:type" content="article">
+<meta property="og:title" content="string容器">
+<meta property="og:url" content="https://vanilla-2001.github.io/2021/03/30/string%E5%AE%B9%E5%99%A8/index.html">
+<meta property="og:site_name" content="见到你很高兴♪(๑·◡·๑)♪">
+<meta property="og:description" content="本质：· string是C++风格的字符串，而string本质上是一个类string和char区别：**· char *是一个指针*· string是一个类，类内部封装了char，管理这个字符串，是一个char型的容器特点：string类内部封装了很多成员方法例如：查找find，拷贝copy，删除delete，替换replace，插入insertstring管理char*所分配的内存，所以不用担心">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-03-30T13:33:09.000Z">
+<meta property="article:modified_time" content="2021-04-01T11:40:18.845Z">
+<meta property="article:author" content="vanilla">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
+  
+  <link rel="stylesheet" href="/css/style.css?v=1622805824118">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="vanilla" class="mdui-btn mdui-btn-icon"><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3372245765,175918050&amp;fm=26&amp;gp=0.jpg" alt="vanilla"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="vanilla">
+            <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3372245765,175918050&amp;fm=26&amp;gp=0.jpg" alt="vanilla" alt="vanilla">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>39</div>
+        <div><span>标签</span>7</div>
+        <div><span>分类</span>2</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=site:nexmoe.com" onsubmit="return search();">
+            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/10399692" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C/">C++</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/%E5%A4%A9%E6%A2%AF/" style="font-size: 10px;">天梯</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 16.67px;">算法</a> <a href="/tags/%E8%93%9D%E6%A1%A5/" style="font-size: 13.33px;">蓝桥</a>
+    </div>
+    
+  </div>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">39</span></li></ul>
+    </div>
+  </div>
+
+
+<style>
+.nexmoe-widget .archive-list-count{
+	position : absolute;
+	right: 15px;
+	top:9px;
+	color: #DDD;
+}
+</style>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2021 vanilla
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: 66.66666666666666%;"> 
+          <img data-src="https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg" data-sizes="auto" alt="string容器" class="lazyload">
+          <h1>string容器</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年03月30日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1,585 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 8 分钟</a>
+</div>
+
+  <div class="nexmoe-post-right">
+    
+  </div>
+
+  <article>
+    <p><strong>本质：</strong><br><strong>·</strong> string是C++风格的字符串，而string本质上是一个类<br><strong>string和char<em>区别：**<br><strong>·</strong> char *是一个指针<br>*</em>·</strong> string是一个类，类内部封装了char<em>，管理这个字符串，是一个char</em>型的容器<br><strong>特点：</strong><br>string类内部封装了很多成员方法<br>例如：查找find，拷贝copy，删除delete，替换replace，插入insert<br>string管理char*所分配的内存，所以不用担心复制月结等，由类内部进行负责</p>
+<h2 id="string构造函数"><a href="#string构造函数" class="headerlink" title="string构造函数"></a>string构造函数</h2><p>构造函数原型：<br><strong>·</strong><br>    string();//创建一个空的字符串，例如：string str;<br>    string(const char* s);//使用字符串s初始化<br><strong>·</strong><br>    string(const string&amp; str);//使用一个string对象初始化另一个string对象<br><strong>·</strong><br>    string(int n,char c)//使用n个字符c初始化</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;algorithm&gt;
+#include&lt;string&gt;
+using namespace std;
+void test01() &#123;
+    string s1;//默认构造
+    const char * str = &quot;hello world&quot;;
+    string s2(str);
+    cout &lt;&lt; &quot;s2 = &quot; &lt;&lt; s2 &lt;&lt; endl;
+    string s3(s2);//拷贝构造
+    cout &lt;&lt; &quot;s3 = &quot; &lt;&lt; s3 &lt;&lt; endl;
+    string s4(10, &#39;a&#39;);
+    cout &lt;&lt; &quot;s4 = &quot; &lt;&lt; s4 &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;    </code></pre>
+<h2 id="string赋值操作"><a href="#string赋值操作" class="headerlink" title="string赋值操作"></a>string赋值操作</h2><p>功能描述：<br><strong>·</strong> 给string字符串进行赋值</p>
+<p>赋值的函数模型：</p>
+<pre><code>string&amp; operator=(const char* s);//char*类型字符串，赋值给当前的字符串
+string&amp; operator=(const string &amp;s);//把字符串s赋给当前的字符串
+string&amp; operator=(char c);//字符赋值给当前的字符串
+string&amp; assign(const char *s);//把字符串s付给当前字符串
+string&amp; assign(const char *s,int n);//把字符串s的前n个字符赋给当前的字符串
+string&amp; assign(const string &amp;s);//把字符串s赋给当前字符串
+string&amp; assign(int n,char c);//用n个字符c赋给当前字符串
+
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;algorithm&gt;
+#include&lt;string&gt;
+using namespace std;
+void test01() &#123;
+    string s1;
+    s1 = &quot;hello world&quot;;
+    cout &lt;&lt; &quot;s1 = &quot; &lt;&lt; s1 &lt;&lt; endl;
+    string s2;
+    s2 = s1;
+    cout &lt;&lt; &quot;s2 = &quot; &lt;&lt; s2 &lt;&lt; endl;
+    string s3;
+    s3 = &#39;a&#39;;
+    cout &lt;&lt; &quot;s3 = &quot; &lt;&lt; s3 &lt;&lt; endl;
+    string s4;
+    s4.assign(&quot;hello c++&quot;);
+     cout &lt;&lt; &quot;s4 = &quot; &lt;&lt; s4 &lt;&lt; endl;
+    string s5;
+    s5.assign(&quot;hello c++&quot;, 4);
+    cout &lt;&lt; &quot;s5 = &quot; &lt;&lt; s5 &lt;&lt; endl;
+    string s6;
+    s6.assign(s4);
+    cout &lt;&lt; &quot;s6 = &quot; &lt;&lt; s6 &lt;&lt; endl;
+    string s7;
+    s7.assign(10, &#39;b&#39;);
+    cout &lt;&lt; &quot;s7 = &quot; &lt;&lt; s7 &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<h2 id="string字符串拼接"><a href="#string字符串拼接" class="headerlink" title="string字符串拼接"></a>string字符串拼接</h2><p>功能描述：<br><strong>·</strong> 实现再字符串末尾拼接字符串</p>
+<p><strong>函数原型</strong>：</p>
+<pre><code>string&amp; operatpr+=(const char* str);
+string&amp; operator+=(const char c);
+string&amp; operator+=(const string&amp; str);
+string&amp; append(const char *s);
+string&amp; append(const char *s,int n);//把字符串s的前n个字符连接到当前字符串结尾
+string&amp; append(const string &amp;s);
+string&amp; append(const string &amp;s,int pos,int n)//字符串s从pos开始的n个字符连接到字符串结尾
+
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;algorithm&gt;
+#include&lt;string&gt;
+using namespace std;
+void test01() &#123;
+    string s1 = &quot;hello world&quot;;
+    s1 += &quot;w&quot;;
+    cout &lt;&lt; &quot;s1 = &quot; &lt;&lt; s1 &lt;&lt; endl;
+    string s2 = &quot;xixi&quot;;
+    s2 += &#39;g&#39;;
+    cout &lt;&lt; &quot;s2 = &quot; &lt;&lt; s2 &lt;&lt; endl;
+    string s3 = &quot;xixi&quot;;
+    s3 += s2;
+    cout &lt;&lt; &quot;s3 = &quot; &lt;&lt; s3 &lt;&lt; endl;
+    string s4;
+    s4.assign(&quot;hello c++&quot;);
+    s4.append(s3);
+    cout &lt;&lt; &quot;s4 = &quot; &lt;&lt; s4 &lt;&lt; endl;
+    string s5 = &quot;gg&quot;;
+    s5.append(&quot;12321&quot;, 2);
+    cout &lt;&lt; &quot;s5 = &quot; &lt;&lt; s5 &lt;&lt; endl;
+    string s6 = &quot;dd&quot;;
+    s6.append(s5);
+    cout &lt;&lt; &quot;s6 = &quot; &lt;&lt; s6 &lt;&lt; endl;
+    string s7 = &quot;ccccc&quot;;
+    s7.append(s1, 3, 2);
+    cout &lt;&lt; &quot;s7 = &quot; &lt;&lt; s7 &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<h2 id="string查找和替换"><a href="#string查找和替换" class="headerlink" title="string查找和替换"></a>string查找和替换</h2><p><strong>功能描述：</strong><br><strong>·</strong> 查找：查找指定字符串是否存在<br><strong>·</strong> 替换：在指定的位置替换字符串<br><strong>函数原型：</strong><br>    int find(const string&amp; str,int pos = 0) const;//查找str第一次出现位置，从pos开始查找<br>    int find(const char* s,int pos = 0)const;//查找s第一次出现位置，从pos开始查找<br>    int find(const char* s,int pos, int n)const;//从pos位置查找s的前n个字符第一次位置<br>    int find(const char c,int pos = 0)const;//查找字符c第一次出现位置<br>    int rfind(const string&amp; str, int pos = npos)const;//查找str最后一次位置，从pos开始查找<br>    int rfind(const char* s,int pos, int n)//从pos查找s的前n个字符最后一次位置<br>    int rfind(const char* s,int pos = npos)const;//查找s最后一次出现位置，从pos开始查找<br>    int rfind(const char c,int pos = 0)const;//查找字符c最后一次出现位置<br>    string&amp; replace(int pos, int n, const string&amp; str);//替换从pos开始n个字符为字符串str<br>    string&amp; replace(int pos, int n, const char* s);//替换从pos开始的n个字符为字符串s</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+void test01() &#123;
+    string str1 = &quot;abcdefgde&quot;;
+    int pos = str1.find(&quot;de&quot;);
+    cout &lt;&lt; &quot;pos = &quot; &lt;&lt; pos &lt;&lt; endl;//3
+    int pos1 = str1.find(&quot;df&quot;);
+    cout &lt;&lt; &quot;pos1 = &quot; &lt;&lt; pos1 &lt;&lt; endl;//-1,未找到
+    //rfind从右往左查找，find从左往右查找
+    pos = str1.rfind(&quot;de&quot;);
+    cout &lt;&lt; &quot;pos = &quot; &lt;&lt; pos &lt;&lt; endl;//7
+&#125;
+void test02() &#123;
+    string str1 = &quot;abcdefg&quot;;
+    str1.replace(1, 3, &quot;1111&quot;);
+    cout &lt;&lt; &quot;str1 = &quot; &lt;&lt; str1 &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test01();
+    test02();
+    return 0;
+&#125;</code></pre>
+<h2 id="string字符串比较"><a href="#string字符串比较" class="headerlink" title="string字符串比较"></a>string字符串比较</h2><p><strong>功能描述：</strong><br><strong>·</strong> 字符串之间的比较<br><strong>比较方式：</strong><br><strong>·</strong> 字符串比较是按字符的ACSII码进行对比<br>    = 返回 0<br>    &gt; 返回 1<br>    &lt; 返回-1<br><strong>函数原型：</strong><br>    int compare(const string &amp;s)const;//与字符串s比较<br>    int compare(const char *s)const;//与字符串s比较</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+void test01() &#123;
+    string s1 = &quot;hello&quot;;
+    string s2 = &quot;xello&quot;;
+    if (s1.compare(s2) == 0) &#123;
+        cout &lt;&lt; &quot;s1=s2&quot; &lt;&lt; endl;
+    &#125;
+    else if (s1.compare(s2) &gt; 0) &#123;
+        cout &lt;&lt; &quot;s1&gt;s2&quot; &lt;&lt; endl;
+    &#125;
+    else &#123;
+        cout &lt;&lt; &quot;s1&lt;s2&quot; &lt;&lt; endl;
+    &#125;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p>主要判断两个字符串是否相等</p>
+<h2 id="string字符存取"><a href="#string字符存取" class="headerlink" title="string字符存取"></a>string字符存取</h2><p>string中单个字符存取方式有两种</p>
+<pre><code>char &amp; operator[](int n);//通过[]方式取字符
+char &amp; at(int n);//通过at方法获取字符
+
+#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+void test01() &#123;
+    string s = &quot;hello&quot;;
+    cout &lt;&lt; &quot;s = &quot; &lt;&lt; s &lt;&lt; endl;
+    for (int i = 0;i &lt; s.size();i++) &#123;//size返回字符串长度
+        cout &lt;&lt; s[i] &lt;&lt; &quot; &quot;;
+    &#125;
+    cout &lt;&lt; endl;
+    for (int i = 0;i &lt; s.size();i++) &#123;
+        cout &lt;&lt; s.at(i) &lt;&lt; &quot; &quot;;
+    &#125;
+    cout &lt;&lt; endl;
+    //修改单个字符
+    s[0] = &#39;x&#39;;
+    s.at(1) = &#39;x&#39;;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p>string字符串中单个字符的存取有两种方式，[]或at</p>
+<h2 id="string中的插入和删除"><a href="#string中的插入和删除" class="headerlink" title="string中的插入和删除"></a>string中的插入和删除</h2><p><strong>功能描述：</strong><br><strong>·</strong> 对string字符串进行插入和删除字符操作<br><strong>函数原型：</strong></p>
+<pre><code>string&amp; insert(int pos,const char* s);//插入字符串
+string&amp; insert(int pos,const string&amp; str);//插入字符串
+string&amp; insert(int pos,int n,char c);//在指定位置插入n个字符c
+string&amp; erase(int pos,int n=npos)//删除从pos开始的n个字符
+
+#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+void test01() &#123;
+    string s = &quot;hello&quot;;
+    s.insert(1, &quot;111&quot;);
+    cout &lt;&lt; s &lt;&lt; endl;//h111ello
+    s.erase(1, 3);//从第一个位置起，删除3个
+    cout &lt;&lt; s &lt;&lt; endl;//hello
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><strong>总结：</strong>插入和删除的下标都是从0开始的</p>
+<h2 id="string子串"><a href="#string子串" class="headerlink" title="string子串"></a>string子串</h2><p><strong>功能描述：</strong><br><strong>·</strong> 从字符串中获取想要的子串<br><strong>函数原型：</strong></p>
+<pre><code>string substr(int pos=0,int n=npos)const;//返回由pos开始的n个字符组成的字符串
+
+#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+void test01() &#123;
+    string s = &quot;hello&quot;;
+    string sub = s.substr(1, 3);//从第一个位置起，截取3个
+    cout &lt;&lt; sub &lt;&lt; endl;//ell
+&#125;
+void test02() &#123;//从邮件中获取用户名信息
+    string email = &quot;Tommy@sina.com&quot;;
+    int pos = email.find(&quot;@&quot;);
+    string name = email.substr(0, pos);
+    cout &lt;&lt; &quot;name = &quot; &lt;&lt; name &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test01();
+    test02();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+
+  </article>
+
+  
+    
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>vanilla<br>
+    <strong>本文链接：</strong><a href="https://vanilla-2001.github.io/2021/03/30/string%E5%AE%B9%E5%99%A8/" title="https:&#x2F;&#x2F;vanilla-2001.github.io&#x2F;2021&#x2F;03&#x2F;30&#x2F;string%E5%AE%B9%E5%99%A8&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;vanilla-2001.github.io&#x2F;2021&#x2F;03&#x2F;30&#x2F;string%E5%AE%B9%E5%99%A8&#x2F;</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/C/" rel="tag">C++</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+  </div>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+ <script src="/js/app.js?v=1622805824119"></script>
+
+  
+
+
+
+
+
+</body>
+
+</html>

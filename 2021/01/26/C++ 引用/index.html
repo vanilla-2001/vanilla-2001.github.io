@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+  
+  <title>C++ 引用 - 见到你很高兴♪(๑·◡·๑)♪</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
+  <meta name="description" content="引用的基本使用作用：给变量起别名语法：数据类型 &amp;别名 &#x3D; 原名 int main()&amp;#123;     int a &#x3D; 10;     int &amp;b &#x3D; a;&#x2F;&#x2F;创建引用     cout &lt;&lt; &quot;a &#x3D; &quot; &lt;&lt; a &lt;&lt; endl;     cout &lt;&lt; &quot;b &#x3D; &quot; &lt;&lt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 引用">
+<meta property="og:url" content="https://vanilla-2001.github.io/2021/01/26/C++%20%E5%BC%95%E7%94%A8/index.html">
+<meta property="og:site_name" content="见到你很高兴♪(๑·◡·๑)♪">
+<meta property="og:description" content="引用的基本使用作用：给变量起别名语法：数据类型 &amp;别名 &#x3D; 原名 int main()&amp;#123;     int a &#x3D; 10;     int &amp;b &#x3D; a;&#x2F;&#x2F;创建引用     cout &lt;&lt; &quot;a &#x3D; &quot; &lt;&lt; a &lt;&lt; endl;     cout &lt;&lt; &quot;b &#x3D; &quot; &lt;&lt;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/9512F1EE7D6843848CA7AD37E5DB44AC?method=download&shareKey=01b8db583798960a9abebbd688e956e0">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/87E9FB2FBC68406F921CBD07F59CF2F6?method=download&shareKey=39825bc3999e30a283b0a03e005ef0ee">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/BA18FEDC5B1B4139A24745BD81B040FA?method=download&shareKey=a6e256a477a0867bff0f28702dab0574">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/80FED13F5734471985685D30BDCD352A?method=download&shareKey=2eb61c58d3dc7de0e375dcf4d042bb49">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/4BDC2B82C241407C801A6729EBA74AFA?method=download&shareKey=d9fa1ee600d6e632d92a12c20d18c5e9">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/3DBEA3A76BE74D079D6BAED87F729307?method=download&shareKey=433ac5cd9a67d00a6ef7a3c8f98279b6">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/065892B1BC2B4A2BB3FD91DE39240C01?method=download&shareKey=38ba04cb0c875fec59d56ac61712d7c4">
+<meta property="article:published_time" content="2021-01-26T06:19:59.000Z">
+<meta property="article:modified_time" content="2021-03-06T07:24:18.161Z">
+<meta property="article:author" content="vanilla">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/9512F1EE7D6843848CA7AD37E5DB44AC?method=download&shareKey=01b8db583798960a9abebbd688e956e0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
+  
+  <link rel="stylesheet" href="/css/style.css?v=1622805824147">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="vanilla" class="mdui-btn mdui-btn-icon"><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3372245765,175918050&amp;fm=26&amp;gp=0.jpg" alt="vanilla"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="vanilla">
+            <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3372245765,175918050&amp;fm=26&amp;gp=0.jpg" alt="vanilla" alt="vanilla">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>39</div>
+        <div><span>标签</span>7</div>
+        <div><span>分类</span>2</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=site:nexmoe.com" onsubmit="return search();">
+            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/10399692" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C/">C++</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/%E5%A4%A9%E6%A2%AF/" style="font-size: 10px;">天梯</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 16.67px;">算法</a> <a href="/tags/%E8%93%9D%E6%A1%A5/" style="font-size: 13.33px;">蓝桥</a>
+    </div>
+    
+  </div>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">39</span></li></ul>
+    </div>
+  </div>
+
+
+<style>
+.nexmoe-widget .archive-list-count{
+	position : absolute;
+	right: 15px;
+	top:9px;
+	color: #DDD;
+}
+</style>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2021 vanilla
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: NaN%;"> 
+          <img data-src="https://note.youdao.com/yws/api/personal/file/7A63DF0D8B52446EAF09E56D6D27FE77?method=download&shareKey=1b6ca930a7c8973613ba1cf4031b3c86" data-sizes="auto" alt="C++ 引用" class="lazyload">
+          <h1>C++ 引用</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年01月26日</a>
+    <a><i class="nexmoefont icon-areachart"></i>963 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
+</div>
+
+  <div class="nexmoe-post-right">
+    
+  </div>
+
+  <article>
+    <h2 id="引用的基本使用"><a href="#引用的基本使用" class="headerlink" title="引用的基本使用"></a>引用的基本使用</h2><p>作用：给变量起别名<br>语法：数据类型 &amp;别名 = 原名</p>
+<pre><code>int main()&#123;
+    int a = 10;
+    int &amp;b = a;//创建引用
+    cout &lt;&lt; &quot;a = &quot; &lt;&lt; a &lt;&lt; endl;
+    cout &lt;&lt; &quot;b = &quot; &lt;&lt; b &lt;&lt; endl;
+    b = 100;
+    cout &lt;&lt; &quot;a = &quot; &lt;&lt; a &lt;&lt; endl;
+    cout &lt;&lt; &quot;b = &quot; &lt;&lt; b &lt;&lt; endl;
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/9512F1EE7D6843848CA7AD37E5DB44AC?method=download&shareKey=01b8db583798960a9abebbd688e956e0" alt="avatar" class="lazyload"></p>
+<h2 id="引用的注意事项"><a href="#引用的注意事项" class="headerlink" title="引用的注意事项"></a>引用的注意事项</h2><p><strong>·</strong>引用必须初始化<br><strong>·</strong>引用在初始化后，不可以改变</p>
+<pre><code>int main() &#123;
+    int a = 10;
+    int b = 20;
+    //int &amp;c;//错误，引用必须初始化
+    int &amp;c = a;//正确，且初始化后，就不可以更改
+    c = b;//这是赋值操作，不是更改引用
+    cout &lt;&lt; &quot;a=&quot; &lt;&lt; a &lt;&lt; endl;
+    cout &lt;&lt; &quot;b=&quot; &lt;&lt; b &lt;&lt; endl;
+    cout &lt;&lt; &quot;c=&quot; &lt;&lt; c &lt;&lt; endl;
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/87E9FB2FBC68406F921CBD07F59CF2F6?method=download&shareKey=39825bc3999e30a283b0a03e005ef0ee" alt="avatar" class="lazyload"></p>
+<h2 id="引用做函数参数"><a href="#引用做函数参数" class="headerlink" title="引用做函数参数"></a>引用做函数参数</h2><p>作用：函数传参时，可以利用引用的技术让形参修饰实参<br>优点：可以简化指针修饰实参</p>
+<h3 id="交换函数："><a href="#交换函数：" class="headerlink" title="交换函数："></a>交换函数：</h3><p>1、值传递</p>
+<pre><code>void swap1(int a, int b) &#123;
+    int t = a;
+    a = b;
+    b = t;
+&#125;</code></pre>
+<p>2、地址传递</p>
+<pre><code>void swap2(int* a,int *b)&#123;
+    int t = *a;
+    *a = *b;
+    *b = t;
+&#125;</code></pre>
+<p>3、引用传递</p>
+<pre><code>void swap3(int &amp;a,int &amp;b)&#123;//用别名进行修改
+    int t = a;
+    a = b;
+    b = t;
+&#125;</code></pre>
+<p>4、主函数调用</p>
+<pre><code>int main() &#123;
+    int a = 10;
+    int b = 20;
+    swap1(a, b);
+    cout &lt;&lt; &quot;值传递a=&quot; &lt;&lt; a &lt;&lt; endl;
+    cout &lt;&lt; &quot;值传递b=&quot; &lt;&lt; b &lt;&lt; endl;
+    a = 10;b = 20;
+    swap2(&amp;a,&amp;b);
+    cout &lt;&lt; &quot;地址传递a=&quot; &lt;&lt; a &lt;&lt; endl;
+    cout &lt;&lt; &quot;地址传递b=&quot; &lt;&lt; b &lt;&lt; endl;
+    a = 10;b = 20;
+    swap3(a,b);
+    cout &lt;&lt; &quot;引用传递a=&quot; &lt;&lt; a &lt;&lt; endl;
+    cout &lt;&lt; &quot;引用传递b=&quot; &lt;&lt; b &lt;&lt; endl;
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/BA18FEDC5B1B4139A24745BD81B040FA?method=download&shareKey=a6e256a477a0867bff0f28702dab0574" alt="avatar" class="lazyload"></p>
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>值传递：形参不会修饰实参<br>地址传递：形参会修饰实参<br>引用传递：形参会修饰实参</p>
+<h2 id="引用做函数返回值"><a href="#引用做函数返回值" class="headerlink" title="引用做函数返回值"></a>引用做函数返回值</h2><p>作用：引用是可以作为函数的返回值存在的<br>注意：<strong>不要返回局部变量引用</strong><br>用法：函数调用作为左值</p>
+<h3 id="1、不要返回局部变量的引用"><a href="#1、不要返回局部变量的引用" class="headerlink" title="1、不要返回局部变量的引用"></a>1、不要返回局部变量的引用</h3><pre><code>#include&lt;iostream&gt;
+using namespace std;
+int&amp; test01() &#123;
+    int a = 10;//局部变量存放在栈区
+    return a;
+&#125;
+int main() &#123;
+    int&amp; ref = test01();
+    cout &lt;&lt; &quot;ref=:&quot; &lt;&lt; ref &lt;&lt; endl;
+    cout &lt;&lt; &quot;ref=:&quot; &lt;&lt; ref &lt;&lt; endl;
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/80FED13F5734471985685D30BDCD352A?method=download&shareKey=2eb61c58d3dc7de0e375dcf4d042bb49" alt="avatar" class="lazyload"><br>第一次结果正确，是因为编译器做了保留；第二次结果错误，因为a的内存已经释放</p>
+<h3 id="2、函数的调用可以作为左值"><a href="#2、函数的调用可以作为左值" class="headerlink" title="2、函数的调用可以作为左值"></a>2、函数的调用可以作为左值</h3><pre><code>#include&lt;iostream&gt;
+using namespace std;
+int &amp; test02() &#123;
+    static int a = 10;//静态变量，存放在全局区，全局区上的数据在程序结束后系统释放
+    return a;
+&#125;
+int main() &#123;
+    int &amp; ref = test02();
+    cout &lt;&lt; &quot;ref=:&quot; &lt;&lt; ref &lt;&lt; endl;
+    cout &lt;&lt; &quot;ref=:&quot; &lt;&lt; ref &lt;&lt; endl;
+    test02() = 1000;//如果函数的返回值是引用，那么这个函数的调用可以作为左值
+    cout &lt;&lt; &quot;ref=:&quot; &lt;&lt; ref &lt;&lt; endl;
+    cout &lt;&lt; &quot;ref=:&quot; &lt;&lt; ref &lt;&lt; endl;
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/4BDC2B82C241407C801A6729EBA74AFA?method=download&shareKey=d9fa1ee600d6e632d92a12c20d18c5e9" alt="avatar" class="lazyload"><br>a是原名，ref是别名，通过a改变ref</p>
+<h2 id="引用的本质"><a href="#引用的本质" class="headerlink" title="引用的本质"></a>引用的本质</h2><p>本质：<strong>引用的本质在c++内部实现是一个指针常量</strong></p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+/*发现是引用，转换为int* const ref = &amp;a;*/
+void func(int&amp; ref) &#123;/*ref是引用，转换为*ref = 100*/
+    ref = 100;
+&#125;
+int main() &#123;
+    int a = 10;
+    /*自动转换为int * const ref = &amp;a;指针常量是指针指向不可改，也说明为什么引用不可更改*/
+    int&amp; ref = a;
+    ref = 20;
+    cout &lt;&lt; &quot;a:&quot; &lt;&lt; a &lt;&lt; endl;
+    cout &lt;&lt; &quot;ref:&quot; &lt;&lt; ref &lt;&lt; endl;
+    func(a);
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/3DBEA3A76BE74D079D6BAED87F729307?method=download&shareKey=433ac5cd9a67d00a6ef7a3c8f98279b6" alt="avatar" class="lazyload"></p>
+<h3 id="总结：-1"><a href="#总结：-1" class="headerlink" title="总结："></a>总结：</h3><p>c++推荐用引用技术，因为语法方便，引用本质是指针常量，但是所有的指针操作都由编译器帮我们做了</p>
+<h2 id="常量引用"><a href="#常量引用" class="headerlink" title="常量引用"></a>常量引用</h2><p>作用：常量引用主要用来修饰形参，防止误操作<br>在函数形参列表中，可以加const修饰形参，防止形参改变实参</p>
+<pre><code>int main() &#123;
+    int a = 10;
+    int &amp; ref = 10;//非法，引用必须引用一块合法的内存
+    const int &amp; ref = 10;/*加上const后，编译器将代码修改为int temp = 10;const int &amp; ref = temp;*/
+    ref = 20;//非法，加入const变为只读，不可以修改
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p>误操作，在函数中修改了数据：</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+void showvalue(int &amp;val) &#123;
+    val = 1000;
+    cout &lt;&lt; &quot;val=&quot; &lt;&lt; val &lt;&lt; endl;
+&#125;
+int main() &#123;
+    int a = 100;
+    showvalue(a);
+    cout &lt;&lt; &quot;a=&quot; &lt;&lt; a &lt;&lt; endl;
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/065892B1BC2B4A2BB3FD91DE39240C01?method=download&shareKey=38ba04cb0c875fec59d56ac61712d7c4" alt="avatar" class="lazyload"><br>a的值随着val被修改而被修改了</p>
+<p>加了const：</p>
+<pre><code>void showvalue(const int &amp;val) &#123;
+    val = 1000;//非法，报错
+    cout &lt;&lt; &quot;val=&quot; &lt;&lt; val &lt;&lt; endl;
+&#125;</code></pre>
+
+  </article>
+
+  
+    
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>vanilla<br>
+    <strong>本文链接：</strong><a href="https://vanilla-2001.github.io/2021/01/26/C++%20%E5%BC%95%E7%94%A8/" title="https:&#x2F;&#x2F;vanilla-2001.github.io&#x2F;2021&#x2F;01&#x2F;26&#x2F;C++%20%E5%BC%95%E7%94%A8&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;vanilla-2001.github.io&#x2F;2021&#x2F;01&#x2F;26&#x2F;C++%20%E5%BC%95%E7%94%A8&#x2F;</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/C/">C++</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/C/" rel="tag">C++</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+  </div>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+ <script src="/js/app.js?v=1622805824148"></script>
+
+  
+
+
+
+
+
+</body>
+
+</html>

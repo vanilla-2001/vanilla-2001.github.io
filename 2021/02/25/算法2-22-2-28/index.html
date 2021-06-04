@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+  
+  <title>算法2.22-2.28 - 见到你很高兴♪(๑·◡·๑)♪</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
+  <meta name="description" content="平面向量加法本题要求编写程序，计算两个二维平面向量的和向量。 输入格式:输入在一行中按照“x​1 y​1 x2 y2”的格式给出两个二维平面向量v1&#x3D;(x1,y1)和v2&#x3D;(x2,y2)的分量。 输出格式:在一行中按照(x, y)的格式输出和向量，坐标输出小数点后一位（注意不能输出−0.0）。 输入样例:3.5 -2.7 -13.9 8.7输出样例:(-10.4, 6.0) #include&amp;lt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法2.22-2.28">
+<meta property="og:url" content="https://vanilla-2001.github.io/2021/02/25/%E7%AE%97%E6%B3%952-22-2-28/index.html">
+<meta property="og:site_name" content="见到你很高兴♪(๑·◡·๑)♪">
+<meta property="og:description" content="平面向量加法本题要求编写程序，计算两个二维平面向量的和向量。 输入格式:输入在一行中按照“x​1 y​1 x2 y2”的格式给出两个二维平面向量v1&#x3D;(x1,y1)和v2&#x3D;(x2,y2)的分量。 输出格式:在一行中按照(x, y)的格式输出和向量，坐标输出小数点后一位（注意不能输出−0.0）。 输入样例:3.5 -2.7 -13.9 8.7输出样例:(-10.4, 6.0) #include&amp;lt">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-02-25T05:19:49.000Z">
+<meta property="article:modified_time" content="2021-02-27T09:05:19.256Z">
+<meta property="article:author" content="vanilla">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
+  
+  <link rel="stylesheet" href="/css/style.css?v=1622805824141">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="vanilla" class="mdui-btn mdui-btn-icon"><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3372245765,175918050&amp;fm=26&amp;gp=0.jpg" alt="vanilla"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="vanilla">
+            <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3372245765,175918050&amp;fm=26&amp;gp=0.jpg" alt="vanilla" alt="vanilla">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>39</div>
+        <div><span>标签</span>7</div>
+        <div><span>分类</span>2</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=site:nexmoe.com" onsubmit="return search();">
+            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/10399692" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C/">C++</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/%E5%A4%A9%E6%A2%AF/" style="font-size: 10px;">天梯</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 16.67px;">算法</a> <a href="/tags/%E8%93%9D%E6%A1%A5/" style="font-size: 13.33px;">蓝桥</a>
+    </div>
+    
+  </div>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">39</span></li></ul>
+    </div>
+  </div>
+
+
+<style>
+.nexmoe-widget .archive-list-count{
+	position : absolute;
+	right: 15px;
+	top:9px;
+	color: #DDD;
+}
+</style>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2021 vanilla
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: 66.66666666666666%;"> 
+          <img data-src="https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg" data-sizes="auto" alt="算法2.22-2.28" class="lazyload">
+          <h1>算法2.22-2.28</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年02月25日</a>
+    <a><i class="nexmoefont icon-areachart"></i>754 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
+</div>
+
+  <div class="nexmoe-post-right">
+    
+  </div>
+
+  <article>
+    <h2 id="平面向量加法"><a href="#平面向量加法" class="headerlink" title="平面向量加法"></a>平面向量加法</h2><p>本题要求编写程序，计算两个二维平面向量的和向量。</p>
+<p>输入格式:<br>输入在一行中按照“x​1 y​1 x2 y2”的格式给出两个二维平面向量v1=(x1,y1)和v2=(x2,y2)的分量。</p>
+<p>输出格式:<br>在一行中按照(x, y)的格式输出和向量，坐标输出小数点后一位（注意不能输出−0.0）。</p>
+<p>输入样例:<br>3.5 -2.7 -13.9 8.7<br>输出样例:<br>(-10.4, 6.0)</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;bits/stdc++.h&gt;//万能文件开头,包含了目前c++所包含的所有头文件
+using namespace std;
+int main()&#123;
+    double x1,y1,x2,y2,x,y;
+    cin&gt;&gt;x1&gt;&gt;y1&gt;&gt;x2&gt;&gt;y2;
+    x=x1+x2;
+    y=y1+y2;
+    if(x&gt;-0.05&amp;&amp;x&lt;0.0)x=0.0;//这里要大于-0.05是因为只有大于-0.05才有可能四舍五入成-0.0，因为是负数才有可能输出-0.0，所以要小于0.0
+    if(y&gt;-0.05&amp;&amp;y&lt;0.0)y=0.0;
+    printf(&quot;(%.1f, %.1f)&quot;,x,y);
+&#125;</code></pre>
+<h2 id="矩阵乘法"><a href="#矩阵乘法" class="headerlink" title="矩阵乘法"></a>矩阵乘法</h2><p>问题描述<br>　　给定一个N阶矩阵A，输出A的M次幂（M是非负整数）<br>　　例如：<br>　　A =<br>　　1 2<br>　　3 4<br>　　A的2次幂<br>　　7 10<br>　　15 22<br>输入格式<br>　　第一行是一个正整数N、M（1&lt;=N&lt;=30, 0&lt;=M&lt;=5），表示矩阵A的阶数和要求的幂数<br>　　接下来N行，每行N个绝对值不超过10的非负整数，描述矩阵A的值<br>输出格式<br>　　输出共N行，每行N个整数，表示A的M次幂所对应的矩阵。相邻的数之间用一个空格隔开<br>样例输入<br>2 2<br>1 2<br>3 4<br>样例输出<br>7 10<br>15 22</p>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main()&#123;
+    int n,m;
+    cin&gt;&gt;n&gt;&gt;m;
+    int a[35][35];
+    int b[35][35];
+    int c[35][35]=&#123;0&#125;;
+    for(int i=1;i&lt;=n;i++)
+        for(int j=1;j&lt;=n;j++)&#123;
+            cin&gt;&gt;a[i][j];
+            b[i][j]=a[i][j];
+        &#125;
+    if(m==0)&#123;
+    for(int i=1;i&lt;=n;i++)&#123;
+        for(int j=1;j&lt;=n;j++)&#123;
+        if(i==j)
+            cout&lt;&lt;1&lt;&lt;&#39; &#39;;
+        else 
+            cout&lt;&lt;0&lt;&lt;&#39; &#39;;
+        &#125;
+        cout&lt;&lt;endl;
+    &#125;
+    return 0;
+    &#125;
+    else&#123;
+        for(int l=0;l&lt;m-1;l++)&#123;
+            for(int i=1;i&lt;=n;i++)
+                for(int j=1;j&lt;=n;j++)&#123;
+                    for(int p=1;p&lt;=n;p++)&#123;
+                        c[i][j]+=b[i][p]*a[p][j];
+                    &#125;
+                &#125;
+            for(int i=1;i&lt;=n;i++)
+                for(int j=1;j&lt;=n;j++)&#123;
+                    b[i][j]=c[i][j];
+                    c[i][j]=0;
+                &#125;
+        &#125;
+    for(int i=1;i&lt;=n;i++)&#123;
+        for(int j=1;j&lt;=n;j++)&#123;
+            cout&lt;&lt;b[i][j]&lt;&lt;&#39; &#39;;
+        &#125; 
+    cout&lt;&lt;endl;
+    &#125;
+    &#125;
+    return 0;
+&#125;</code></pre>
+<h2 id="分解质因数"><a href="#分解质因数" class="headerlink" title="分解质因数"></a>分解质因数</h2><p>问题描述<br>　　求出区间[a,b]中所有整数的质因数分解。<br>输入格式<br>　　输入两个整数a，b。<br>输出格式<br>　　每行输出一个数的分解，形如k=a1<em>a2</em>a3…(a1&lt;=a2&lt;=a3…，k也是从小到大的)(具体可看样例)<br>样例输入<br>3 10<br>样例输出<br>3=3<br>4=2<em>2<br>5=5<br>6=2</em>3<br>7=7<br>8=2<em>2</em>2<br>9=3<em>3<br>10=2</em>5<br>提示<br>　　先筛出所有素数，然后再分解。<br>数据规模和约定<br>　　2&lt;=a&lt;=b&lt;=10000</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+int main() &#123;
+    int a, b, i, n, j;
+    cin &gt;&gt; a &gt;&gt; b;
+    for (i = a;i &lt;= b;i++) &#123;
+        cout &lt;&lt; i &lt;&lt; &quot;=&quot;;
+        n = i;
+        j = 2;
+        while (n != j) &#123;
+            for (j = 2;j &lt; n;j++) &#123;
+                if (n%j == 0 &amp;&amp; n != j) &#123;
+                    cout &lt;&lt; j &lt;&lt; &quot;*&quot;;
+                    n = n / j;
+                    break;
+                &#125;
+            &#125;
+        &#125;
+        cout &lt;&lt; n &lt;&lt; endl;
+        &#125;
+    return 0;
+ &#125;</code></pre>
+
+  </article>
+
+  
+    
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>vanilla<br>
+    <strong>本文链接：</strong><a href="https://vanilla-2001.github.io/2021/02/25/%E7%AE%97%E6%B3%952-22-2-28/" title="https:&#x2F;&#x2F;vanilla-2001.github.io&#x2F;2021&#x2F;02&#x2F;25&#x2F;%E7%AE%97%E6%B3%952-22-2-28&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;vanilla-2001.github.io&#x2F;2021&#x2F;02&#x2F;25&#x2F;%E7%AE%97%E6%B3%952-22-2-28&#x2F;</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+  </div>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+ <script src="/js/app.js?v=1622805824141"></script>
+
+  
+
+
+
+
+
+</body>
+
+</html>

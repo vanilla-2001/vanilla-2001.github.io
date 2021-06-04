@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+  
+  <title>C++错题 - 见到你很高兴♪(๑·◡·๑)♪</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
+  <meta name="description" content="判断1、通过命名空间可以区分具有相同名字的函数(对) 2、判断数组声明及初始化语句 char str[]&#x3D;{‘H’,’e’,’l’,’l’,’o’};是否正确。(对) 3、C++的运算符按照其操作数的个数可将运算符分为单目运算符和双目运算符。(错)** 选择1、关于C++与C语言关系的描述中，（ ）是错误的。(A)A.C++语言和 C 语言都是面向对象的B.C 语言是 C++语言的一个子集C.C+">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++错题">
+<meta property="og:url" content="https://vanilla-2001.github.io/2021/03/12/C-%E9%94%99%E9%A2%98/index.html">
+<meta property="og:site_name" content="见到你很高兴♪(๑·◡·๑)♪">
+<meta property="og:description" content="判断1、通过命名空间可以区分具有相同名字的函数(对) 2、判断数组声明及初始化语句 char str[]&#x3D;{‘H’,’e’,’l’,’l’,’o’};是否正确。(对) 3、C++的运算符按照其操作数的个数可将运算符分为单目运算符和双目运算符。(错)** 选择1、关于C++与C语言关系的描述中，（ ）是错误的。(A)A.C++语言和 C 语言都是面向对象的B.C 语言是 C++语言的一个子集C.C+">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-03-12T12:30:29.000Z">
+<meta property="article:modified_time" content="2021-03-22T11:51:48.630Z">
+<meta property="article:author" content="vanilla">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
+  
+  <link rel="stylesheet" href="/css/style.css?v=1622805824131">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="vanilla" class="mdui-btn mdui-btn-icon"><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3372245765,175918050&amp;fm=26&amp;gp=0.jpg" alt="vanilla"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="vanilla">
+            <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3372245765,175918050&amp;fm=26&amp;gp=0.jpg" alt="vanilla" alt="vanilla">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>39</div>
+        <div><span>标签</span>7</div>
+        <div><span>分类</span>2</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=site:nexmoe.com" onsubmit="return search();">
+            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/10399692" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C/">C++</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/%E5%A4%A9%E6%A2%AF/" style="font-size: 10px;">天梯</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 16.67px;">算法</a> <a href="/tags/%E8%93%9D%E6%A1%A5/" style="font-size: 13.33px;">蓝桥</a>
+    </div>
+    
+  </div>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">39</span></li></ul>
+    </div>
+  </div>
+
+
+<style>
+.nexmoe-widget .archive-list-count{
+	position : absolute;
+	right: 15px;
+	top:9px;
+	color: #DDD;
+}
+</style>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2021 vanilla
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: 66.66666666666666%;"> 
+          <img data-src="https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg" data-sizes="auto" alt="C++错题" class="lazyload">
+          <h1>C++错题</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年03月12日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1,079 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
+</div>
+
+  <div class="nexmoe-post-right">
+    
+  </div>
+
+  <article>
+    <h2 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h2><p>1、通过命名空间可以区分具有相同名字的函数(对)</p>
+<p>2、判断数组声明及初始化语句 char str[]={‘H’,’e’,’l’,’l’,’o’};是否正确。(对)</p>
+<p>3、C++的运算符按照其操作数的个数可将运算符分为单目运算符和双目运算符。(错)<br>**</p>
+<h2 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h2><p>1、关于C++与C语言关系的描述中，（ ）是错误的。(A)<br>A.C++语言和 C 语言都是面向对象的<br>B.C 语言是 C++语言的一个子集<br>C.C++语言对 C 语言进行了一些改进<br>D.C 语言与 C++语言是兼容的<br><em>C++语言起源于C语言。C++是C语言的超集，即C语言是C++语言的一个子集，同时C++语言与C语言是兼容的。C++对C语言作了很多改进，引进了类和对象的概念。但是C语言是面向过程而不是面向对象的。</em></p>
+<p>2、编写C++程序一般需经过的几个步骤依次是（）。(D)<br>A.编译、调试、编辑、连接<br>B.编译、编辑、连接、运行<br>C.编辑、调试、编译、连接<br>D.编辑、编译、连接、运行</p>
+<p>3、在C++中，cin是（）。(C)<br>A.预定义的函数<br>B.预定义的类<br>C.预定义的对象<br>D.一个标准的语句<br><em>cin是输入流对象，负责从键盘获取数据，然后送到内存。</em></p>
+<p>4、关于面向对象程序设计，面向对象程序设计主要考虑的是提高软件的 ▁▁▁▁▁ 。(B)<br>A.可靠性<br>B.可重用性<br>C.可移植性<br>D.可修改性<br><em>面向对象的程序设计通过类的继承与派生机制以及多态性特性，提高了软件代码的可重用性。</em></p>
+<p>5、关于面向对象方法，下面概念中，不属于面向对象方法的是 ▁▁▁▁▁ 。(B)<br>A.类<br>B.过程调用<br>C.继承<br>D.对象<br><em>面向对象方法是一种运用对象、类、封装、继承、多态和消息等概念来构造、测试、重构软件的方法。面向对象方法从对象出发，发展出对象、类、消息、继承等概念。过程调用是面向过程的程序设计方法的概念。</em></p>
+<p>6、命名空间应用于：(A)<br>A.避免各个不同函数、变量等的名称冲突<br>B.以上答案都正确<br>C.在类外定义类的成员函数<br>D.提高代码的执行速度</p>
+<p>7、目标文件的扩展名是（）。(B)<br>A..cpp<br>B..obj<br>C..h<br>D..exe<br><em>源文件.cpp;目标文件.obj;可执行文件.exe在linux平台上，生成的可执行文件一般扩展名为.out</em><br><em>源文件：这是指由源程序和数据构成的文件。通常由终端或输入设备输入的源程序和数据所形成的文件都属于源文件。它通常是由 ASCII 码或汉字所组成的。</em><br><em>目标文件：这是指把源程序经过相应语言的编译程序编译过，但尚未经过链接程序链接的目标代码所构成的文件。它属于二进制文件。</em><br><em>可执行文件：这是指把编译后所产生的目标代码再经过链接程序链接后所形成的文件。</em></p>
+<p>8、下面的这个循环的循环次数是（ ）。<br> for(int i=0,j=10; i=j=10; i++,j–)(D)<br>A.1<br>B.10<br>C.语法错误，不能执行<br>D.无限次<br><em>判断式为真</em></p>
+<p>9、执行下列语句后，输出结果是（）。(B)</p>
+<pre><code>int a=0;
+cout&lt;&lt;(a=4+5,a +5),a+25;</code></pre>
+<p>A.24<br>B.14<br>C.39<br>D.9<br><em>cout&lt;&lt;(a=4+5,a +5),a+25;输出14，a+25丢失</em><br><em>如果是cout&lt;&lt;((a=4+5,a +5),a+25);，输出39</em></p>
+<h2 id="填空题"><a href="#填空题" class="headerlink" title="填空题"></a>填空题</h2><p>1、结构化程序设计具有很多优点，是一种面向______的程序设计方法。(过程)</p>
+<p>2、假定x和y为double型, 则表达式x=2, y=x+3/2的值为________。(3.000000)<br><em>3/2两边都是整型，结果是整数，因为y是double，所以输出3.000000</em></p>
+<p>3、如果a=1，b=2，c=3，d=4，则表达式a&amp;ltb?a:c&amp;ltd?c:d的值为_________。(1)<br><em>条件运算符右结合性，从右至左运算</em></p>
+<p>4、表达式 1+4/5+15&lt;7+4%5+(8,10) 的值为_________。(1)<br><em>比较运算符优先级小</em></p>
+
+  </article>
+
+  
+    
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>vanilla<br>
+    <strong>本文链接：</strong><a href="https://vanilla-2001.github.io/2021/03/12/C-%E9%94%99%E9%A2%98/" title="https:&#x2F;&#x2F;vanilla-2001.github.io&#x2F;2021&#x2F;03&#x2F;12&#x2F;C-%E9%94%99%E9%A2%98&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;vanilla-2001.github.io&#x2F;2021&#x2F;03&#x2F;12&#x2F;C-%E9%94%99%E9%A2%98&#x2F;</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/C/" rel="tag">C++</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+  </div>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+ <script src="/js/app.js?v=1622805824131"></script>
+
+  
+
+
+
+
+
+</body>
+
+</html>

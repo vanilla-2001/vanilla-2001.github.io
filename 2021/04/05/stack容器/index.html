@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+  
+  <title>stack容器 - 见到你很高兴♪(๑·◡·๑)♪</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
+  <meta name="description" content="stack基本概念概念： stack是一种先进后出(FILO) 的数据结构，它只有一个出口栈中只有顶端的元素才可以被外界使用，因此栈不允许有遍历行为栈中进入数据称为 — 入栈 push栈中弹出数据称为 — 出栈 pop stack常用接口功能描述：栈容器常用的对外接口 构造函数： stack&lt;T&gt; stk;&#x2F;&#x2F;stack采用模板类实现，stack对象的默认构造形式 stack(cons">
+<meta property="og:type" content="article">
+<meta property="og:title" content="stack容器">
+<meta property="og:url" content="https://vanilla-2001.github.io/2021/04/05/stack%E5%AE%B9%E5%99%A8/index.html">
+<meta property="og:site_name" content="见到你很高兴♪(๑·◡·๑)♪">
+<meta property="og:description" content="stack基本概念概念： stack是一种先进后出(FILO) 的数据结构，它只有一个出口栈中只有顶端的元素才可以被外界使用，因此栈不允许有遍历行为栈中进入数据称为 — 入栈 push栈中弹出数据称为 — 出栈 pop stack常用接口功能描述：栈容器常用的对外接口 构造函数： stack&lt;T&gt; stk;&#x2F;&#x2F;stack采用模板类实现，stack对象的默认构造形式 stack(cons">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/C1D7F363201F49FDA0C457E161C98504?method=download&shareKey=92e843870677f529fe02d67424f904c5">
+<meta property="article:published_time" content="2021-04-05T04:41:45.000Z">
+<meta property="article:modified_time" content="2021-04-05T08:26:00.348Z">
+<meta property="article:author" content="vanilla">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/C1D7F363201F49FDA0C457E161C98504?method=download&shareKey=92e843870677f529fe02d67424f904c5">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
+  
+  <link rel="stylesheet" href="/css/style.css?v=1622805824113">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="vanilla" class="mdui-btn mdui-btn-icon"><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3372245765,175918050&amp;fm=26&amp;gp=0.jpg" alt="vanilla"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="vanilla">
+            <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3372245765,175918050&amp;fm=26&amp;gp=0.jpg" alt="vanilla" alt="vanilla">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>39</div>
+        <div><span>标签</span>7</div>
+        <div><span>分类</span>2</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=site:nexmoe.com" onsubmit="return search();">
+            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/10399692" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C/">C++</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/%E5%A4%A9%E6%A2%AF/" style="font-size: 10px;">天梯</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 16.67px;">算法</a> <a href="/tags/%E8%93%9D%E6%A1%A5/" style="font-size: 13.33px;">蓝桥</a>
+    </div>
+    
+  </div>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">39</span></li></ul>
+    </div>
+  </div>
+
+
+<style>
+.nexmoe-widget .archive-list-count{
+	position : absolute;
+	right: 15px;
+	top:9px;
+	color: #DDD;
+}
+</style>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2021 vanilla
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: 66.66666666666666%;"> 
+          <img data-src="https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg" data-sizes="auto" alt="stack容器" class="lazyload">
+          <h1>stack容器</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年04月05日</a>
+    <a><i class="nexmoefont icon-areachart"></i>480 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
+</div>
+
+  <div class="nexmoe-post-right">
+    
+  </div>
+
+  <article>
+    <h2 id="stack基本概念"><a href="#stack基本概念" class="headerlink" title="stack基本概念"></a>stack基本概念</h2><p><strong>概念：</strong> stack是一种<strong>先进后出(FILO)</strong> 的数据结构，它只有一个出口<br><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/C1D7F363201F49FDA0C457E161C98504?method=download&shareKey=92e843870677f529fe02d67424f904c5" alt="avatar" class="lazyload"><br>栈中只有顶端的元素才可以被外界使用，因此栈不允许有遍历行为<br>栈中进入数据称为 — <strong>入栈</strong> push<br>栈中弹出数据称为 — <strong>出栈</strong> pop</p>
+<h2 id="stack常用接口"><a href="#stack常用接口" class="headerlink" title="stack常用接口"></a>stack常用接口</h2><p>功能描述：栈容器常用的对外接口</p>
+<p>构造函数：</p>
+<pre><code>stack&lt;T&gt; stk;//stack采用模板类实现，stack对象的默认构造形式
+stack(const stack &amp;stk);//拷贝构造函数</code></pre>
+<p>赋值操作：</p>
+<pre><code>stack&amp; operator=(const stack &amp;stk);//重载等号重载符</code></pre>
+<p>数据存取：</p>
+<pre><code>push(elem);//向栈顶添加元素
+pop();//从栈顶移除第一个元素
+top();//返回栈顶元素</code></pre>
+<p>大小操作：</p>
+<pre><code>empty();//判断堆栈是否为空
+size();//返回栈的大小
+
+#include&lt;iostream&gt;
+#include&lt;stack&gt;
+using namespace std;
+void test01() &#123;
+    //特点：符合先进后出数据结构
+    stack&lt;int&gt;s;
+    s.push(10);
+    s.push(20);
+    s.push(30);
+    s.push(40);
+    //只要栈不为空，查看栈顶，并且执行出栈操作
+    while (!s.empty()) &#123;
+        //查看栈顶元素
+        cout &lt;&lt; &quot;栈顶元素为： &quot; &lt;&lt; s.top() &lt;&lt; endl;
+        s.pop();
+    &#125;
+    cout &lt;&lt; &quot;栈的大小： &quot; &lt;&lt; s.size() &lt;&lt; endl;//0
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p>总结：<br><strong>·</strong> 入栈 — push<br><strong>·</strong> 出栈 — pop<br><strong>·</strong> 返回栈顶 — top<br><strong>·</strong> 判断栈是否为空 — empty<br><strong>·</strong> 返回栈大小 — size</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;queue&gt;
+#include&lt;string&gt;
+using namespace std;
+class person &#123;
+public:
+    string m_name;
+    int m_age;
+    person(string name, int age) &#123;
+        this-&gt;m_name = name;
+        this-&gt;m_age = age;
+    &#125;
+&#125;;
+void test01() &#123;
+    queue&lt;person&gt;q;
+    //准备数据
+    person p1(&quot;唐僧&quot;, 30);
+    person p2(&quot;孙悟空&quot;, 60);
+    person p3(&quot;猪八戒&quot;, 70);
+    q.push(p1);
+    q.push(p2);
+    q.push(p3);
+    while (!q.empty()) &#123;
+        //查看队头
+        cout &lt;&lt; &quot;队头元素 --- &quot; &lt;&lt; q.front().m_name &lt;&lt; &quot; &quot; &lt;&lt; q.front().m_age &lt;&lt; endl;//
+        //查看队尾
+        cout &lt;&lt; &quot;队尾元素 --- &quot; &lt;&lt; q.back().m_name &lt;&lt; &quot; &quot; &lt;&lt; q.back().m_age &lt;&lt; endl;
+        q.pop();//出队
+    &#125;
+    cout &lt;&lt; &quot;大小： &quot; &lt;&lt; q.size() &lt;&lt; endl;
+    //队头元素-- - 唐僧 30
+    //队尾元素-- - 猪八戒 70
+    //队头元素-- - 孙悟空 60
+    //队尾元素-- - 猪八戒 70
+    //队头元素-- - 猪八戒 70
+    //队尾元素-- - 猪八戒 70
+    //大小： 0
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+
+  </article>
+
+  
+    
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>vanilla<br>
+    <strong>本文链接：</strong><a href="https://vanilla-2001.github.io/2021/04/05/stack%E5%AE%B9%E5%99%A8/" title="https:&#x2F;&#x2F;vanilla-2001.github.io&#x2F;2021&#x2F;04&#x2F;05&#x2F;stack%E5%AE%B9%E5%99%A8&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;vanilla-2001.github.io&#x2F;2021&#x2F;04&#x2F;05&#x2F;stack%E5%AE%B9%E5%99%A8&#x2F;</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/C/" rel="tag">C++</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+  </div>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+ <script src="/js/app.js?v=1622805824114"></script>
+
+  
+
+
+
+
+
+</body>
+
+</html>

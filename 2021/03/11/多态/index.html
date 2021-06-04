@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+  
+  <title>多态 - 见到你很高兴♪(๑·◡·๑)♪</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
+  <meta name="description" content="多态是C++面向对象三大特性之一多态分为两类· 静态多态：函数重载 和 运算符重载属于静态多态，复用函数名· 动态多态：派生类和虚函数实现运行时多态静态多态和动态多态区别：· 静态多态的函数地址早绑定 - 编译阶段确定函数地址· 动态多态的函数地址晚绑定 - 运行阶段确定函数地址 多态的基本语法静态多态：#include&lt;iostream&gt; #include&lt;string&gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多态">
+<meta property="og:url" content="https://vanilla-2001.github.io/2021/03/11/%E5%A4%9A%E6%80%81/index.html">
+<meta property="og:site_name" content="见到你很高兴♪(๑·◡·๑)♪">
+<meta property="og:description" content="多态是C++面向对象三大特性之一多态分为两类· 静态多态：函数重载 和 运算符重载属于静态多态，复用函数名· 动态多态：派生类和虚函数实现运行时多态静态多态和动态多态区别：· 静态多态的函数地址早绑定 - 编译阶段确定函数地址· 动态多态的函数地址晚绑定 - 运行阶段确定函数地址 多态的基本语法静态多态：#include&lt;iostream&gt; #include&lt;string&gt;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/B3F850C5887B41298C9FB71E0843E1C8?method=download&shareKey=a640c528926ff7cd87baab9f1684f618">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/C13B38F142BD40469018E35586E7D87A?method=download&shareKey=cc2e519b3d96f31818101c6d6ef7d7e0">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/8C7EB62F72D24A2AB126C3514AD83F5B?method=download&shareKey=32a9b3b1706899551010d6dcfe58d920">
+<meta property="article:published_time" content="2021-03-11T08:14:06.000Z">
+<meta property="article:modified_time" content="2021-03-11T12:39:35.368Z">
+<meta property="article:author" content="vanilla">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/B3F850C5887B41298C9FB71E0843E1C8?method=download&shareKey=a640c528926ff7cd87baab9f1684f618">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
+  
+  <link rel="stylesheet" href="/css/style.css?v=1622805824134">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="vanilla" class="mdui-btn mdui-btn-icon"><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3372245765,175918050&amp;fm=26&amp;gp=0.jpg" alt="vanilla"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="vanilla">
+            <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3372245765,175918050&amp;fm=26&amp;gp=0.jpg" alt="vanilla" alt="vanilla">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>39</div>
+        <div><span>标签</span>7</div>
+        <div><span>分类</span>2</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=site:nexmoe.com" onsubmit="return search();">
+            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/10399692" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C/">C++</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/%E5%A4%A9%E6%A2%AF/" style="font-size: 10px;">天梯</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 16.67px;">算法</a> <a href="/tags/%E8%93%9D%E6%A1%A5/" style="font-size: 13.33px;">蓝桥</a>
+    </div>
+    
+  </div>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">39</span></li></ul>
+    </div>
+  </div>
+
+
+<style>
+.nexmoe-widget .archive-list-count{
+	position : absolute;
+	right: 15px;
+	top:9px;
+	color: #DDD;
+}
+</style>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2021 vanilla
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: 66.66666666666666%;"> 
+          <img data-src="https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg" data-sizes="auto" alt="多态" class="lazyload">
+          <h1>多态</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年03月11日</a>
+    <a><i class="nexmoefont icon-areachart"></i>2,449 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 11 分钟</a>
+</div>
+
+  <div class="nexmoe-post-right">
+    
+  </div>
+
+  <article>
+    <p><strong>多态是C++面向对象三大特性之一</strong><br>多态分为两类<br><strong>·</strong> 静态多态：函数重载 和 运算符重载属于静态多态，复用函数名<br><strong>·</strong> 动态多态：派生类和虚函数实现运行时多态<br>静态多态和动态多态区别：<br><strong>·</strong> 静态多态的函数地址早绑定 - 编译阶段确定函数地址<br><strong>·</strong> 动态多态的函数地址晚绑定 - 运行阶段确定函数地址</p>
+<h2 id="多态的基本语法"><a href="#多态的基本语法" class="headerlink" title="多态的基本语法"></a>多态的基本语法</h2><h3 id="静态多态："><a href="#静态多态：" class="headerlink" title="静态多态："></a>静态多态：</h3><pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+class Animal &#123;
+public:
+    void speak() &#123;
+        cout &lt;&lt; &quot;动物在说话&quot; &lt;&lt; endl;
+    &#125;
+&#125;;
+class Cat :public Animal &#123;
+public:
+    void speak() &#123;
+        cout &lt;&lt; &quot;小猫在说话&quot; &lt;&lt; endl;
+    &#125;
+&#125;;
+//地址早绑定 在编译阶段确定函数地址
+//如果想执行让猫说话，那么函数的地址就不能提前绑定，需要地址晚绑定
+void dospeak(Animal &amp;animal)&#123;//Animal &amp;animal = cat；
+    animal.speak();//执行动物说话
+&#125;
+void test01()&#123;
+    Cat cat;
+    dospeak(cat);
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<h3 id="动态多态："><a href="#动态多态：" class="headerlink" title="动态多态："></a>动态多态：</h3><pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+class Animal &#123;
+public:
+    virtual void speak() &#123;//虚函数，动态多态，地址在运行时绑定
+        cout &lt;&lt; &quot;动物在说话&quot; &lt;&lt; endl;
+    &#125;
+&#125;;
+class Cat :public Animal &#123;
+public:
+    void speak() &#123;
+        cout &lt;&lt; &quot;小猫在说话&quot; &lt;&lt; endl;
+    &#125;
+&#125;;
+void dospeak(Animal &amp;animal)&#123;
+    animal.speak();//执行小猫说话
+&#125;
+void test01()&#123;
+    Cat cat;
+    dospeak(cat);//根据传入对象确定地址
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><strong>满足条件：</strong><br>1、有继承关系<br>2、子类重写父类中的虚函数   重写：函数返回值类型，函数名称，参数列表完全相同，子类可写可不写virtual<br><strong>动态多态使用：</strong><br>父类的指针或引用（Animal &amp;animal） 指向子类对象（Cat cat）</p>
+<h2 id="多态的基本概念"><a href="#多态的基本概念" class="headerlink" title="多态的基本概念"></a>多态的基本概念</h2><pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+class Animal &#123;
+public:
+    void speak() &#123;
+        cout &lt;&lt; &quot;动物在说话&quot; &lt;&lt; endl;
+    &#125;
+&#125;;
+void test01()&#123;
+    cout &lt;&lt; &quot;size of Animal = &quot; &lt;&lt; sizeof(Animal) &lt;&lt; endl;//1,空类内存为1
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;
+
+#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+class Animal &#123;
+public:
+    virtual void speak() &#123;
+        cout &lt;&lt; &quot;动物在说话&quot; &lt;&lt; endl;
+    &#125;
+&#125;;
+void test01()&#123;
+    cout &lt;&lt; &quot;size of Animal = &quot; &lt;&lt; sizeof(Animal) &lt;&lt; endl;//4,多了一个虚函数指针fbptr，指向虚函数表fbtable
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/B3F850C5887B41298C9FB71E0843E1C8?method=download&shareKey=a640c528926ff7cd87baab9f1684f618" alt="avatar" class="lazyload"></p>
+<h2 id="案例1-计算器类"><a href="#案例1-计算器类" class="headerlink" title="案例1-计算器类"></a>案例1-计算器类</h2><p>案例描述：<br>分别利用普通写法和多态技术，设计实现两个操作数进行运算的计算器类</p>
+<p>多态的优点：<br><strong>·</strong> 代码组织结构清晰<br><strong>·</strong> 可读性强<br><strong>·</strong> 利于前期和后期的扩展以及维护</p>
+<h3 id="普通写法："><a href="#普通写法：" class="headerlink" title="普通写法："></a>普通写法：</h3><pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+class Calculator &#123;
+public:
+    int getResult(string oper) &#123;
+        if (oper == &quot;+&quot;)return m_Num1 + m_Num2;
+        else if(oper==&quot;-&quot;)return m_Num1 - m_Num2;
+        else if (oper == &quot;*&quot;)return m_Num1 * m_Num2;
+    &#125;
+    int m_Num1;
+    int m_Num2;
+&#125;;
+void test01()&#123;
+    Calculator c;
+    c.m_Num1 = 10;
+    c.m_Num2 = 20;
+    cout &lt;&lt; c.m_Num1 &lt;&lt; &quot; + &quot; &lt;&lt; c.m_Num2 &lt;&lt; &quot; = &quot; &lt;&lt; c.getResult(&quot;+&quot;) &lt;&lt; endl;
+    cout &lt;&lt; c.m_Num1 &lt;&lt; &quot; - &quot; &lt;&lt; c.m_Num2 &lt;&lt; &quot; = &quot; &lt;&lt; c.getResult(&quot;-&quot;) &lt;&lt; endl;
+    cout &lt;&lt; c.m_Num1 &lt;&lt; &quot; * &quot; &lt;&lt; c.m_Num2 &lt;&lt; &quot; = &quot; &lt;&lt; c.getResult(&quot;*&quot;) &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p>缺点：如果想扩展新的功能，需要修改源码<br>在真的开发中，提倡 开闭原则<br>开闭原则：对扩展进行开放，对修改进行关闭</p>
+<h3 id="利用多态实现计算器"><a href="#利用多态实现计算器" class="headerlink" title="利用多态实现计算器"></a>利用多态实现计算器</h3><pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+class AbstractCalculator &#123;
+public:
+    virtual int getResult() &#123;
+        return 0;
+    &#125;
+    int m_Num1;
+    int m_Num2;
+&#125;;
+class AddCalculator:public AbstractCalculator &#123;
+public:
+    int getResult() &#123;
+        return m_Num1 + m_Num2;
+    &#125;
+&#125;;
+class SubCalculator :public AbstractCalculator &#123;
+public:
+    int getResult() &#123;
+        return m_Num1 - m_Num2;
+    &#125;
+&#125;;
+class MulCalculator :public AbstractCalculator &#123;
+public:
+    int getResult() &#123;
+        return m_Num1 * m_Num2;
+    &#125;
+&#125;;
+void test01() &#123;
+    //父类的指针或者引用指向对象
+    AbstractCalculator *abc = new AddCalculator;
+    abc-&gt;m_Num1 = 10;
+    abc-&gt;m_Num2 = 10;
+    cout &lt;&lt; abc-&gt;m_Num1 &lt;&lt; &quot; + &quot; &lt;&lt; abc-&gt;m_Num2 &lt;&lt; &quot; = &quot; &lt;&lt; abc-&gt;getResult() &lt;&lt; endl;
+    //堆区数据，用完后释放
+    delete abc;
+    abc = new SubCalculator;
+    abc-&gt;m_Num1 = 10;
+    abc-&gt;m_Num2 = 10;
+    cout &lt;&lt; abc-&gt;m_Num1 &lt;&lt; &quot; - &quot; &lt;&lt; abc-&gt;m_Num2 &lt;&lt; &quot; = &quot; &lt;&lt; abc-&gt;getResult() &lt;&lt; endl;
+    delete abc;
+    abc = new MulCalculator;
+    abc-&gt;m_Num1 = 10;
+    abc-&gt;m_Num2 = 10;
+    cout &lt;&lt; abc-&gt;m_Num1 &lt;&lt; &quot; * &quot; &lt;&lt; abc-&gt;m_Num2 &lt;&lt; &quot; = &quot; &lt;&lt; abc-&gt;getResult() &lt;&lt; endl;
+    delete abc;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p>多态好处：<br>1、组织结构清晰<br>2、可读性强<br>3、对于前期和后期扩展以及维护性高</p>
+<p>父类的引用指向对象：</p>
+<pre><code>void add(AbstractCalculator &amp; b) &#123;
+    cout &lt;&lt; b.m_Num1 &lt;&lt; &quot; + &quot; &lt;&lt; b.m_Num2 &lt;&lt; &quot; = &quot; &lt;&lt; b.getResult() &lt;&lt; endl;
+&#125;
+void test01() &#123;
+    AddCalculator a;
+    a.m_Num1 = 10;
+    a.m_Num2 = 10;
+    add(a);
+&#125;</code></pre>
+<h2 id="纯虚函数和抽象类"><a href="#纯虚函数和抽象类" class="headerlink" title="纯虚函数和抽象类"></a>纯虚函数和抽象类</h2><p>在多态中，通常父类中虚函数的实现是毫无意义的，主要都是调用子类重写的内容<br>因此可以将虚函数改为<strong>纯虚函数</strong><br>纯虚函数语法：virtual 返回值类型 函数名 (参数列表)=0<br>当类中有了纯虚函数，这个类也称为<strong>抽象类</strong></p>
+<p><strong>抽象类特点：</strong><br><strong>·</strong> 无法实力化对象<br><strong>·</strong> 子类必须重写抽象类中的纯虚函数，否则也属于抽象类</p>
+<h3 id="抽象类无法实例化对象"><a href="#抽象类无法实例化对象" class="headerlink" title="抽象类无法实例化对象"></a>抽象类无法实例化对象</h3><pre><code>class Base &#123;
+public:
+    virtual void func() = 0;//纯虚函数,只要有一个纯虚函数，这个类称为抽象类
+    //抽象类特点：无法实例化对象
+&#125;;
+void test01() &#123;
+    Base b;//报错，抽象类无法实例化对象
+    new Base;//报错，抽象类无法实例化对象
+&#125;</code></pre>
+<h3 id="子类必须重写抽象类中的纯虚函数，否则也属于抽象类"><a href="#子类必须重写抽象类中的纯虚函数，否则也属于抽象类" class="headerlink" title="子类必须重写抽象类中的纯虚函数，否则也属于抽象类"></a>子类必须重写抽象类中的纯虚函数，否则也属于抽象类</h3><pre><code>class Base &#123;
+public:
+    virtual void func() = 0;//纯虚函数,只要有一个纯虚函数，这个类称为抽象类
+    //抽象类特点：抽象类的子类必须要重写父类中的纯虚函数，否则也属于抽象类
+&#125;;
+class Son :public Base &#123;
+public:  
+&#125;;
+void test01() &#123;
+    Son s;//报错，抽象类无法实例化对象
+&#125;
+
+class Base &#123;
+public:
+    virtual void func() = 0;//纯虚函数,只要有一个纯虚函数，这个类称为抽象类
+    //抽象类特点：抽象类的子类必须要重写父类中的纯虚函数，否则也属于抽象类
+&#125;;
+class Son :public Base &#123;
+public:
+    virtual void func() &#123;
+    &#125;
+&#125;;
+void test01() &#123;
+    Son s;//正确
+&#125;</code></pre>
+<h3 id="使用多态"><a href="#使用多态" class="headerlink" title="使用多态"></a>使用多态</h3><pre><code>void test01() &#123;
+    Base * base = new Son;
+    base-&gt;func();
+&#125;</code></pre>
+<h2 id="多态案例2-制作饮品"><a href="#多态案例2-制作饮品" class="headerlink" title="多态案例2-制作饮品"></a>多态案例2-制作饮品</h2><p><strong>案例描述：</strong><br>制作饮品大致流程为：煮水-冲泡-倒入杯中-加入辅料<br>利用多态技术实现本案例，提供抽象制作饮品基类，提供子类制作咖啡和茶叶</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+class AbstractDrinking &#123;
+public:
+    virtual void Boil() = 0;
+    virtual void Brew() = 0;
+    virtual void PourInCup() = 0;
+    virtual void PutSomething() = 0;
+    void makeDrink() &#123;
+        Boil();
+        Brew();
+        PourInCup();
+        PutSomething();
+    &#125;
+&#125;;
+class Coffee :public AbstractDrinking &#123;
+    virtual void Boil() &#123;
+        cout &lt;&lt; &quot;煮水&quot; &lt;&lt; endl;
+    &#125;
+    virtual void Brew() &#123;
+        cout &lt;&lt; &quot;冲泡咖啡&quot; &lt;&lt; endl;
+    &#125;
+    virtual void PourInCup() &#123;
+        cout &lt;&lt; &quot;倒入杯中&quot; &lt;&lt; endl;
+    &#125;
+    virtual void PutSomething() &#123;
+        cout &lt;&lt; &quot;加入糖和牛奶&quot; &lt;&lt; endl;
+    &#125;
+&#125;;
+class Tea :public AbstractDrinking &#123;
+    virtual void Boil() &#123;
+        cout &lt;&lt; &quot;煮水&quot; &lt;&lt; endl;
+    &#125;
+    virtual void Brew() &#123;
+        cout &lt;&lt; &quot;冲泡茶叶&quot; &lt;&lt; endl;
+    &#125;
+    virtual void PourInCup() &#123;
+        cout &lt;&lt; &quot;倒入杯中&quot; &lt;&lt; endl;
+    &#125;
+    virtual void PutSomething() &#123;
+        cout &lt;&lt; &quot;加入枸杞&quot; &lt;&lt; endl;
+    &#125;
+&#125;;
+void dowork(AbstractDrinking &amp; abs) &#123;
+    abs.makeDrink();
+&#125;
+void test01() &#123;
+    Coffee co;
+    dowork(co);
+    Tea te;
+    dowork(te);
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<h2 id="虚析构和纯虚析构"><a href="#虚析构和纯虚析构" class="headerlink" title="虚析构和纯虚析构"></a>虚析构和纯虚析构</h2><p>多态使用时，如果子类中有属性开辟到堆区，那么父类指针在释放时无法调用到子类析构代码<br>解决方式：将非类中的析构函数改为虚析构或者纯虚析构</p>
+<p>虚析构和纯虚析构共性：<br><strong>·</strong> 可以解决父类指针释放子类对象<br><strong>·</strong> 都需要有具体的函数实现<br>虚析构和纯虚析构区别：<br><strong>·</strong> 如果是纯虚析构，该类属于抽象类，无法实例化对象</p>
+<p>虚析构语法：<br>virtual <del>类名(){}<br>纯虚析构语法：<br>virtual ~类名() = 0;<br>类名::</del>类名(){}</p>
+<h3 id="问题：没有执行子类的析构函数"><a href="#问题：没有执行子类的析构函数" class="headerlink" title="问题：没有执行子类的析构函数"></a>问题：没有执行子类的析构函数</h3><pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+class Animal &#123;
+public:
+    Animal() &#123;
+        cout &lt;&lt; &quot;animal的构造函数调用&quot; &lt;&lt; endl;
+    &#125;
+    ~Animal() &#123;
+        cout &lt;&lt; &quot;animal析构函数调用&quot; &lt;&lt; endl;
+    &#125;
+    virtual void speak() = 0;//纯虚函数
+&#125;;
+class Cat :public Animal &#123;
+public:
+    Cat(string name) &#123;
+        cout &lt;&lt; &quot;cat构造函数调用&quot; &lt;&lt; endl;
+        m_Name = new string(name);
+    &#125;
+    virtual void speak() &#123;
+        cout &lt;&lt; *m_Name &lt;&lt; &quot;小猫在说话&quot; &lt;&lt; endl;
+    &#125;
+    ~Cat() &#123;
+        if (m_Name != NULL) &#123;
+            delete m_Name;
+            m_Name = NULL;
+            cout &lt;&lt; &quot;cat析构函数调用&quot; &lt;&lt; endl;
+        &#125;
+    &#125;
+    string *m_Name;
+&#125;;
+void test01() &#123;
+    Animal * animal = new Cat(&quot;Tom&quot;);
+    animal-&gt;speak();
+    delete animal;//父类的指针在析构的时候，不会调用子类的析构函数，导致子类中如果有堆区属性，会导致内存泄漏
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/C13B38F142BD40469018E35586E7D87A?method=download&shareKey=cc2e519b3d96f31818101c6d6ef7d7e0" alt="avatar" class="lazyload"></p>
+<h3 id="利用虚析构解决"><a href="#利用虚析构解决" class="headerlink" title="利用虚析构解决"></a>利用虚析构解决</h3><pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+class Animal &#123;
+public:
+    Animal() &#123;
+        cout &lt;&lt; &quot;animal的构造函数调用&quot; &lt;&lt; endl;
+    &#125;
+    virtual ~Animal() &#123;//虚析构
+        cout &lt;&lt; &quot;animal析构函数调用&quot; &lt;&lt; endl;
+    &#125;
+    virtual void speak() = 0;//纯虚函数
+&#125;;
+class Cat :public Animal &#123;
+public:
+    Cat(string name) &#123;
+        cout &lt;&lt; &quot;cat构造函数调用&quot; &lt;&lt; endl;
+        m_Name = new string(name);
+    &#125;
+    virtual void speak() &#123;
+        cout &lt;&lt; *m_Name &lt;&lt; &quot;小猫在说话&quot; &lt;&lt; endl;
+    &#125;
+    ~Cat() &#123;
+        if (m_Name != NULL) &#123;
+            delete m_Name;
+            m_Name = NULL;
+            cout &lt;&lt; &quot;cat析构函数调用&quot; &lt;&lt; endl;
+        &#125;
+    &#125;
+    string *m_Name;
+&#125;;
+void test01() &#123;
+    Animal * animal = new Cat(&quot;Tom&quot;);
+    animal-&gt;speak();
+    delete animal;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/8C7EB62F72D24A2AB126C3514AD83F5B?method=download&shareKey=32a9b3b1706899551010d6dcfe58d920" alt="avatar" class="lazyload"></p>
+<h3 id="纯虚析构"><a href="#纯虚析构" class="headerlink" title="纯虚析构"></a>纯虚析构</h3><pre><code>class Animal &#123;
+public:
+    Animal() &#123;
+        cout &lt;&lt; &quot;animal的构造函数调用&quot; &lt;&lt; endl;
+    &#125;
+    virtual ~Animal() = 0;//纯虚析构
+    virtual void speak() = 0;//纯虚函数
+&#125;;
+Animal:: ~Animal() &#123;
+    cout &lt;&lt; &quot;animal的纯虚析构调用&quot; &lt;&lt; endl;
+&#125;</code></pre>
+<p>纯虚析构 需要声明也需要实现<br>有了纯虚析构后，这个类也属于抽象类，无法实例化</p>
+<p>总结：<br>1、虚析构或纯虚析构就是用来解决通过父类指针释放子类对象<br>2、如果子类中没有堆区数据，可以不写为虚析构或纯虚析构<br>3、拥有纯虚析构函数的类也属于抽象类</p>
+<h2 id="案例3-电脑组装需求分析"><a href="#案例3-电脑组装需求分析" class="headerlink" title="案例3-电脑组装需求分析"></a>案例3-电脑组装需求分析</h2><p><strong>案例描述：</strong><br>电脑主要组成部件为CPU(用于计算)，显卡(用于显示)，内存条(用于存储)<br>将每个零件封装出抽象基类，并且提供不同的厂商生产不同的零件,例如Intel厂商和Lenovo厂商<br>创建电脑类提供让电脑工作的函数，并且调用每个零件工作的接口<br>测试时组装三台不同的电脑进行工作</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+class CPU &#123;
+public:
+    virtual void calculate() = 0;
+&#125;;
+class VideoCard &#123;
+public:
+    virtual void display() = 0;
+&#125;;
+class Memory&#123;
+public:
+    virtual void storage() = 0;
+&#125;;
+class Computer &#123;
+public:
+    Computer(CPU * cpu, VideoCard * vc, Memory * mem) &#123;
+        m_cpu = cpu;
+        m_vc = vc;
+        m_mem = mem;
+    &#125;
+    void work() &#123;
+        m_cpu-&gt;calculate();
+        m_vc-&gt;display();
+        m_mem-&gt;storage();
+    &#125;
+        ~Computer() &#123;
+            if (m_cpu != NULL) &#123;
+                delete m_cpu;
+                m_cpu = NULL;
+            &#125;
+            if (m_vc != NULL) &#123;
+                delete m_vc;
+                m_vc = NULL;
+            &#125;
+            if (m_mem != NULL) &#123;
+                delete m_mem;
+                m_mem = NULL;
+            &#125;
+        &#125;
+private:
+    CPU * m_cpu;
+    VideoCard * m_vc;
+    Memory * m_mem;
+&#125;;
+class IntelCPU :public CPU &#123;
+public:
+    virtual void calculate() &#123;
+        cout &lt;&lt; &quot;intel的cpu开始计算了&quot; &lt;&lt; endl;
+    &#125;
+&#125;;
+class IntelVC :public VideoCard &#123;
+public:
+    virtual void display() &#123;
+        cout &lt;&lt; &quot;intel的显卡开始显示了&quot; &lt;&lt; endl;
+    &#125;
+&#125;;
+class IntelMemory :public Memory &#123;
+public:
+    virtual void storage() &#123;
+        cout &lt;&lt; &quot;intel的内存条开始存储了&quot; &lt;&lt; endl;
+    &#125;
+&#125;;
+class LenovoCPU :public CPU &#123;
+public:
+    virtual void calculate() &#123;
+        cout &lt;&lt; &quot;Lenovo的cpu开始计算了&quot; &lt;&lt; endl;
+    &#125;
+&#125;;
+class LenovoVC :public VideoCard &#123;
+    public:
+    virtual void display() &#123;
+        cout &lt;&lt; &quot;Lenovo的显卡开始显示了&quot; &lt;&lt; endl;
+    &#125;
+&#125;;
+class LenovoMemory :public Memory &#123;
+public:
+    virtual void storage() &#123;
+        cout &lt;&lt; &quot;Lenovo的内存条开始存储了&quot; &lt;&lt; endl;
+    &#125;
+&#125;;
+void test01() &#123;
+    CPU * intelcpu = new IntelCPU;
+    VideoCard * intelcard = new IntelVC;
+    Memory * intelmem = new IntelMemory;
+    Computer * computer1 = new Computer(intelcpu, intelcard, intelmem);
+    computer1-&gt;work();
+    delete computer1;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+
+  </article>
+
+  
+    
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>vanilla<br>
+    <strong>本文链接：</strong><a href="https://vanilla-2001.github.io/2021/03/11/%E5%A4%9A%E6%80%81/" title="https:&#x2F;&#x2F;vanilla-2001.github.io&#x2F;2021&#x2F;03&#x2F;11&#x2F;%E5%A4%9A%E6%80%81&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;vanilla-2001.github.io&#x2F;2021&#x2F;03&#x2F;11&#x2F;%E5%A4%9A%E6%80%81&#x2F;</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/C/" rel="tag">C++</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+  </div>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+ <script src="/js/app.js?v=1622805824135"></script>
+
+  
+
+
+
+
+
+</body>
+
+</html>

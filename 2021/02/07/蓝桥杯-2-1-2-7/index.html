@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+  
+  <title>蓝桥杯(2.1-2.7) - 见到你很高兴♪(๑·◡·๑)♪</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
+  <meta name="description" content="数列排序问题描述　　给定一个长度为n的数列，将这个数列按从小到大的顺序排列。1&lt;&#x3D;n&lt;&#x3D;200 输入格式　　第一行为一个整数n。　　第二行包含n个整数，为待排序的数，每个整数的绝对值小于10000。 输出格式　　输出一行，按从小到大的顺序输出排序后的数列。 样例输入58 3 6 4 9 样例输出3 4 6 8 9 代码： #include&lt;stdio.h&gt; int main">
+<meta property="og:type" content="article">
+<meta property="og:title" content="蓝桥杯(2.1-2.7)">
+<meta property="og:url" content="https://vanilla-2001.github.io/2021/02/07/%E8%93%9D%E6%A1%A5%E6%9D%AF-2-1-2-7/index.html">
+<meta property="og:site_name" content="见到你很高兴♪(๑·◡·๑)♪">
+<meta property="og:description" content="数列排序问题描述　　给定一个长度为n的数列，将这个数列按从小到大的顺序排列。1&lt;&#x3D;n&lt;&#x3D;200 输入格式　　第一行为一个整数n。　　第二行包含n个整数，为待排序的数，每个整数的绝对值小于10000。 输出格式　　输出一行，按从小到大的顺序输出排序后的数列。 样例输入58 3 6 4 9 样例输出3 4 6 8 9 代码： #include&lt;stdio.h&gt; int main">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-02-07T11:41:12.000Z">
+<meta property="article:modified_time" content="2021-02-25T05:21:36.273Z">
+<meta property="article:author" content="vanilla">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
+  
+  <link rel="stylesheet" href="/css/style.css?v=1622805824142">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="vanilla" class="mdui-btn mdui-btn-icon"><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3372245765,175918050&amp;fm=26&amp;gp=0.jpg" alt="vanilla"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="vanilla">
+            <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3372245765,175918050&amp;fm=26&amp;gp=0.jpg" alt="vanilla" alt="vanilla">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>39</div>
+        <div><span>标签</span>7</div>
+        <div><span>分类</span>2</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=site:nexmoe.com" onsubmit="return search();">
+            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/10399692" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C/">C++</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/%E5%A4%A9%E6%A2%AF/" style="font-size: 10px;">天梯</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 16.67px;">算法</a> <a href="/tags/%E8%93%9D%E6%A1%A5/" style="font-size: 13.33px;">蓝桥</a>
+    </div>
+    
+  </div>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">39</span></li></ul>
+    </div>
+  </div>
+
+
+<style>
+.nexmoe-widget .archive-list-count{
+	position : absolute;
+	right: 15px;
+	top:9px;
+	color: #DDD;
+}
+</style>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2021 vanilla
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: 66.66666666666666%;"> 
+          <img data-src="https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg" data-sizes="auto" alt="蓝桥杯(2.1-2.7)" class="lazyload">
+          <h1>蓝桥杯(2.1-2.7)</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年02月07日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1,208 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 6 分钟</a>
+</div>
+
+  <div class="nexmoe-post-right">
+    
+  </div>
+
+  <article>
+    <h2 id="数列排序"><a href="#数列排序" class="headerlink" title="数列排序"></a>数列排序</h2><p>问题描述<br>　　给定一个长度为n的数列，将这个数列按从小到大的顺序排列。1&lt;=n&lt;=200</p>
+<p>输入格式<br>　　第一行为一个整数n。<br>　　第二行包含n个整数，为待排序的数，每个整数的绝对值小于10000。</p>
+<p>输出格式<br>　　输出一行，按从小到大的顺序输出排序后的数列。</p>
+<p>样例输入<br>5<br>8 3 6 4 9</p>
+<p>样例输出<br>3 4 6 8 9</p>
+<p>代码：</p>
+<pre><code>#include&lt;stdio.h&gt;
+int main() &#123;
+    int i, n, a[200], j, t;
+    scanf(&quot;%d&quot;, &amp;n);
+    for (i = 0;i &lt; n;i++) &#123;
+        scanf(&quot;%d&quot;, &amp;a[i]);
+    &#125;
+    for (i = 0;i &lt; n - 1;i++) &#123;
+        for (j = 0;j &lt; n - i - 1;j++) &#123;
+            if (a[j] &gt; a[j + 1]) &#123;
+                t = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = t;
+            &#125;
+        &#125;
+    &#125;
+    for (i = 0;i &lt; n;i++)
+        printf(&quot;%d &quot;, a[i]);
+    return 0;
+&#125;</code></pre>
+<h2 id="十六进制转八进制"><a href="#十六进制转八进制" class="headerlink" title="十六进制转八进制"></a>十六进制转八进制</h2><p>问题描述<br>　　给定n个十六进制正整数，输出它们对应的八进制数。</p>
+<p>输入格式<br>　　输入的第一行为一个正整数n （1&lt;=n&lt;=10）。<br>　　接下来n行，每行一个由0<del>9、大写字母A</del>F组成的字符串，表示要转换的十六进制正整数，每个十六进制数长度不超过100000。</p>
+<p>输出格式<br>　　输出n行，每行为输入对应的八进制正整数。</p>
+<p>　　【注意】<br>　　输入的十六进制数不会有前导0，比如012A。<br>　　输出的八进制数也不能有前导0。</p>
+<p>样例输入<br>　　2<br>　　39<br>　　123ABC</p>
+<p>样例输出<br>　　71<br>　　4435274</p>
+<p>　　【提示】<br>　　先将十六进制数转换成某进制数，再由某进制数转换成八进制。</p>
+<p>代码：</p>
+<pre><code>#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+int main()
+&#123;
+    int n,i,j,k,a,cur,ok,m,l;
+    char s[10][100001],d16[16][5]=&#123;&quot;0000&quot;,&quot;0001&quot;,&quot;0010&quot;,&quot;0011&quot;,&quot;0100&quot;,&quot;0101&quot;,&quot;0110&quot;,&quot;0111&quot;,&quot;1000&quot;,&quot;1001&quot;,&quot;1010&quot;,&quot;1011&quot;,&quot;1100&quot;,&quot;1101&quot;,&quot;1110&quot;,&quot;1111&quot;&#125;,out[140000]=&#123;&#125;,z[13]=&#123;&#125;;
+    scanf(&quot;%d&quot;,&amp;n);                      
+    for(j=0;j&lt;n;j++)
+        scanf(&quot;%s&quot;,s[j]);
+    for(j=0;j&lt;n;j++)  
+        &#123;
+            k=0;ok=1;m=0;                            /*初始化标记数据*/ 
+            l=strlen(s[j]);                           /* 初始化标记数据*/ 
+            a=3-l%3;                                   /*初始化标记数据*/   //求出要将这个十六进制数补足为3的倍数需要补上多少个0
+            if(a==3)    ok=0;                    /*十六进制数长度刚好为3的倍数时转二进制不需补0，ok标记其是否为3的倍数0是1不是*/ 
+            for(i=0;i&lt;l;i++)                       /*逐位读取十六进制数进行转换*/ 
+            &#123;
+                if(65&lt;=s[j][i])                          
+                    s[j][i]-=7; //这里不理解请查阅ASCII代码表
+                if(ok)                                     /*十六进制数位数不足转二进制时补0占位*/ 
+                    if(a==1)&#123;  //若需补一个十六进制的0，相当于补上四个二进制的0即0000，下面补两位也一样
+                        strcat(z,&quot;0000&quot;);k=k+4;ok=0;
+                    &#125;else if(a==2)&#123;
+                        strcat(z,&quot;00000000&quot;);k=k+8;ok=0;
+                    &#125;
+                z[k++]=d16[s[j][i]-48][0];                  /*一位十六进制转四位二进制*/ 
+                z[k++]=d16[s[j][i]-48][1];
+                z[k++]=d16[s[j][i]-48][2];
+                z[k++]=d16[s[j][i]-48][3];
+                if(k==12)                                    /*每转三位十六进制数将其转为四位八进制数*/ 
+                &#123;
+                    for(cur=0;cur&lt;12;m++)
+                        out[m]=((z[cur++]-48)*4+(z[cur++]-48)*2+(z[cur++]-48)*1)+48;
+                    z[0]=&#39;\0&#39;;k=0;                               /*z[0]=&#39;\0&#39;初始化字符串结束符位置避免溢出*/ 
+                &#125;
+            &#125;                                      
+            for(;k&lt;3;k++)                                  /*输出时忽略前导0*/ 
+                if(out[k]!=48)    break; //48是字符‘0’的ASCII值
+            for(;k&lt;m;k++)
+                printf(&quot;%c&quot;,out[k]);
+            putchar(&#39;\n&#39;);
+        &#125;
+    return 0;
+&#125; </code></pre>
+<h2 id="十六进制转十进制"><a href="#十六进制转十进制" class="headerlink" title="十六进制转十进制"></a>十六进制转十进制</h2><p>问题描述<br>　　从键盘输入一个不超过8位的正的十六进制数字符串，将它转换为正的十进制数后输出。<br>　　注：十六进制数中的10~15分别用大写的英文字母A、B、C、D、E、F表示。</p>
+<p>样例输入<br>FFFF</p>
+<p>样例输出<br>65535</p>
+<p>代码：<br>法一：</p>
+<pre><code>#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+#include&lt;math.h&gt;
+int main()&#123;
+    char c[8];
+    int i,t=0;
+    long long sum=0;
+    gets(c);
+    for(i=strlen(c)-1;i&gt;=0;i--)&#123;
+        switch(c[i])&#123;
+            case &#39;1&#39;:sum+=1*pow(16,t++);break;
+            case &#39;2&#39;:sum+=2*pow(16,t++);break;
+            case &#39;3&#39;:sum+=3*pow(16,t++);break;
+            case &#39;4&#39;:sum+=4*pow(16,t++);break;
+            case &#39;5&#39;:sum+=5*pow(16,t++);break;
+            case &#39;6&#39;:sum+=6*pow(16,t++);break;
+            case &#39;7&#39;:sum+=7*pow(16,t++);break;
+            case &#39;8&#39;:sum+=8*pow(16,t++);break;
+            case &#39;9&#39;:sum+=9*pow(16,t++);break;
+            case &#39;A&#39;:sum+=10*pow(16,t++);break;
+            case &#39;B&#39;:sum+=11*pow(16,t++);break;
+            case &#39;C&#39;:sum+=12*pow(16,t++);break;
+            case &#39;D&#39;:sum+=13*pow(16,t++);break;
+            case &#39;E&#39;:sum+=14*pow(16,t++);break;
+            case &#39;F&#39;:sum+=15*pow(16,t++);break;
+        &#125;
+    &#125;
+        printf(&quot;%lld&quot;,sum);
+    return 0;
+&#125;</code></pre>
+<p>法二：</p>
+<pre><code>#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+#include&lt;math.h&gt;
+int getN(char s)
+&#123;
+    char nn;
+    switch(s)
+    &#123;
+        case &#39;0&#39;:nn=0;break;
+        case &#39;1&#39;:nn=1;break;
+        case &#39;2&#39;:nn=2;break;
+        case &#39;3&#39;:nn=3;break;
+        case &#39;4&#39;:nn=4;break;
+        case &#39;5&#39;:nn=5;break;
+        case &#39;6&#39;:nn=6;break;
+        case &#39;7&#39;:nn=7;break;
+        case &#39;8&#39;:nn=8;break;
+        case &#39;9&#39;:nn=9;break;
+        case &#39;A&#39;:nn=10;break;
+        case &#39;B&#39;:nn=11;break;
+        case &#39;C&#39;:nn=12;break;
+        case &#39;D&#39;:nn=13;break;
+        case &#39;E&#39;:nn=14;break;
+        case &#39;F&#39;:nn=15;break;
+    &#125;
+    return nn;
+&#125;
+
+int main()
+&#123;
+    char s[9];
+    gets(s);
+    char i;
+    long long sum=0;
+    for(i=strlen(s)-1;i&gt;=0;i--)
+    &#123;
+        int num=getN(s[i]);
+        sum+=num*pow(16,strlen(s)-i-1);
+    &#125;
+    printf(&quot;%lld\n&quot;,sum);
+    return 0;
+&#125;</code></pre>
+
+  </article>
+
+  
+    
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>vanilla<br>
+    <strong>本文链接：</strong><a href="https://vanilla-2001.github.io/2021/02/07/%E8%93%9D%E6%A1%A5%E6%9D%AF-2-1-2-7/" title="https:&#x2F;&#x2F;vanilla-2001.github.io&#x2F;2021&#x2F;02&#x2F;07&#x2F;%E8%93%9D%E6%A1%A5%E6%9D%AF-2-1-2-7&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;vanilla-2001.github.io&#x2F;2021&#x2F;02&#x2F;07&#x2F;%E8%93%9D%E6%A1%A5%E6%9D%AF-2-1-2-7&#x2F;</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+  </div>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+ <script src="/js/app.js?v=1622805824142"></script>
+
+  
+
+
+
+
+
+</body>
+
+</html>

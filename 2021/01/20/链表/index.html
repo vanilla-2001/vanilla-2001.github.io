@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+  
+  <title>链表 - 见到你很高兴♪(๑·◡·๑)♪</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
+  <meta name="description" content="1.移除链表元素法一、双指针struct ListNode* removeElements(struct ListNode* head, int val)&amp;#123; struct ListNode *p,*q;&#x2F;&#x2F;p为当前结点，q为p前面一个节点 while(head!&#x3D;NULL&amp;&amp;head-&gt;val&#x3D;&#x3D;val)&amp;#123;     head&#x3D;head-&gt;next;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="链表">
+<meta property="og:url" content="https://vanilla-2001.github.io/2021/01/20/%E9%93%BE%E8%A1%A8/index.html">
+<meta property="og:site_name" content="见到你很高兴♪(๑·◡·๑)♪">
+<meta property="og:description" content="1.移除链表元素法一、双指针struct ListNode* removeElements(struct ListNode* head, int val)&amp;#123; struct ListNode *p,*q;&#x2F;&#x2F;p为当前结点，q为p前面一个节点 while(head!&#x3D;NULL&amp;&amp;head-&gt;val&#x3D;&#x3D;val)&amp;#123;     head&#x3D;head-&gt;next;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/6BCDF6A8866740538E867C73ABEC8548?method=download&shareKey=5a77deb68246fa4c8a4f42b4daa051b7">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/DFBA73B1D4034D07B2B973297A038390?method=download&shareKey=d5f18bcb1017822e497d615b8fea4332">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/01D9B928DA4B4F56A7C3D7BC03B719F0?method=download&shareKey=7c04906f1165ad72389a84cfd046a6eb">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/90001FAE46E245489C6B31B83C32C731?method=download&shareKey=c2e6fac26a1e1c344a73143c2dbb81b7">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/F25D87272B774B7FB39B508259E2903B?method=download&shareKey=e3b0efc6bcd4d0a99f1dd2f9a2962126">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/76232F9FEAE74C89A9D44B0E480D9CC4?method=download&shareKey=706029e0c949bf1b03be379270f7fb61">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/62EBADBE2182418B8BEADE065F9950F9?method=download&shareKey=689e4635201dc530a16997058d3f08a1">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/4AA2A15D1CCC48F0982F0259894D08A8?method=download&shareKey=2683fea2c37cd1e01795a3edf32e97d0">
+<meta property="article:published_time" content="2021-01-20T15:17:26.000Z">
+<meta property="article:modified_time" content="2021-01-27T09:25:38.130Z">
+<meta property="article:author" content="vanilla">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/6BCDF6A8866740538E867C73ABEC8548?method=download&shareKey=5a77deb68246fa4c8a4f42b4daa051b7">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
+  
+  <link rel="stylesheet" href="/css/style.css?v=1622805824151">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="vanilla" class="mdui-btn mdui-btn-icon"><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3372245765,175918050&amp;fm=26&amp;gp=0.jpg" alt="vanilla"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="vanilla">
+            <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3372245765,175918050&amp;fm=26&amp;gp=0.jpg" alt="vanilla" alt="vanilla">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>39</div>
+        <div><span>标签</span>7</div>
+        <div><span>分类</span>2</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=site:nexmoe.com" onsubmit="return search();">
+            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/10399692" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C/">C++</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/%E5%A4%A9%E6%A2%AF/" style="font-size: 10px;">天梯</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 16.67px;">算法</a> <a href="/tags/%E8%93%9D%E6%A1%A5/" style="font-size: 13.33px;">蓝桥</a>
+    </div>
+    
+  </div>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">39</span></li></ul>
+    </div>
+  </div>
+
+
+<style>
+.nexmoe-widget .archive-list-count{
+	position : absolute;
+	right: 15px;
+	top:9px;
+	color: #DDD;
+}
+</style>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2021 vanilla
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: NaN%;"> 
+          <img data-src="https://note.youdao.com/yws/api/personal/file/11E75368BD524311882A327374EF50A2?method=download&shareKey=a9c3a166b3f1d1bbf8344d33ff20f129" data-sizes="auto" alt="链表" class="lazyload">
+          <h1>链表</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年01月20日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1,695 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 7 分钟</a>
+</div>
+
+  <div class="nexmoe-post-right">
+    
+  </div>
+
+  <article>
+    <h1 id="1-移除链表元素"><a href="#1-移除链表元素" class="headerlink" title="1.移除链表元素"></a>1.移除链表元素</h1><h2 id="法一、双指针"><a href="#法一、双指针" class="headerlink" title="法一、双指针"></a>法一、双指针</h2><pre><code>struct ListNode* removeElements(struct ListNode* head, int val)&#123;
+struct ListNode *p,*q;//p为当前结点，q为p前面一个节点
+while(head!=NULL&amp;&amp;head-&gt;val==val)&#123;
+    head=head-&gt;next;
+&#125;
+if(head==NULL)return NULL;//防止整个链表都是应删除元素的情况和空表的情况
+p=head-&gt;next;
+q=head;//初始化p，q
+while(p!=NULL)&#123;
+    if(p-&gt;val==val)q-&gt;next=p-&gt;next;//如果要删除，q指向p的下一个结点，p结点被删除
+else q=p;//q向后移动
+p=p-&gt;next;//p向后遍历
+&#125;
+return head;
+&#125;</code></pre>
+<p>图示：<br><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/6BCDF6A8866740538E867C73ABEC8548?method=download&shareKey=5a77deb68246fa4c8a4f42b4daa051b7" alt="avatar" class="lazyload"></p>
+<h2 id="法二、递归"><a href="#法二、递归" class="headerlink" title="法二、递归"></a>法二、递归</h2><pre><code>struct ListNode* removeElements(struct ListNode* head, int val)&#123;
+    if(head==NULL)return NULL;
+    head-&gt;next=removeElements(head-&gt;next,val);
+    return head-&gt;val==val?head-&gt;next:head;
+&#125;</code></pre>
+<p><font face="楷体" color=#0000CC>如果头节点的数据和val相同，则返回去头节点的链表；如果不同，就返回原链表。以此递归，则可删除所有与val相同的元素。</font></p>
+<h2 id="法三、迭代"><a href="#法三、迭代" class="headerlink" title="法三、迭代"></a>法三、迭代</h2><pre><code>struct ListNode* removeElements(struct ListNode* head, int val)&#123;
+    while (head != NULL &amp;&amp; head-&gt;val == val) &#123;
+        head = head-&gt;next;
+    &#125;
+    if (head == NULL) &#123;
+        return NULL;
+    &#125;
+    struct ListNode* pre = head;
+    while (pre-&gt;next != NULL) &#123;
+        if (pre-&gt;next-&gt;val == val) &#123;
+            pre-&gt;next = pre-&gt;next-&gt;next;//如果相同，pre指向后后个结点
+        &#125; else &#123;
+            pre = pre-&gt;next;//pre向后移动
+        &#125;
+    &#125;
+    return head;
+&#125;</code></pre>
+<h1 id="2-设计链表"><a href="#2-设计链表" class="headerlink" title="2.设计链表"></a>2.设计链表</h1><p>设计链表的实现。您可以选择使用单链表或双链表。单链表中的节点应该具有两个属性：val 和 next。val 是当前节点的值，next 是指向下一个节点的指针/引用。如果要使用双向链表，则还需要一个属性 prev 以指示链表中的上一个节点。假设链表中的所有节点都是 0-index 的。</p>
+<p>在链表类中实现这些功能：</p>
+<p>get(index)：获取链表中第 index 个节点的值。如果索引无效，则返回-1。<br>addAtHead(val)：在链表的第一个元素之前添加一个值为 val 的节点。插入后，新节点将成为链表的第一个节点。<br>addAtTail(val)：将值为 val 的节点追加到链表的最后一个元素。<br>addAtIndex(index,val)：在链表中的第 index 个节点之前添加值为 val  的节点。如果 index 等于链表的长度，则该节点将附加到链表的末尾。如果 index 大于链表长度，则不会插入节点。如果index小于0，则在头部插入节点。<br>deleteAtIndex(index)：如果索引 index 有效，则删除链表中的第 index 个节点。<br>示例:</p>
+<pre><code>MyLinkedList linkedList = new MyLinkedList();
+linkedList.addAtHead(1);
+linkedList.addAtTail(3);
+linkedList.addAtIndex(1,2);   // 链表变为1-&gt; 2-&gt; 3
+linkedList.get(1);            // 返回2
+linkedList.deleteAtIndex(1);  // 现在链表是1-&gt; 3
+linkedList.get(1);            // 返回3</code></pre>
+<p>提示：</p>
+<p>所有val值都在 [1, 1000] 之内。<br>操作次数将在  [1, 1000] 之内。<br>请不要使用内置的 LinkedList 库。</p>
+<h2 id="1、创建结构体"><a href="#1、创建结构体" class="headerlink" title="1、创建结构体"></a><font color=#4D108A>1、创建结构体</font></h2><pre><code>typedef struct Node&#123;
+    int val;//结点数据
+    struct Node *next;//结点指针
+&#125; MyLinkedList;//定义结构体名字</code></pre>
+<h2 id="2、创建链表"><a href="#2、创建链表" class="headerlink" title="2、创建链表"></a><font color=#4D108A>2、创建链表</font></h2><p><strong><font color=#FA1A82>创建一个虚无又有用的头结点</font></strong></p>
+<pre><code>MyLinkedList* myLinkedListCreate() &#123;
+    MyLinkedList *head;
+    head = calloc(1, sizeof(MyLinkedList));// 为头结点开辟存储空间
+    if (!head)
+        return NULL;// 头结点为空的情况
+    head-&gt;val = -1;// 头结点取值随意
+    head-&gt;next = NULL;
+    return head;// 返回头结点
+&#125;</code></pre>
+<h2 id="3、获取链表中第index个结点的值"><a href="#3、获取链表中第index个结点的值" class="headerlink" title="3、获取链表中第index个结点的值"></a><font color=#4D108A>3、获取链表中第index个结点的值</font></h2><pre><code>int myLinkedListGet(MyLinkedList* obj, int index) &#123;
+    if (!obj || index &lt; 0)return -1;/*index小于0，索引无效，返回-1*/
+    while (obj &amp;&amp; index &gt;= 0) &#123;
+        obj = obj-&gt;next;
+        index--;
+    &#125;//遍历搜索第index个结点
+    if (!obj)return -1;/*如果搜索到的结点为空，索引无效，返回-1*/
+    return obj-&gt;val;/*若有效，返回搜索到的结点的值*/
+&#125;</code></pre>
+<h2 id="4、在第一个元素前添加结点"><a href="#4、在第一个元素前添加结点" class="headerlink" title="4、在第一个元素前添加结点"></a><font color=#4D108A>4、在第一个元素前添加结点</font></h2><pre><code>void myLinkedListAddAtHead(MyLinkedList* obj, int val) &#123;
+    MyLinkedList *new = calloc(1, sizeof(MyLinkedList));// 为新结点开辟存储空间
+    if (!new)return;// 若新节点为空，返回
+    new-&gt;next = obj-&gt;next;
+    new-&gt;val = val;
+    obj-&gt;next = new;// 将新结点插在虚无表头后，第一个结点前，称为第一个结点
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/DFBA73B1D4034D07B2B973297A038390?method=download&shareKey=d5f18bcb1017822e497d615b8fea4332" alt="avatar" class="lazyload"></p>
+<h2 id="5、在最后一个元素后添加结点"><a href="#5、在最后一个元素后添加结点" class="headerlink" title="5、在最后一个元素后添加结点"></a><font color=#4D108A>5、在最后一个元素后添加结点</font></h2><pre><code>void myLinkedListAddAtTail(MyLinkedList* obj, int val) &#123;
+    MyLinkedList *new;
+    new = calloc(1, sizeof(MyLinkedList));// 为新结点开辟存储空间
+    while (obj-&gt;next)
+    &#123;
+        obj = obj-&gt;next;
+    &#125;// 遍历到最后一个结点
+    new-&gt;val = val;
+    new-&gt;next = NULL;
+    obj-&gt;next = new;
+&#125;// 将新节点插在最后一个结点后面，并指向空</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/01D9B928DA4B4F56A7C3D7BC03B719F0?method=download&shareKey=7c04906f1165ad72389a84cfd046a6eb" alt="avatar" class="lazyload"></p>
+<h2 id="6、在第index个结点前添加结点"><a href="#6、在第index个结点前添加结点" class="headerlink" title="6、在第index个结点前添加结点"></a><font color=#4D108A>6、在第index个结点前添加结点</font></h2><pre><code>void myLinkedListAddAtIndex(MyLinkedList* obj, int index, int val) &#123;
+    MyLinkedList *new;
+    if (index &lt; 0)return;
+    new = calloc(1, sizeof(MyLinkedList));
+    index--;
+    while (obj &amp;&amp; index &gt;= 0)
+    &#123;
+        obj = obj-&gt;next;
+        index--;/*遍历到第index-1个结点，obj为原来的第index之前一个结点*/
+    &#125;
+    if (!obj)
+        return;
+    new-&gt;val = val;
+    new-&gt;next = obj-&gt;next;/*new 结点指向第index个结点，称为第index个结点之前的结点*/
+    obj-&gt;next = new;/*原来index之前的结点指向new结点*/
+&#125;/*因为虚无表头的存在，头尾同样适用*/</code></pre>
+<h2 id="7、删除链表中的第index个节点"><a href="#7、删除链表中的第index个节点" class="headerlink" title="7、删除链表中的第index个节点"></a><font color=#4D108A>7、删除链表中的第index个节点</font></h2><pre><code>void myLinkedListDeleteAtIndex(MyLinkedList* obj, int index) &#123;
+    MyLinkedList *tmp;
+    index--;
+    while (obj &amp;&amp; index &gt;= 0)
+    &#123;
+        obj = obj-&gt;next;
+        index--;/*遍历到第index-1个结点*/
+    &#125;
+    if (!obj)
+        return;/*若第index-1个元素为空，返回*/
+    tmp = obj-&gt;next;
+    if (!tmp)
+        return;/*若第index个元素为空，返回*/
+    if (obj-&gt;next-&gt;next)
+        obj-&gt;next = obj-&gt;next-&gt;next;/*若第index+1个元素不为空，第index-1个结点指向第index+1个结点*/
+    else
+        obj-&gt;next = NULL;/*若第index+1个元素为空，第index-1个结点指向空*/
+    free(tmp);/*释放原来第index个结点的内存*/
+&#125;</code></pre>
+<h2 id="8、释放链表"><a href="#8、释放链表" class="headerlink" title="8、释放链表"></a><font color=#4D108A>8、释放链表</font></h2><pre><code>void myLinkedListFree(MyLinkedList* obj) &#123;
+    MyLinkedList *tmp;
+    while (obj) &#123;
+        tmp = obj-&gt;next;
+        free(obj);
+        obj = tmp;
+    &#125;
+&#125;</code></pre>
+<h1 id="3-反转链表"><a href="#3-反转链表" class="headerlink" title="3.反转链表"></a>3.反转链表</h1><pre><code>struct ListNode* reverseList(struct ListNode* head) &#123;
+    struct ListNode* q = NULL;
+    struct ListNode* p = head;
+    while (p) &#123;
+        struct ListNode* t = p-&gt;next;/*向后移动*/
+        p-&gt;next = q;/*反转链表*/
+        q = p;/*反转链表*/
+        p = t;/*向后移动*/
+    &#125;
+    return q;
+&#125;</code></pre>
+<p>图示：<br><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/90001FAE46E245489C6B31B83C32C731?method=download&shareKey=c2e6fac26a1e1c344a73143c2dbb81b7" alt="avatar" class="lazyload"><br><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/F25D87272B774B7FB39B508259E2903B?method=download&shareKey=e3b0efc6bcd4d0a99f1dd2f9a2962126" alt="avatar" class="lazyload"><br><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/76232F9FEAE74C89A9D44B0E480D9CC4?method=download&shareKey=706029e0c949bf1b03be379270f7fb61" alt="avatar" class="lazyload"><br><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/62EBADBE2182418B8BEADE065F9950F9?method=download&shareKey=689e4635201dc530a16997058d3f08a1" alt="avatar" class="lazyload"><br>……以此类推</p>
+<h1 id="4-快慢指针"><a href="#4-快慢指针" class="headerlink" title="4.快慢指针"></a>4.快慢指针</h1><h2 id="思路与算法："><a href="#思路与算法：" class="headerlink" title="思路与算法："></a>思路与算法：</h2><p>我们使用两个指针，fast与slow。它们起始都位于链表的头部。随后，slow指针每次向后移动一个位置，而fast指针向后移动两个位置。如果链表中存在环，则fast指针最终将再次与slow指针在环中相遇。<br>如下图所示，设链表中环外部分的长度为a。slow指针进入环后，又走了b的距离与fast相遇。此时，fast指针已经走完了环的n圈，因此它走过的总距离为<font color=#FE7A21><strong>a+n(b+c)+b=a+(n+1)b+nc</strong></font>。<br><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/4AA2A15D1CCC48F0982F0259894D08A8?method=download&shareKey=2683fea2c37cd1e01795a3edf32e97d0" alt="avatar" class="lazyload"><br>根据题意，任意时刻，fast指针走过的距离都为slow指针的2倍。因此，我们有<br><font color=#FE7A21><strong>a+(n+1)b+nc=2(a+b)⟹a=c+(n−1)(b+c)</strong></font><br>有了<font color=#FE7A21><strong>a=c+(n-1)(b+c)</strong></font>的等量关系，我们会发现：从相遇点到入环点的距离加上n-1圈的环长，恰好等于从链表头部到入环点的距离。<br>因此，当发现slow与fast相遇时，我们再额外使用一个指针ptr。起始，它指向链表头部；随后，它和slow每次向后移动一个位置。最终，它们会在入环点相遇。</p>
+<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code>struct ListNode* detectCycle(struct ListNode* head) &#123;
+    struct ListNode *slow = head, *fast = head;
+    while (fast != NULL) &#123;
+        slow = slow-&gt;next;
+        if (fast-&gt;next == NULL) &#123;
+            return NULL;
+        &#125;
+        fast = fast-&gt;next-&gt;next;
+        if (fast == slow) &#123;
+            struct ListNode* ptr = head;
+            while (ptr != slow) &#123;
+                ptr = ptr-&gt;next;
+                slow = slow-&gt;next;
+            &#125;
+            return ptr;
+        &#125;
+    &#125;
+    return NULL;
+&#125;</code></pre>
+
+  </article>
+
+  
+    
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>vanilla<br>
+    <strong>本文链接：</strong><a href="https://vanilla-2001.github.io/2021/01/20/%E9%93%BE%E8%A1%A8/" title="https:&#x2F;&#x2F;vanilla-2001.github.io&#x2F;2021&#x2F;01&#x2F;20&#x2F;%E9%93%BE%E8%A1%A8&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;vanilla-2001.github.io&#x2F;2021&#x2F;01&#x2F;20&#x2F;%E9%93%BE%E8%A1%A8&#x2F;</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+  </div>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+ <script src="/js/app.js?v=1622805824152"></script>
+
+  
+
+
+
+
+
+</body>
+
+</html>

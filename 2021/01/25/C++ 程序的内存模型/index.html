@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+  
+  <title>C++ 程序的内存模型 - 见到你很高兴♪(๑·◡·๑)♪</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
+  <meta name="description" content="内存四区：1、代码区：存放函数体的二进制代码，有操作系统进行管理的2、全局区：存放全局变量和静态变量以及常量3、栈区：由编译器自动分配释放，存放函数的参数值，局部变量等4、堆区：由程序员分配和释放，若程序员不释放，程序结束时由操作系统回收 内存四区意义：不同区域存放的数据，赋予不同的生命周期，给我们更大的灵活编程 程序运行前：在程序编译后，生成了exe可执行程序，未执行该程序前分为两个区域 代码区">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 程序的内存模型">
+<meta property="og:url" content="https://vanilla-2001.github.io/2021/01/25/C++%20%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/index.html">
+<meta property="og:site_name" content="见到你很高兴♪(๑·◡·๑)♪">
+<meta property="og:description" content="内存四区：1、代码区：存放函数体的二进制代码，有操作系统进行管理的2、全局区：存放全局变量和静态变量以及常量3、栈区：由编译器自动分配释放，存放函数的参数值，局部变量等4、堆区：由程序员分配和释放，若程序员不释放，程序结束时由操作系统回收 内存四区意义：不同区域存放的数据，赋予不同的生命周期，给我们更大的灵活编程 程序运行前：在程序编译后，生成了exe可执行程序，未执行该程序前分为两个区域 代码区">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/08F1F19EC1564C0EB4DCD35E67591F28?method=download&shareKey=1336001d0e84bfae79016e7feea0fd54">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/3A444617864A4D8898038C8AAEE64F74?method=download&shareKey=fd94a385517a2959284e97e1363abece">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/1C0D1B3268D74761BC5867ED11789887?method=download&shareKey=64c94e2d37b8690845d830664717a913">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/5E4542904E4246BEB0605B5B33464EB7?method=download&shareKey=fbd828077626e17cdb96525a0613c0de">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/F0681CE3F3424A17B44B7955BB221ED7?method=download&shareKey=dcd56184a068f20197f54e475d472194">
+<meta property="article:published_time" content="2021-01-25T03:16:58.000Z">
+<meta property="article:modified_time" content="2021-03-06T05:58:09.874Z">
+<meta property="article:author" content="vanilla">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/08F1F19EC1564C0EB4DCD35E67591F28?method=download&shareKey=1336001d0e84bfae79016e7feea0fd54">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
+  
+  <link rel="stylesheet" href="/css/style.css?v=1622805824149">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="vanilla" class="mdui-btn mdui-btn-icon"><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3372245765,175918050&amp;fm=26&amp;gp=0.jpg" alt="vanilla"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="vanilla">
+            <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3372245765,175918050&amp;fm=26&amp;gp=0.jpg" alt="vanilla" alt="vanilla">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>39</div>
+        <div><span>标签</span>7</div>
+        <div><span>分类</span>2</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=site:nexmoe.com" onsubmit="return search();">
+            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/10399692" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C/">C++</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/%E5%A4%A9%E6%A2%AF/" style="font-size: 10px;">天梯</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 16.67px;">算法</a> <a href="/tags/%E8%93%9D%E6%A1%A5/" style="font-size: 13.33px;">蓝桥</a>
+    </div>
+    
+  </div>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">39</span></li></ul>
+    </div>
+  </div>
+
+
+<style>
+.nexmoe-widget .archive-list-count{
+	position : absolute;
+	right: 15px;
+	top:9px;
+	color: #DDD;
+}
+</style>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2021 vanilla
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: NaN%;"> 
+          <img data-src="https://note.youdao.com/yws/api/personal/file/63EE22859F764A779D7128D35367936C?method=download&shareKey=b694824726181a2ad22b64fafed15688" data-sizes="auto" alt="C++ 程序的内存模型" class="lazyload">
+          <h1>C++ 程序的内存模型</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年01月25日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1,181 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 5 分钟</a>
+</div>
+
+  <div class="nexmoe-post-right">
+    
+  </div>
+
+  <article>
+    <h1 id="内存四区："><a href="#内存四区：" class="headerlink" title="内存四区："></a>内存四区：</h1><p><font color=#FA6C6C>1、代码区：</font>存放函数体的二进制代码，有操作系统进行管理的<br><font color=#FA6C6C>2、全局区：</font>存放全局变量和静态变量以及常量<br><font color=#FA6C6C>3、栈区：</font>由编译器自动分配释放，存放函数的参数值，局部变量等<br><font color=#FA6C6C>4、堆区：</font>由程序员分配和释放，若程序员不释放，程序结束时由操作系统回收</p>
+<h2 id="内存四区意义："><a href="#内存四区意义：" class="headerlink" title="内存四区意义："></a>内存四区意义：</h2><p>不同区域存放的数据，赋予不同的生命周期，给我们更大的灵活编程</p>
+<h2 id="程序运行前："><a href="#程序运行前：" class="headerlink" title="程序运行前："></a>程序运行前：</h2><p>在程序编译后，生成了exe可执行程序，未执行该程序前分为两个区域</p>
+<h3 id="代码区："><a href="#代码区：" class="headerlink" title="代码区："></a><font color=#019FB7>代码区</font>：</h3><p>   存放CPU的机器指令<br>   代码区是<strong>共享</strong>的，共享的目的是对于频繁被执行的程序，只需要在内存中有一份代码即可<br>   代码区是<strong>只读</strong>的，使其只读的原因是防止程序意外地修改了它的指令</p>
+<h3 id="全局区："><a href="#全局区：" class="headerlink" title="全局区："></a><font color=#019FB7>全局区</font>：</h3><p>   <strong>全局变量</strong>和<strong>静态变量</strong>存放在此<br>   全局区还包含了<strong>常量区</strong>，字符串常量和其他常量也存放在此<br>   <strong>该区域的数据在程序结束后由系统释放</strong></p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+//全局变量
+int c = 10;
+int d = 10;
+const int c_c = 10;
+const int c_d = 10;//const修饰的全局变量，即全局常量
+int main() &#123;
+    //局部变量（函数内）
+    int a = 10;
+    int b = 10;
+    cout &lt;&lt; &quot;局部变量的地址为:&quot; &lt;&lt; (int)&amp;a &lt;&lt; endl;
+    cout &lt;&lt; &quot;局部变量的地址为:&quot; &lt;&lt; (int)&amp;b &lt;&lt; endl;
+    cout &lt;&lt; &quot;全部变量的地址为:&quot; &lt;&lt; (int)&amp;c &lt;&lt; endl;
+    cout &lt;&lt; &quot;全部变量的地址为:&quot; &lt;&lt; (int)&amp;d &lt;&lt; endl;
+    static int s_a = 10;/*static静态变量*/
+    static int s_b = 10;
+    cout &lt;&lt; &quot;静态变量的地址为:&quot; &lt;&lt; (int)&amp;s_a &lt;&lt; endl;
+    cout &lt;&lt; &quot;静态变量的地址为:&quot; &lt;&lt; (int)&amp;s_b &lt;&lt; endl;
+    cout &lt;&lt; &quot;字符串常量的地址为:&quot; &lt;&lt; (int)&amp;&quot;hello world&quot; &lt;&lt; endl;//字符串常量
+    cout &lt;&lt; &quot;全局常量的地址为:&quot; &lt;&lt; (int)&amp;c_c &lt;&lt; endl;
+    cout &lt;&lt; &quot;全局常量的地址为:&quot; &lt;&lt; (int)&amp;c_d &lt;&lt; endl;
+    const int c_a = 10;
+    const int c_b = 10;//const修饰的局部变量，即局部常量
+    cout &lt;&lt; &quot;局部常量的地址为:&quot; &lt;&lt; (int)&amp;c_a &lt;&lt; endl;
+    cout &lt;&lt; &quot;局部常量的地址为:&quot; &lt;&lt; (int)&amp;c_b &lt;&lt; endl;
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/08F1F19EC1564C0EB4DCD35E67591F28?method=download&shareKey=1336001d0e84bfae79016e7feea0fd54" alt="avatar" class="lazyload"></p>
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p><strong>·</strong>C++中在程序运行前分为全局区和代码区<br><strong>·</strong>代码区的特点是共享和只读<br><strong>·</strong>全局区中存放全局变量、静态变量、常量<br><strong>·</strong>常量区中存放const修饰的全局常量和字符串常量（const修饰的局部常量不在其中）</p>
+<h2 id="程序运行后："><a href="#程序运行后：" class="headerlink" title="程序运行后："></a>程序运行后：</h2><h3 id="栈区："><a href="#栈区：" class="headerlink" title="栈区："></a><font color=#019FB7>栈区</font>：</h3><p>   由编译器自动分配释放，存放函数的参数值，局部变量等<br>   注意事项：不要返回局部变量的地址，栈区开辟的数据由编译器自动释放</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+int* func() &#123;
+    int a = 10;//局部变量,存放在栈区，栈区的数据在函数执行完后自动释放
+    return &amp;a;//返回局部变量地址
+&#125;
+int main() &#123;
+    int * p = func();//接受func函数的返回值
+    cout &lt;&lt; *p &lt;&lt; endl;//第一次可以打印正确的数据，是因为编译器做了保留
+    cout &lt;&lt; *p &lt;&lt; endl;//第二次数据不再保留
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/3A444617864A4D8898038C8AAEE64F74?method=download&shareKey=fd94a385517a2959284e97e1363abece" alt="avatar" class="lazyload"></p>
+<h3 id="堆区："><a href="#堆区：" class="headerlink" title="堆区："></a><font color=#019FB7>堆区</font>：</h3><p>   由程序员分配释放，若程序员不释放，程序结束时由操作系统回收<br>   在C++中主要利用new在堆区开辟内存</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+int* func() &#123;
+    int* a = new int(10);//利用new关键字，可以将数据开辟到堆区
+    return a;//指针本质也是局部变量，放在栈上，指针保存的数据放在堆区
+&#125;
+int main() &#123;
+    int * p = func();//接受func函数的返回值
+    cout &lt;&lt; *p &lt;&lt; endl;
+    cout &lt;&lt; *p &lt;&lt; endl;
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/1C0D1B3268D74761BC5867ED11789887?method=download&shareKey=64c94e2d37b8690845d830664717a913" alt="avatar" class="lazyload"><br><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/5E4542904E4246BEB0605B5B33464EB7?method=download&shareKey=fbd828077626e17cdb96525a0613c0de" alt="avatar" class="lazyload"></p>
+<h2 id="new操作符："><a href="#new操作符：" class="headerlink" title="new操作符："></a>new操作符：</h2><p>   C++中利用<strong>new</strong>操作符在堆区开辟数据<br>   堆区开辟的数据，由程序员手动开辟，手动释放，释放利用操作符<strong>delete</strong><br>   语法：new 数据类型<br>   利用new创建的数据，会返回该数据对应的类型的指针</p>
+<h3 id="1、new的基本语法"><a href="#1、new的基本语法" class="headerlink" title="1、new的基本语法"></a>1、new的基本语法</h3><pre><code>int *func()&#123;
+    //在堆区创建整型数据
+    //new返回是该数据类型的指针
+    int *p = new int(10);
+    return p;
+&#125;
+void  test01()&#123;
+    int * p = func();
+    cout &lt;&lt; *p &lt;&lt; endl;
+&#125;</code></pre>
+<p>输出：10<br>堆区的数据由程序员管理开辟，程序员管理释放<br>利用delete释放：</p>
+<pre><code>void  test01()&#123;
+    int * p = func();
+    cout &lt;&lt; *p &lt;&lt; endl;
+    delete p;
+    cout &lt;&lt; *p &lt;&lt; endl;//内存已经被释放，再次访问时非法操作，会报错
+&#125;</code></pre>
+<p>第一次输出10，第二次输出会报错</p>
+<h3 id="2、在堆区利用new开辟数组"><a href="#2、在堆区利用new开辟数组" class="headerlink" title="2、在堆区利用new开辟数组"></a>2、在堆区利用new开辟数组</h3><pre><code>void test02()&#123;
+    //创建10个整型数据的数组，在堆区
+    int * arr = new int[10];//10代表数组有10个元素
+    for(int i = 0; i&lt;10; i++)&#123;
+        arr[i] = i + 100;//给10个元素赋值100~109
+    &#125;
+    for(int i = 0; i&lt;10; i++)&#123;
+        cout &lt;&lt; arr[i] &lt;&lt; endl;
+    &#125;
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/F0681CE3F3424A17B44B7955BB221ED7?method=download&shareKey=dcd56184a068f20197f54e475d472194" alt="avatar" class="lazyload"></p>
+<p>释放堆区数组：</p>
+<pre><code>delete[] arr;//释放数组的时候，要加[]才行</code></pre>
+
+  </article>
+
+  
+    
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>vanilla<br>
+    <strong>本文链接：</strong><a href="https://vanilla-2001.github.io/2021/01/25/C++%20%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" title="https:&#x2F;&#x2F;vanilla-2001.github.io&#x2F;2021&#x2F;01&#x2F;25&#x2F;C++%20%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;vanilla-2001.github.io&#x2F;2021&#x2F;01&#x2F;25&#x2F;C++%20%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B&#x2F;</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/C/">C++</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/C/" rel="tag">C++</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+  </div>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+ <script src="/js/app.js?v=1622805824150"></script>
+
+  
+
+
+
+
+
+</body>
+
+</html>
