@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+  
+  <title>python数据可视化 - 见到你很高兴♪(๑·◡·๑)♪</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
+  <meta name="description" content="plotly柱状图：排列方式调整柱形 trace 之间的排列方式 figure.update_layout(barmode&#x3D;”stack”) update_layout() 方法中，我们通过设置 barmode（柱形排列模式）参数来设置各个柱形 trace 之间的位置关系。可选的参数有： · stack 堆叠模式 后加入柱形会堆在先加入柱形上面· group 分组模式 后加入柱形排在先加入柱形右边">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python数据可视化">
+<meta property="og:url" content="https://vanilla-2001.github.io/2021/06/23/python%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/index.html">
+<meta property="og:site_name" content="见到你很高兴♪(๑·◡·๑)♪">
+<meta property="og:description" content="plotly柱状图：排列方式调整柱形 trace 之间的排列方式 figure.update_layout(barmode&#x3D;”stack”) update_layout() 方法中，我们通过设置 barmode（柱形排列模式）参数来设置各个柱形 trace 之间的位置关系。可选的参数有： · stack 堆叠模式 后加入柱形会堆在先加入柱形上面· group 分组模式 后加入柱形排在先加入柱形右边">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-06-23T05:59:33.000Z">
+<meta property="article:modified_time" content="2021-06-23T07:44:38.094Z">
+<meta property="article:author" content="vanilla">
+<meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
+  
+  <link rel="stylesheet" href="/css/style.css?v=1624596662795">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="vanilla" class="mdui-btn mdui-btn-icon"><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3372245765,175918050&amp;fm=26&amp;gp=0.jpg" alt="vanilla"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="vanilla">
+            <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3372245765,175918050&amp;fm=26&amp;gp=0.jpg" alt="vanilla" alt="vanilla">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>41</div>
+        <div><span>标签</span>8</div>
+        <div><span>分类</span>2</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=site:nexmoe.com" onsubmit="return search();">
+            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/10399692" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/C/">C++</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/算法/">算法</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/%E5%A4%A9%E6%A2%AF/" style="font-size: 10px;">天梯</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 16.67px;">算法</a> <a href="/tags/%E8%93%9D%E6%A1%A5/" style="font-size: 13.33px;">蓝桥</a>
+    </div>
+    
+  </div>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">41</span></li></ul>
+    </div>
+  </div>
+
+
+<style>
+.nexmoe-widget .archive-list-count{
+	position : absolute;
+	right: 15px;
+	top:9px;
+	color: #DDD;
+}
+</style>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2021 vanilla
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: 66.66666666666666%;"> 
+          <img data-src="https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg" data-sizes="auto" alt="python数据可视化" class="lazyload">
+          <h1>python数据可视化</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年06月23日</a>
+    <a><i class="nexmoefont icon-areachart"></i>701 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
+</div>
+
+  <div class="nexmoe-post-right">
+    
+  </div>
+
+  <article>
+    <h2 id="plotly"><a href="#plotly" class="headerlink" title="plotly"></a>plotly</h2><h3 id="柱状图："><a href="#柱状图：" class="headerlink" title="柱状图："></a>柱状图：</h3><h3 id="排列方式"><a href="#排列方式" class="headerlink" title="排列方式"></a>排列方式</h3><p>调整柱形 trace 之间的排列方式 <strong>figure.update_layout(barmode=”stack”)</strong></p>
+<p>update_layout() 方法中，我们通过设置 barmode（柱形排列模式）参数来设置各个柱形 trace 之间的位置关系。可选的参数有：</p>
+<p><strong>·</strong> stack 堆叠模式 后加入柱形会堆在先加入柱形上面<br><strong>·</strong> group 分组模式 后加入柱形排在先加入柱形右边，用于分组柱状图，默认值<br><strong>·</strong> overlay 重叠模式 后加入柱形直接放在和先加入柱形相同的位置，遮盖先加入的图形<br><strong>·</strong> raletive 相对模式 x值相同时，将y值为负的柱形排在y值为正的柱形的正下方</p>
+<h3 id="宽度、颜色"><a href="#宽度、颜色" class="headerlink" title="宽度、颜色"></a>宽度、颜色</h3><p>宽度：**figure.update_traces(width=0.4)**设置宽度为0.4<br>颜色：<br>    figure.update_traces(selector={‘name’:’老会员’},marker_color=’CadetBlue’)<br>    figure.update_traces(selector={‘name’:’新会员’},marker_color=’MediumAquamarine’)</p>
+<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><pre><code>#引入layout子模块
+from plotly.graph_objects import layout
+#定义一个字典
+font=dict(size=20,color=&#39;CadetBlue&#39;,family=&#39;宋体&#39;)
+fig_title=layout.Title(text=&#39;健身俱乐部每月客流人数&#39;,font=dict(size=20,color =&#39;CadetBlue&#39;),x=0.5)
+figure.update_layout(title=fig_title)
+figure.show()</code></pre>
+<p>size大小，color颜色，x位置(0左，1右，0.5居中)</p>
+<h3 id="代码示例："><a href="#代码示例：" class="headerlink" title="代码示例："></a>代码示例：</h3><pre><code>from plotly.graph_objects import Figure,Bar
+#引入layout子模块
+from plotly.graph_objects import layout
+figure = Figure()
+months=[&#39;1月&#39;,&#39;2月&#39;,&#39;3月&#39;,&#39;4月&#39;,&#39;5月&#39;,&#39;6月&#39;,&#39;7月&#39;,&#39;8月&#39;,&#39;9月&#39;,&#39;10月&#39;,&#39;11月&#39;,&#39;12月&#39;]
+traffics2019=[2279,4228,4728,3641,3655,3675,3938,4075,3884,3036,2838,2621]
+traffics2020=[1807,0,0,0,1342,1898,2745,2996,2843,2557,2311,2002]
+trace1=Bar(x=months,y=traffics2019,name=&#39;2019年客流人数&#39;)
+trace2=Bar(x=months,y=traffics2020,name=&#39;2020年客流人数&#39;)
+figure.add_trace(trace1)
+figure.add_trace(trace2)
+figure.update_layout(barmode=&quot;group&quot;)
+figure.update_traces(width=0.4)
+figure.update_traces(selector=&#123;&#39;name&#39;:&#39;2019年客流人数&#39;&#125;,marker_color=&#39;CadetBlue&#39;)
+figure.update_traces(selector=&#123;&#39;name&#39;:&#39;2020年客流人数&#39;&#125;,marker_color=&#39;MediumAquamarine&#39;)
+#定义一个字典
+font=dict(size=20,color=&#39;CadetBlue&#39;,family=&#39;宋体&#39;)
+fig_title=layout.Title(text=&#39;2019年及2020年健身俱乐部每月客流人数&#39;,font=dict(size=20,color =&#39;CadetBlue&#39;),x=0.5)
+figure.update_layout(title=fig_title)
+figure.show()</code></pre>
+<h3 id="饼图："><a href="#饼图：" class="headerlink" title="饼图："></a>饼图：</h3><pre><code>from plotly.graph_objects import Figure,Pie
+industry = [&#39;互联网&#39;, &#39;学生&#39;, &#39;教育&#39;, &#39;金融&#39;, &#39;其他&#39;]
+number = [10281, 5811, 4871, 3305, 2227]
+figure = Figure()
+#values数值，labels标签，hole环形图(不加这个参数为饼图)
+trace=Pie(values=number,labels=industry,hole=0.8)
+figure.add_trace(trace)
+figure.show()</code></pre>
+<h2 id="拖拽"><a href="#拖拽" class="headerlink" title="拖拽"></a>拖拽</h2><p>figure.update_traces(pull=[0.1,0,0.1,0,0])</p>
+<h2 id="散点图-导入数据"><a href="#散点图-导入数据" class="headerlink" title="散点图+导入数据"></a>散点图+导入数据</h2><pre><code>import pandas as pd
+#path两种方式r&#39;或者\\
+path=r&#39;C:\Users\28557\Documents\Tencent Files\2855773204\FileRecv\数据可视化-plotly-散点图\数据可视化-Plotly-散点图\奶茶行业分析.xlsx&#39;
+data1=pd.read_excel(path,sheet_name=0,header=0)
+brand1=data1[&#39;品牌&#39;]
+shop_number1=data1[&#39;门店数&#39;]
+avrg_price1=data1[&#39;客单价&#39;]
+data2=pd.read_excel(path,sheet_name=1,header=0)
+brand2=data2[&#39;品牌&#39;]
+shop_number2=data2[&#39;门店数&#39;]
+avrg_price2=data2[&#39;客单价&#39;]
+from plotly.graph_objects import Figure,Scatter
+figure=Figure()
+trace1=Scatter(x=shop_number1,y=avrg_price1,name=&#39;直营模式&#39;,mode=&#39;markers&#39;,marker_color=&#39;Pink&#39;,marker_size=6,text = brand1)
+trace2=Scatter(x=shop_number2,y=avrg_price2,name=&#39;加盟模式&#39;,mode=&#39;markers&#39;,marker_color=&#39;SkyBlue&#39;,marker_size=6,text = brand2)
+figure.add_trace(trace1)
+figure.add_trace(trace2)
+figure.show()</code></pre>
+
+  </article>
+
+  
+    
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>vanilla<br>
+    <strong>本文链接：</strong><a href="https://vanilla-2001.github.io/2021/06/23/python%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" title="https:&#x2F;&#x2F;vanilla-2001.github.io&#x2F;2021&#x2F;06&#x2F;23&#x2F;python%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;vanilla-2001.github.io&#x2F;2021&#x2F;06&#x2F;23&#x2F;python%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96&#x2F;</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+  </div>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+ <script src="/js/app.js?v=1624596662798"></script>
+
+  
+
+
+
+
+
+</body>
+
+</html>

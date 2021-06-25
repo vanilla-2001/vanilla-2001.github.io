@@ -21,7 +21,7 @@
 <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
   
-  <link rel="stylesheet" href="/css/style.css?v=1622805824173">
+  <link rel="stylesheet" href="/css/style.css?v=1624596662868">
 <meta name="generator" content="Hexo 5.3.0"></head>
 
 <body class="mdui-drawer-body-left">
@@ -45,8 +45,8 @@
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>文章</span>39</div>
-        <div><span>标签</span>7</div>
+        <div><span>文章</span>41</div>
+        <div><span>标签</span>8</div>
         <div><span>分类</span>2</div>
     </div>
     <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
@@ -135,7 +135,7 @@
   
   <div class="nexmoe-widget-wrap">
     <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
-      <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/%E5%A4%A9%E6%A2%AF/" style="font-size: 10px;">天梯</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 16.67px;">算法</a> <a href="/tags/%E8%93%9D%E6%A1%A5/" style="font-size: 13.33px;">蓝桥</a>
+      <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/%E5%A4%A9%E6%A2%AF/" style="font-size: 10px;">天梯</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 16.67px;">算法</a> <a href="/tags/%E8%93%9D%E6%A1%A5/" style="font-size: 13.33px;">蓝桥</a>
     </div>
     
   </div>
@@ -145,7 +145,7 @@
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">文章归档</h3>
     <div class="nexmoe-widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">39</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">41</span></li></ul>
     </div>
   </div>
 
@@ -171,6 +171,410 @@
   <div id="nexmoe-content">
     <div class="nexmoe-primary">
         <section class="nexmoe-posts">
+    
+    <div class="nexmoe-post">
+        <a href="/2021/03/09/C-%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B%E5%92%8Cthis%E6%8C%87%E9%92%88/">
+            
+                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 66.66666666666666%;"> 
+                    <img data-src="https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg" data-sizes="auto" alt="C++ 对象模型和this指针" class="lazyload">
+                    <h1>C++ 对象模型和this指针</h1>
+                </div>
+            
+        </a>
+
+        <div class="nexmoe-post-meta nexmoe-rainbow">
+            <a><i class="nexmoefont icon-calendar-fill"></i>2021年03月09日</a>
+            <a><i class="nexmoefont icon-areachart"></i>1,484 字</a>
+            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 7 分钟</a>
+        </div>
+
+        <article>
+            
+                <h2 id="成员变量和成员函数分开存储"><a href="#成员变量和成员函数分开存储" class="headerlink" title="成员变量和成员函数分开存储"></a>成员变量和成员函数分开存储</h2><p>在C++中，类内的成员变量和成员函数分开存储<br>只有非静态成员变量才属于类的对象上</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+class Person &#123;
+&#125;;
+void test01() &#123;
+    Person p;
+    cout &lt;&lt; &quot;size of p = &quot; &lt;&lt; sizeof(p) &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/1DFF705E6F334E52942D8520D0836886?method=download&shareKey=a297e6e86699ec14c9b7fcf5c6d9a0d6" alt="avatar" class="lazyload"><br>空对象占用一个字节<br>C++编译器会给每个空对象也分配一个字节空间，是为了区分空对象占内存的位置<br>每个空对象也应该有一个独一无二的内存地址</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+class Person &#123;
+    int m_A;
+&#125;;
+void test02() &#123;
+    Person p;
+cout &lt;&lt; &quot;size of p = &quot; &lt;&lt; sizeof(p) &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test02();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/AAECFD6EE9744DA3BD05F8703F047B04?method=download&shareKey=1ab3bbfa6cfda7bcd72dd6594f1c12ec" alt="avatar" class="lazyload"><br>说明非静态成员对象属于类的对象</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+class Person &#123;
+    int m_A;
+    static int m_B;
+&#125;;
+int Person::m_B = 1;
+void test02() &#123;
+    Person p;
+    cout &lt;&lt; &quot;size of p = &quot; &lt;&lt; sizeof(p) &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test02();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/AAECFD6EE9744DA3BD05F8703F047B04?method=download&shareKey=1ab3bbfa6cfda7bcd72dd6594f1c12ec" alt="avatar" class="lazyload"><br>结果依然是4<br>说明静态成员对象不属于类的对象</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+class Person &#123;
+    int m_A;
+    static int m_B;
+    void func()&#123;&#125;
+&#125;;
+int Person::m_B = 1;
+void test02() &#123;
+    Person p;
+    cout &lt;&lt; &quot;size of p = &quot; &lt;&lt; sizeof(p) &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test02();
+    system(&quot;pause&quot;);
+    return 0;
+&#125; </code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/AAECFD6EE9744DA3BD05F8703F047B04?method=download&shareKey=1ab3bbfa6cfda7bcd72dd6594f1c12ec" alt="avatar" class="lazyload"><br>结果依然是4<br>说明非静态成员函数不属于类的对象</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+class Person &#123;
+    int m_A;
+    static int m_B;
+    static void func()&#123;&#125;
+&#125;;
+int Person::m_B = 1;
+void test02() &#123;
+    Person p;
+    cout &lt;&lt; &quot;size of p = &quot; &lt;&lt; sizeof(p) &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test02();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/AAECFD6EE9744DA3BD05F8703F047B04?method=download&shareKey=1ab3bbfa6cfda7bcd72dd6594f1c12ec" alt="avatar" class="lazyload"><br>结果依然是4<br>说明静态成员函数不属于类的对象</p>
+<h3 id="总结：只有非静态成员对象属于类的对象上"><a href="#总结：只有非静态成员对象属于类的对象上" class="headerlink" title="总结：只有非静态成员对象属于类的对象上"></a>总结：只有非静态成员对象属于类的对象上</h3><h2 id="this指针概念"><a href="#this指针概念" class="headerlink" title="this指针概念"></a>this指针概念</h2><p>在C++中成员变量和成员函数是分开存储的<br>每一个非静态成员函数只会诞生一份函数实例，也就是说多个同类型的对象会共用一块代码<br>c++通过提供特殊的对象指针，<strong>this指针</strong>，解决区分哪个对象调用自己的问题，**this指针指向被调用的成员函数所属的对象<br>this指针是隐含每一个非静态成员函数内的一种指针<br>this指针不需要定义，直接使用即可</p>
+<p>this指针的用途：<br><strong>·</strong> 当形参和成员变量同名时，可用this指针来区分<br><strong>·</strong> 在类的非静态成员函数中返回对象本身，可用return *this</p>
+<h3 id="解决名称冲突"><a href="#解决名称冲突" class="headerlink" title="解决名称冲突"></a>解决名称冲突</h3><pre><code>#include&lt;iostream&gt;
+using namespace std;
+class Person &#123;
+public:
+    Person(int age) &#123;
+        age = age;
+    &#125;
+    int age;
+&#125;;
+void test01() &#123;
+    Person p1(18);
+    cout &lt;&lt; &quot;p1的年龄为： &quot; &lt;&lt; p1.age &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/BE82CEA31DCD4FBFB0D78BA72DBC7B2B?method=download&shareKey=0c6114c02a54effa8680188fb850c2b0" alt="avatar" class="lazyload"><br><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/EDF8C470857A4F709341B0E862346BD9?method=download&shareKey=92aa4bad0c7590bcd7baa64fe0af2e6e" alt="avatar" class="lazyload"><br>编译器未正确区分age</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+class Person &#123;
+public:
+    Person(int age) &#123;
+        this-&gt;age = age;//this指针指向的是被调用的成员函数所属的对象(p1)
+    &#125;
+    int age;
+&#125;;
+void test01() &#123;
+    Person p1(18);
+    cout &lt;&lt; &quot;p1的年龄为： &quot; &lt;&lt; p1.age &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+return 0;
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/203AA3F6CA3547CABA0489DB569799AF?method=download&shareKey=f43e8fa666d1dde4273a301586a4a5b5" alt="avatar" class="lazyload"><br><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/0AD458C4AF604A989D3BA931E2F2F3E4?method=download&shareKey=11bcb6dd7d906acbe52dea4747f4d43b" alt="avatar" class="lazyload"></p>
+<h3 id="返回对象本身用-this"><a href="#返回对象本身用-this" class="headerlink" title="返回对象本身用*this"></a>返回对象本身用*this</h3><pre><code>#include&lt;iostream&gt;
+using namespace std;
+class Person &#123;
+public:
+    Person(int age) &#123;
+        this-&gt;age = age;
+    &#125;
+    Person&amp; PersonAddAge(Person &amp;p) &#123;
+        this-&gt;age += p.age;
+        return *this;//this指向p2的指针，而*this指向的就是p2这个对象本体
+    &#125;
+    int age;
+&#125;;
+void test01() &#123;
+    Person p1(18);
+    Person p2(18);
+    p2.PersonAddAge(p1).PersonAddAge(p1).PersonAddAge(p1);//链式编程思想
+    cout &lt;&lt; &quot;p2的年龄为：&quot; &lt;&lt; p2.age &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/A0E57DCE0E4F41718AC1D9B76BC16ABC?method=download&shareKey=9bf7e7d6faa361b784457454c3baef21" alt="avatar" class="lazyload"></p>
+<p>当返回的是值而不是引用时：</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+class Person &#123;
+public:
+    Person(int age) &#123;
+        this-&gt;age = age;
+    &#125;
+    Person PersonAddAge(Person &amp;p) &#123;
+        this-&gt;age += p.age;
+        return *this;//this指向p2的指针，而*this指向的就是p2这个对象本体
+    &#125;
+    int age;
+&#125;;
+void test01() &#123;
+    Person p1(18);
+    Person p2(18);
+    p2.PersonAddAge(p1).PersonAddAge(p1).PersonAddAge(p1);//链式编程思想
+    cout &lt;&lt; &quot;p2的年龄为：&quot; &lt;&lt; p2.age &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/B3DBF24483064B0B845823F0D6BD294C?method=download&shareKey=f4731c34c614455a624f6062a1a40cf5" alt="avatar" class="lazyload"><br>值传递用拷贝构造函数，创建新对象，而不是返回了p2</p>
+<h2 id="空指针访问成员函数"><a href="#空指针访问成员函数" class="headerlink" title="空指针访问成员函数"></a>空指针访问成员函数</h2><p>C++中空指针也是可以调用成员函数的，但是也要注意有没有用到this指针<br>如果用到this指针，需要加以判断保证代码的健壮性</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+class Person &#123;
+public:
+    void showClassName() &#123;
+        cout &lt;&lt; &quot;this is Person class&quot; &lt;&lt; endl;
+    &#125;
+    void showPersonAge() &#123;
+        cout &lt;&lt; &quot;age = &quot; &lt;&lt; m_age &lt;&lt; endl;//默认加上this-&gt;,成为this-&gt;m_age,报错原因是因为传入的指针为空
+    &#125;
+    int m_age;
+&#125;;
+void test01() &#123;
+    Person * p = NULL;
+    p-&gt;showClassName();//正常
+    p-&gt;showPersonAge();//运行时崩溃
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<p>防止出错：加上if语句</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+class Person &#123;
+public:
+    void showClassName() &#123;
+        cout &lt;&lt; &quot;this is Person class&quot; &lt;&lt; endl;
+    &#125;
+    void showPersonAge() &#123;
+        if(this == NULL)&#123;
+            return;
+        &#125;//防止程序崩溃
+        cout &lt;&lt; &quot;age = &quot; &lt;&lt; m_age &lt;&lt; endl;//默认加上this-&gt;,成为this-&gt;m_age,报错原因是因为传入的指针为空
+    &#125;
+    int m_age;
+&#125;;
+void test01() &#123;
+    Person * p = NULL;
+    p-&gt;showClassName();//正常
+    p-&gt;showPersonAge();//运行时崩溃
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<h2 id="const修饰成员函数"><a href="#const修饰成员函数" class="headerlink" title="const修饰成员函数"></a>const修饰成员函数</h2><p><strong>常函数：</strong><br><strong>·</strong> 成员函数后加const后我们称这个函数为常函数<br><strong>·</strong> 常函数内不可以修改成员属性<br><strong>·</strong> 成员属性声明时加关键字mutable后，在常函数中依然可以修改<br><strong>常对象：</strong><br><strong>·</strong> 声明对象前加const称该对象为常对象<br><strong>·</strong> 常对象只能调用常函数</p>
+<h3 id="常函数"><a href="#常函数" class="headerlink" title="常函数"></a>常函数</h3><pre><code>#include&lt;iostream&gt;
+using namespace std;
+class Person &#123;
+public:
+    void showPerson() const&#123;
+        m_A = 100;//报错，常函数内不可修改
+        //this指针的本质是指针常量，指针的指向是不可修改的
+        //相当于const(此const相当于上面那个const) Person * const this;
+        //所以在成员函数后面加const，修饰的是this指针，让指针指向的值也不可修改
+        this = NULL;/*报错，this指针不可以修改指针的指向，但this指针指向的值可以修改，若不加const上一句正确*/
+        m_B = 100;//正确，m_B加了mutable
+    &#125;
+    int m_A;
+    mutable int m_B;//特殊变量即使在常函数中也可以修改值
+&#125;;
+void test01() &#123;
+    Person p;
+    p.showPerson();
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+<h3 id="常对象"><a href="#常对象" class="headerlink" title="常对象"></a>常对象</h3><pre><code>#include&lt;iostream&gt;
+using namespace std;
+class Person &#123;
+public:
+    int m_A;
+    mutable int m_B;//在常函数和常对象下都可以修改
+    void func() &#123;
+
+    &#125;
+&#125;;
+void test01() &#123;
+    const Person p;//在对象前加上const，变为常对象
+    p.m_A = 100;//报错，常对象的属性不可修改
+    p.m_B = 100;//正确，m_B前面有mutable
+    //常对象只能调用常函数
+    p.func();//报错，常对象不可以调用普通成员函数，因为普通成员函数可以修改属性
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;</code></pre>
+
+            
+        </article>
+    </div>
+    
+    <div class="nexmoe-post">
+        <a href="/2021/02/25/%E7%AE%97%E6%B3%952-22-2-28/">
+            
+                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 66.66666666666666%;"> 
+                    <img data-src="https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg" data-sizes="auto" alt="算法2.22-2.28" class="lazyload">
+                    <h1>算法2.22-2.28</h1>
+                </div>
+            
+        </a>
+
+        <div class="nexmoe-post-meta nexmoe-rainbow">
+            <a><i class="nexmoefont icon-calendar-fill"></i>2021年02月25日</a>
+            <a><i class="nexmoefont icon-areachart"></i>754 字</a>
+            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
+        </div>
+
+        <article>
+            
+                <h2 id="平面向量加法"><a href="#平面向量加法" class="headerlink" title="平面向量加法"></a>平面向量加法</h2><p>本题要求编写程序，计算两个二维平面向量的和向量。</p>
+<p>输入格式:<br>输入在一行中按照“x​1 y​1 x2 y2”的格式给出两个二维平面向量v1=(x1,y1)和v2=(x2,y2)的分量。</p>
+<p>输出格式:<br>在一行中按照(x, y)的格式输出和向量，坐标输出小数点后一位（注意不能输出−0.0）。</p>
+<p>输入样例:<br>3.5 -2.7 -13.9 8.7<br>输出样例:<br>(-10.4, 6.0)</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;bits/stdc++.h&gt;//万能文件开头,包含了目前c++所包含的所有头文件
+using namespace std;
+int main()&#123;
+    double x1,y1,x2,y2,x,y;
+    cin&gt;&gt;x1&gt;&gt;y1&gt;&gt;x2&gt;&gt;y2;
+    x=x1+x2;
+    y=y1+y2;
+    if(x&gt;-0.05&amp;&amp;x&lt;0.0)x=0.0;//这里要大于-0.05是因为只有大于-0.05才有可能四舍五入成-0.0，因为是负数才有可能输出-0.0，所以要小于0.0
+    if(y&gt;-0.05&amp;&amp;y&lt;0.0)y=0.0;
+    printf(&quot;(%.1f, %.1f)&quot;,x,y);
+&#125;</code></pre>
+<h2 id="矩阵乘法"><a href="#矩阵乘法" class="headerlink" title="矩阵乘法"></a>矩阵乘法</h2><p>问题描述<br>　　给定一个N阶矩阵A，输出A的M次幂（M是非负整数）<br>　　例如：<br>　　A =<br>　　1 2<br>　　3 4<br>　　A的2次幂<br>　　7 10<br>　　15 22<br>输入格式<br>　　第一行是一个正整数N、M（1&lt;=N&lt;=30, 0&lt;=M&lt;=5），表示矩阵A的阶数和要求的幂数<br>　　接下来N行，每行N个绝对值不超过10的非负整数，描述矩阵A的值<br>输出格式<br>　　输出共N行，每行N个整数，表示A的M次幂所对应的矩阵。相邻的数之间用一个空格隔开<br>样例输入<br>2 2<br>1 2<br>3 4<br>样例输出<br>7 10<br>15 22</p>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main()&#123;
+    int n,m;
+    cin&gt;&gt;n&gt;&gt;m;
+    int a[35][35];
+    int b[35][35];
+    int c[35][35]=&#123;0&#125;;
+    for(int i=1;i&lt;=n;i++)
+        for(int j=1;j&lt;=n;j++)&#123;
+            cin&gt;&gt;a[i][j];
+            b[i][j]=a[i][j];
+        &#125;
+    if(m==0)&#123;
+    for(int i=1;i&lt;=n;i++)&#123;
+        for(int j=1;j&lt;=n;j++)&#123;
+        if(i==j)
+            cout&lt;&lt;1&lt;&lt;&#39; &#39;;
+        else 
+            cout&lt;&lt;0&lt;&lt;&#39; &#39;;
+        &#125;
+        cout&lt;&lt;endl;
+    &#125;
+    return 0;
+    &#125;
+    else&#123;
+        for(int l=0;l&lt;m-1;l++)&#123;
+            for(int i=1;i&lt;=n;i++)
+                for(int j=1;j&lt;=n;j++)&#123;
+                    for(int p=1;p&lt;=n;p++)&#123;
+                        c[i][j]+=b[i][p]*a[p][j];
+                    &#125;
+                &#125;
+            for(int i=1;i&lt;=n;i++)
+                for(int j=1;j&lt;=n;j++)&#123;
+                    b[i][j]=c[i][j];
+                    c[i][j]=0;
+                &#125;
+        &#125;
+    for(int i=1;i&lt;=n;i++)&#123;
+        for(int j=1;j&lt;=n;j++)&#123;
+            cout&lt;&lt;b[i][j]&lt;&lt;&#39; &#39;;
+        &#125; 
+    cout&lt;&lt;endl;
+    &#125;
+    &#125;
+    return 0;
+&#125;</code></pre>
+<h2 id="分解质因数"><a href="#分解质因数" class="headerlink" title="分解质因数"></a>分解质因数</h2><p>问题描述<br>　　求出区间[a,b]中所有整数的质因数分解。<br>输入格式<br>　　输入两个整数a，b。<br>输出格式<br>　　每行输出一个数的分解，形如k=a1<em>a2</em>a3…(a1&lt;=a2&lt;=a3…，k也是从小到大的)(具体可看样例)<br>样例输入<br>3 10<br>样例输出<br>3=3<br>4=2<em>2<br>5=5<br>6=2</em>3<br>7=7<br>8=2<em>2</em>2<br>9=3<em>3<br>10=2</em>5<br>提示<br>　　先筛出所有素数，然后再分解。<br>数据规模和约定<br>　　2&lt;=a&lt;=b&lt;=10000</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+int main() &#123;
+    int a, b, i, n, j;
+    cin &gt;&gt; a &gt;&gt; b;
+    for (i = a;i &lt;= b;i++) &#123;
+        cout &lt;&lt; i &lt;&lt; &quot;=&quot;;
+        n = i;
+        j = 2;
+        while (n != j) &#123;
+            for (j = 2;j &lt; n;j++) &#123;
+                if (n%j == 0 &amp;&amp; n != j) &#123;
+                    cout &lt;&lt; j &lt;&lt; &quot;*&quot;;
+                    n = n / j;
+                    break;
+                &#125;
+            &#125;
+        &#125;
+        cout &lt;&lt; n &lt;&lt; endl;
+        &#125;
+    return 0;
+ &#125;</code></pre>
+
+            
+        </article>
+    </div>
     
     <div class="nexmoe-post">
         <a href="/2021/02/07/%E8%93%9D%E6%A1%A5%E6%9D%AF-2-1-2-7/">
@@ -1840,330 +2244,10 @@ linkedList.get(1);            // 返回3</code></pre>
         </article>
     </div>
     
-    <div class="nexmoe-post">
-        <a href="/2021/01/20/C++%20%E9%80%9A%E8%AE%AF%E5%BD%95%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: NaN%;"> 
-                    <img data-src="https://note.youdao.com/yws/api/personal/file/168C4EB054A546CDADF8C6BF304BD36A?method=download&shareKey=4d193f0d3c96d4f0511c3d4ed0193159" data-sizes="auto" alt="C++ 通讯录管理系统" class="lazyload">
-                    <h1>C++ 通讯录管理系统</h1>
-                </div>
-            
-        </a>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2021年01月20日</a>
-            <a><i class="nexmoefont icon-areachart"></i>2,524 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 10 分钟</a>
-        </div>
-
-        <article>
-            
-                <h1 id="1、系统需求"><a href="#1、系统需求" class="headerlink" title="1、系统需求"></a><font color=#000099>1、系统需求</font></h1><p>通讯录是一个可以记录亲人、好友信息的工具。<br>系统中需要实现的功能如下：<br><strong>·</strong>添加联系人：向通讯录中添加新人，信息包括（姓名、性别、年龄、联系电话、家庭住址）最多记录1000人<br><strong>·</strong>显示联系人：显示通讯录中所有联系人信息<br><strong>·</strong>删除联系人：按照姓名进行删除指定联系人<br><strong>·</strong>查找联系人：按照姓名查看指定联系人信息<br><strong>·</strong>修改联系人：按照姓名重新修改指定联系人<br><strong>·</strong>清空联系人：清空通讯录中所有信息<br><strong>·</strong>退出通讯录：退出当前使用的通讯录<br><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/33F9DE5F24414A4C9B7F2FD060A2FD01?method=download&shareKey=83944c6b00114d3f199f5dd5f0693c27" alt="avatar" class="lazyload"></p>
-<h1 id="2、创建项目"><a href="#2、创建项目" class="headerlink" title="2、创建项目"></a><font color=#000099>2、创建项目</font></h1><p>创建项目的步骤如下：<br>1.创建新项目<br>2.添加文件</p>
-<h2 id="2-1创建项目"><a href="#2-1创建项目" class="headerlink" title="2.1创建项目"></a>2.1创建项目</h2><p>打开vs2017后，点击创建新项目，创建新的c++项目<br><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/E9C3A0AA26114EE2BB652315A674B9BB?method=download&shareKey=3c290607bffbff9d181b135722d188a5" alt="avatar" class="lazyload"><br>填写项目名称，选择项目路径<br><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/B20741CF94914B5D8BD86CEE86864425?method=download&shareKey=ab5e6046adcd734b2e01b793de2c7175" alt="avatar" class="lazyload"></p>
-<h2 id="2-2添加文件"><a href="#2-2添加文件" class="headerlink" title="2.2添加文件"></a>2.2添加文件</h2><p><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/25481698D4F44218A3F505B199592F70?method=download&shareKey=668392da1e67c676bda050a4cca8cf33" alt="avatar" class="lazyload"><br><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/915B3A1E15104560823D38F6121F588A?method=download&shareKey=fd99325073ba6f2098b76ff2d8381906" alt="avatar" class="lazyload"><br>添加成功后，效果如图：<br><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/5723C97286BD4C8F98D1A7869629AD9A?method=download&shareKey=81b88c70ca7ac237bc7f20cc1e963295" alt="avatar" class="lazyload"><br>至此，项目已创建完毕</p>
-<h1 id="3、菜单功能"><a href="#3、菜单功能" class="headerlink" title="3、菜单功能"></a><font color=#000099>3、菜单功能</font></h1><p><strong>功能描述：</strong>用户选择功能的界面<br>菜单界面效果图如下：<br><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/33F9DE5F24414A4C9B7F2FD060A2FD01?method=download&shareKey=83944c6b00114d3f199f5dd5f0693c27" alt="avatar" class="lazyload"><br><strong>步骤：</strong><br><font color=#0D82CF>1.封装函数显示该界面，如void showMenu()</font></p>
-<pre><code>void showMenu()&#123;
-cout &lt;&lt; &quot;1、添加联系人&quot; &lt;&lt; endl;
-cout &lt;&lt; &quot;2、显示联系人&quot; &lt;&lt; endl;
-cout &lt;&lt; &quot;3、删除联系人&quot; &lt;&lt; endl;
-cout &lt;&lt; &quot;4、查找联系人&quot; &lt;&lt; endl;
-cout &lt;&lt; &quot;5、修改联系人&quot; &lt;&lt; endl;
-cout &lt;&lt; &quot;6、清空联系人&quot; &lt;&lt; endl;
-cout &lt;&lt; &quot;0、退出通讯录&quot; &lt;&lt; endl;
-&#125;</code></pre>
-<p><font color=#0D82CF>2.在main函数中调用封装好的函数</font></p>
-<pre><code>int main()&#123;
-    showMenu();
-    system(&quot;pause&quot;);
-    return 0;
-&#125;</code></pre>
-<h1 id="4、退出功能"><a href="#4、退出功能" class="headerlink" title="4、退出功能"></a><font color=#000099>4、退出功能</font></h1><p>功能描述：退出通讯录系统<br>思路：根据用户不同的选择，进入不同的功能，可以选择switch分支结构，将整个构架进行搭建<br>当用户选择0时候，执行退出，选择其他先不做操作，也不会退出程序<br>代码：</p>
-<pre><code>int main()&#123;
-    int select=0;//创建用户选择输入的变量
-    while(true)&#123;//死循环，使之只有在输入0时才会退出系统
-    showMenu();//菜单调用
-    cin &gt;&gt; select;
-    switch(select)&#123;
-        case 1:break;//1、添加联系人
-        case 2:break;//2、显示联系人
-        case 3:break;//3、删除联系人
-        case 4:break;//4、查找联系人
-        case 5:break;//5、修改联系人
-        case 6:break;//6、清空联系人
-        case 0:
-        cout &lt;&lt; &quot;欢迎下次使用&quot; &lt;&lt; endl;
-        system(&quot;pause&quot;);
-        return 0;
-        break;//0、退出通讯录
-        default:break;
-    &#125;
-    &#125;
-&#125;</code></pre>
-<h1 id="5、添加联系人"><a href="#5、添加联系人" class="headerlink" title="5、添加联系人"></a><font color=#000099>5、添加联系人</font></h1><p>功能描述：<br>实现添加联系人功能，联系人上限为1000人，联系人信息包括（姓名、性别、年龄、联系电话、家庭住址）<br>&nbsp;<br>添加联系人实现步骤：<br>1、设计联系人结构体<br>2、设计通讯录结构体<br>3、main函数中创建通讯录<br>4、封装添加联系人函数<br>5、测试添加联系人功能</p>
-<h2 id="5-1-nbsp-设计联系人结构体"><a href="#5-1-nbsp-设计联系人结构体" class="headerlink" title="5.1&nbsp;设计联系人结构体"></a>5.1&nbsp;设计联系人结构体</h2><p>联系人信息包括：姓名、性别、年龄、联系电话、家庭住址<br>设计如下：</p>
-<pre><code>#include&lt;string&gt;//string头文件
-struct person&#123;
-    string m_name;
-    int m_sex;
-    int m_age;
-    string m_phone;
-    string m_addr;
-&#125;;</code></pre>
-<h2 id="5-2-nbsp-设计通讯录结构体"><a href="#5-2-nbsp-设计通讯录结构体" class="headerlink" title="5.2&nbsp;设计通讯录结构体"></a>5.2&nbsp;设计通讯录结构体</h2><p>设计时候可以在通讯录结构体中，维护一个容量为1000的存放联系人的数组，并记录当前通讯录中联系人数量<br>设计如下：</p>
-<pre><code>#define MAX 1000//最大人数（方便以后更改）
-struct addressbooks&#123;//通讯录结构体
-    struct person personarray[MAX];//通讯录中保存的联系人数组
-    int m_size;//通讯录中人员个数
-&#125;;</code></pre>
-<h2 id="5-3-nbsp-main函数中创建通讯录"><a href="#5-3-nbsp-main函数中创建通讯录" class="headerlink" title="5.3&nbsp;main函数中创建通讯录"></a>5.3&nbsp;main函数中创建通讯录</h2><pre><code>  int main()&#123;        
-    addressbooks abs;/*创建通讯录结构体变量*/
-    abs.m_size=0;/*初始化通讯录中当前人员个数*/
-    int select=0;//创建用户选择输入的变量
-    while(true)&#123;//死循环，使之只有在输入0时才会退出系统
-        showMenu();//菜单调用
-        cin &gt;&gt; select;
-        switch(select)&#123;
-            case 1:
-                addperson(&amp;abs);/*利用地址传递可以修改实参*/
-                break;//1、添加联系人
-            case 2:break;//2、显示联系人
-            case 3:break;//3、删除联系人
-            case 4:break;//4、查找联系人
-            case 5:break;//5、修改联系人
-            case 6:break;//6、清空联系人
-            case 0:
-                cout &lt;&lt; &quot;欢迎下次使用&quot; &lt;&lt; endl;
-                system(&quot;pause&quot;);
-                return 0;
-                break;//0、退出通讯录
-            default:break;
-        &#125;
-    &#125;
-&#125;</code></pre>
-<h2 id="5-4-nbsp-封装添加联系人函数"><a href="#5-4-nbsp-封装添加联系人函数" class="headerlink" title="5.4&nbsp;封装添加联系人函数"></a>5.4&nbsp;封装添加联系人函数</h2><pre><code>void addperson(addressbooks *abs)&#123;
-    if(abs-&gt;m_size==MAX)&#123;
-    cout&lt;&lt;&quot;通讯录已满，无法添加！&quot;&lt;&lt;endl;/*判断通讯录是否已满，如果满了就不再添加*/
-    return;
-    &#125;
-    else&#123;
-        //添加具体联系人
-        string name;
-        cout&lt;&lt;&quot;请输入姓名&quot;&lt;&lt;endl;
-        cin&gt;&gt;name;
-        abs-&gt;personarray[abs-&gt;m_size].m_name=name;
-        cout&lt;&lt;&quot;请输入性别&quot;&lt;&lt;endl;
-        cout&lt;&lt;&quot;1---男&quot;&lt;&lt;endl;
-        cout&lt;&lt;&quot;2---女&quot;&lt;&lt;endl;
-        int sex=0;
-        while(true)&#123;/*如果输入的是1或2可以退出循环，如果输入有误，重新输入*/
-            cin&gt;&gt;sex;
-            if(sex==1||sex==2)&#123;
-                abs-&gt;personarray[abs-&gt;m_size].m_sex=sex;
-                break;
-            &#125;
-            cout&lt;&lt;&quot;输入有误，请重新输入&quot;&lt;&lt;endl;
-        &#125;
-        cout&lt;&lt;&quot;请输入年龄&quot;&lt;&lt;endl;
-        int age=0;
-        cin&gt;&gt;age;
-        abs-&gt;personarray[abs-&gt;m_size].m_age=age;
-        cout&lt;&lt;&quot;请输入联系电话&quot;&lt;&lt;endl;
-        string phone;
-        cin&gt;&gt;phone;
-        abs-&gt;personarray[abs-&gt;m_size].m_phone=phone;
-        cout&lt;&lt;&quot;请输入家庭住址&quot;&lt;&lt;endl;
-        string address;
-        cin&gt;&gt;address;
-        abs-&gt;personarray[abs-&gt;m_size].m_addr=address;
-        /*更新通讯录人数*/
-        abs-&gt;m_size++;
-        cout&lt;&lt;&quot;添加成功&quot;&lt;&lt;endl;
-    &#125;
-&#125;</code></pre>
-<h1 id="6、显示联系人"><a href="#6、显示联系人" class="headerlink" title="6、显示联系人"></a><font color=#000099>6、显示联系人</font></h1><p>功能描述：显示通讯录中已有的联系人信息<br>封装显示联系人函数：<br>思路：<br>判断如果当前通讯录中没有人员，就提示记录为空，人数大于0，显示通讯录中信息</p>
-<pre><code>void showperson(addressbooks *abs)&#123;
-/*判断通讯录中人数是否为0，如果为0，提示记录为空，如果不为0，显示记录的联系人信息*/
-    if(abs-&gt;m_size==0)&#123;
-        cout&lt;&lt;&quot;当前记录为空&quot;&lt;&lt;endl;
-    &#125;
-        else&#123;
-            for(int i=0;i&lt;abs-&gt;m_size;i++)&#123;
-                cout&lt;&lt;&quot;姓名：&quot;&lt;&lt;abs-&gt;personarray[i].m_name&lt;&lt;&quot;\t&quot;;
-                cout&lt;&lt;&quot;性别：&quot;&lt;&lt;(abs-&gt;personarray[i].m_sex==1?&quot;男&quot;:&quot;女&quot;)&lt;&lt;&quot;\t&quot;;
-                cout&lt;&lt;&quot;年龄：&quot;&lt;&lt;abs-&gt;personarray[i].m_age&lt;&lt;&quot;\t&quot;;
-                cout&lt;&lt;&quot;电话：&quot;&lt;&lt;abs-&gt;personarray[i].m_phone&lt;&lt;&quot;\t&quot;;
-                cout&lt;&lt;&quot;住址：&quot;&lt;&lt;abs-&gt;personarray[i].m_addr&lt;&lt;endl;
-            &#125;
-        &#125;
-        system(&quot;pause&quot;);//按任意键继续
-        system(&quot;cls&quot;);//清屏
-&#125;</code></pre>
-<p>主函数调用：</p>
-<pre><code>int main()&#123;        
-    addressbooks abs;/*创建通讯录结构体变量*/
-    abs.m_size=0;/*初始化通讯录中当前人员个数*/
-    int select=0;//创建用户选择输入的变量
-    while(true)&#123;//死循环，使之只有在输入0时才会退出系统
-        showMenu();//菜单调用
-        cin &gt;&gt; select;
-        switch(select)&#123;
-            case 1:
-                addperson(&amp;abs);/*利用地址传递可以修改实参*/
-                break;//1、添加联系人
-            case 2:
-                showperson(&amp;abs);
-                break;//2、显示联系人
-            case 3:break;//3、删除联系人
-            case 4:break;//4、查找联系人
-            case 5:break;//5、修改联系人
-            case 6:break;//6、清空联系人
-            case 0:
-                cout &lt;&lt; &quot;欢迎下次使用&quot; &lt;&lt; endl;
-                system(&quot;pause&quot;);
-                return 0;
-                break;//0、退出通讯录
-            default:break;
-        &#125;
-    &#125;
-&#125;</code></pre>
-<h1 id="7、删除联系人"><a href="#7、删除联系人" class="headerlink" title="7、删除联系人"></a><font color=#000099>7、删除联系人</font></h1><p>功能描述：按照姓名进行删除指定联系人</p>
-<h2 id="7-1-nbsp-封装检测联系人是否存在"><a href="#7-1-nbsp-封装检测联系人是否存在" class="headerlink" title="7.1&nbsp;封装检测联系人是否存在"></a>7.1&nbsp;封装检测联系人是否存在</h2><p>删除联系人前，我们需要先判断用户输入的联系人是否存在，如果存在删除，不存在提示用户没有要删除的联系人<br>因此我们可以把检测联系人是否存在封装成一个函数中，如果存在，返回联系人在通讯录中的位置，不存在返回-1<br>代码：</p>
-<pre><code>int isexist(addressbooks *abs,string name)&#123;/*参数1，通讯录；参数2，对比姓名*/
-    for(int i=0;i&lt;abs-&gt;m_size;i++)&#123;
-        if(abs-&gt;personarray[i].m_name==name)&#123;
-            return i;/*找到了，返回下标*/
-        &#125;
-    &#125;
-    return -1;/*如果遍历结束都没有找到，返回-1*/
-&#125;</code></pre>
-<p>主函数调用：</p>
-<pre><code>case 3:&#123;
-    string name;
-    cin&gt;&gt;name;
-    cout&lt;&lt;&quot;请输入删除联系人姓名：&quot;&lt;&lt;endl;
-    if(isexist(&amp;abs,name)==-1)cout&lt;&lt;&quot;查无此人&quot;&lt;&lt;endl;
-    else cout&lt;&lt;&quot;找到此人&quot;&lt;&lt;endl;
-&#125;</code></pre>
-<h2 id="7-2-nbsp-封装删除联系人"><a href="#7-2-nbsp-封装删除联系人" class="headerlink" title="7.2&nbsp;封装删除联系人"></a>7.2&nbsp;封装删除联系人</h2><p>根据用户输入的联系人判断该通讯录中是否有此人<br>查找到进行删除，并提示删除成功<br>查不到提示查无此人</p>
-<pre><code>void deleteperson(addressbooks *abs)&#123;
-    cout&lt;&lt;&quot;请输入您要删除的联系人&quot;&lt;&lt;endl;
-    string name;
-    cin&gt;&gt;name;
-    int ret=isexist(abs,name);
-    if(ret!=-1)&#123;
-    //查找到人，要进行删除操作
-        for(int i=ret;i&lt;abs-&gt;m_size;i++)&#123;
-            //数据前移
-            abs-&gt;personarray[i]=abs-&gt;personarray[i+1];
-        &#125;
-        abs-&gt;m_size--;//更新通讯录中的人员数
-        cout&lt;&lt;&quot;删除成功&quot;&lt;&lt;endl;
-    &#125;
-    else&#123;
-        cout&lt;&lt;&quot;查无此人&quot;&lt;&lt;endl;
-    &#125;
-&#125;</code></pre>
-<p>要删除李四，将李四后的数据做向前移动，并让通讯录中记录的人员个数做-1的操作</p>
-<p>主函数调用：</p>
-<pre><code>case 3:&#123;
-    deleteperson(&amp;abs);
-    break;
-&#125;</code></pre>
-<h1 id="8、查找联系人"><a href="#8、查找联系人" class="headerlink" title="8、查找联系人"></a><font color=#000099>8、查找联系人</font></h1><p>功能描述：按照姓名查看指定联系人信息<br>实现思路：判断用户指定的联系人是否存在，如果存在显示信息，不存在则提示查无此人<br>代码：</p>
-<pre><code>void findperson(addressbooks *abs)&#123;
-    cout&lt;&lt;&quot;请输入您要查找的联系人&quot;&lt;&lt;endl;
-    string name;
-    cin&gt;&gt;name;
-    //判断指定的联系人是否存在通讯录中
-    int ret=isexist(abs,name);
-    if(ret!=-1)&#123;//找到了联系人
-        cout&lt;&lt;&quot;姓名：&quot;&lt;&lt;abs-&gt;personarray[ret].m_name&lt;&lt;&quot;\t&quot;;
-        cout&lt;&lt;&quot;性别：&quot;&lt;&lt;(abs-&gt;personarray[ret].m_sex==1?&quot;男&quot;:&quot;女&quot;)&lt;&lt;&quot;\t&quot;;
-        cout&lt;&lt;&quot;年龄：&quot;&lt;&lt;abs-&gt;personarray[ret].m_age&lt;&lt;&quot;\t&quot;;
-        cout&lt;&lt;&quot;电话：&quot;&lt;&lt;abs-&gt;personarray[ret].m_phone&lt;&lt;&quot;\t&quot;;
-        cout&lt;&lt;&quot;住址：&quot;&lt;&lt;abs-&gt;personarray[ret].m_addr&lt;&lt;endl;
-    &#125;
-    else&#123;//未找到联系人
-    cout&lt;&lt;&quot;查无此人&quot;&lt;&lt;endl;
-    &#125;
-    system(&quot;pause&quot;);
-    system(&quot;cls&quot;);
-&#125;</code></pre>
-<p>主函数调用：</p>
-<pre><code>case 4:&#123;
-    findperson(&amp;abs);
-    break;
-&#125;</code></pre>
-<h1 id="9、修改联系人"><a href="#9、修改联系人" class="headerlink" title="9、修改联系人"></a><font color=#000099>9、修改联系人</font></h1><p>功能描述：按照姓名重新修改联系人<br>实现思路：查找用户输入的联系人，如果查找成功进行修改操作，查找失败提示查无此人</p>
-<pre><code>void modifyperson(addressbooks *abs)&#123;
-    cout&lt;&lt;&quot;请输入您要修改的联系人&quot;&lt;&lt;endl;
-    string name;
-    cin&gt;&gt;name;
-    int ret=isexist(abs,name);
-    if(ret!=-1)&#123;//找到指定联系人
-        string name;
-        cout&lt;&lt;&quot;请输入姓名：&quot;&lt;&lt;endl;
-        cin&gt;&gt;name;
-        abs-&gt;personarray[ret].m_name=name;
-        cout&lt;&lt;&quot;请输入性别：&quot;&lt;&lt;endl;
-        cout&lt;&lt;&quot;1---男&quot;&lt;&lt;endl;
-        cout&lt;&lt;&quot;2---女&quot;&lt;&lt;endl;
-        int sex=0;
-        while(true)&#123;
-            cin&gt;&gt;sex;
-            if(sex==1||sex==2)&#123;
-                abs-&gt;personarray[ret].m_sex=sex;
-                break;
-            &#125;
-            cout&lt;&lt;&quot;输入有误，请重新输入&quot;&lt;&lt;endl;
-        &#125;
-        cout&lt;&lt;&quot;请输入年龄：&quot;&lt;&lt;endl;
-        int age=0;
-        cin&gt;&gt;age;
-        abs-&gt;personarray[ret].m_age=age;
-        cout&lt;&lt;&quot;请输入电话：&quot;&lt;&lt;endl;
-        string phone;
-        cin&gt;&gt;phone;
-        abs-&gt;personarray[ret].m_phone=phone;
-        cout&lt;&lt;&quot;请输入住址：&quot;&lt;&lt;endl;
-        string address;
-        cin&gt;&gt;address;
-        abs-&gt;personarray[ret].m_addr=address;
-        cout&lt;&lt;&quot;修改成功！&quot;&lt;&lt;endl;
-    &#125;
-    else&#123;//未找到联系人
-        cout&lt;&lt;&quot;查无此人&quot;&lt;&lt;endl;
-    &#125;
-    system(&quot;pause&quot;);
-    system(&quot;cls&quot;);
-&#125;</code></pre>
-<p>主函数调用：</p>
-<pre><code>case 5:&#123;
-    modifyperson(&amp;abs);
-    break;
-&#125;</code></pre>
-<h1 id="10、清空联系人"><a href="#10、清空联系人" class="headerlink" title="10、清空联系人"></a><font color=#000099>10、清空联系人</font></h1><p>功能描述：清空通讯录中所有信息<br>实现思路：将通讯录所有联系人信息清除掉，只要将通讯录记录的联系人数量置为0，做逻辑清空即可。</p>
-<pre><code>void cleanperson(addressbooks *abs)&#123;
-    abs-&gt;m_size=0;//将当前记录的
-    cout&lt;&lt;&quot;通讯录已清空&quot;&lt;&lt;endl;
-    system(&quot;pause&quot;);
-    system(&quot;cls&quot;);
-&#125;</code></pre>
-<p>主函数调用：</p>
-<pre><code>case 6：&#123;
-    cleanperson(&amp;abs);
-    break;
-&#125;</code></pre>
-
-            
-        </article>
-    </div>
-    
 </section>
 
     <nav class="nexmoe-page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/"><i class="nexmoefont icon-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+      <a class="extend prev" rel="prev" href="/page/3/"><i class="nexmoefont icon-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="nexmoefont icon-right"></i></a>
     </nav>
   
     </div>
@@ -2178,7 +2262,7 @@ struct addressbooks&#123;//通讯录结构体
 
 
 <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
- <script src="/js/app.js?v=1622805824173"></script>
+ <script src="/js/app.js?v=1624596662868"></script>
 
   
 

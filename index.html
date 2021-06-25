@@ -21,7 +21,7 @@
 <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
   
-  <link rel="stylesheet" href="/css/style.css?v=1622805824169">
+  <link rel="stylesheet" href="/css/style.css?v=1624596662864">
 <meta name="generator" content="Hexo 5.3.0"></head>
 
 <body class="mdui-drawer-body-left">
@@ -45,8 +45,8 @@
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>文章</span>39</div>
-        <div><span>标签</span>7</div>
+        <div><span>文章</span>41</div>
+        <div><span>标签</span>8</div>
         <div><span>分类</span>2</div>
     </div>
     <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
@@ -135,7 +135,7 @@
   
   <div class="nexmoe-widget-wrap">
     <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
-      <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/%E5%A4%A9%E6%A2%AF/" style="font-size: 10px;">天梯</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 16.67px;">算法</a> <a href="/tags/%E8%93%9D%E6%A1%A5/" style="font-size: 13.33px;">蓝桥</a>
+      <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/%E5%A4%A9%E6%A2%AF/" style="font-size: 10px;">天梯</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 16.67px;">算法</a> <a href="/tags/%E8%93%9D%E6%A1%A5/" style="font-size: 13.33px;">蓝桥</a>
     </div>
     
   </div>
@@ -145,7 +145,7 @@
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">文章归档</h3>
     <div class="nexmoe-widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">39</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">41</span></li></ul>
     </div>
   </div>
 
@@ -171,6 +171,169 @@
   <div id="nexmoe-content">
     <div class="nexmoe-primary">
         <section class="nexmoe-posts">
+    
+    <div class="nexmoe-post">
+        <a href="/2021/06/23/python%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">
+            
+                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 66.66666666666666%;"> 
+                    <img data-src="https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg" data-sizes="auto" alt="python数据可视化" class="lazyload">
+                    <h1>python数据可视化</h1>
+                </div>
+            
+        </a>
+
+        <div class="nexmoe-post-meta nexmoe-rainbow">
+            <a><i class="nexmoefont icon-calendar-fill"></i>2021年06月23日</a>
+            <a><i class="nexmoefont icon-areachart"></i>701 字</a>
+            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
+        </div>
+
+        <article>
+            
+                <h2 id="plotly"><a href="#plotly" class="headerlink" title="plotly"></a>plotly</h2><h3 id="柱状图："><a href="#柱状图：" class="headerlink" title="柱状图："></a>柱状图：</h3><h3 id="排列方式"><a href="#排列方式" class="headerlink" title="排列方式"></a>排列方式</h3><p>调整柱形 trace 之间的排列方式 <strong>figure.update_layout(barmode=”stack”)</strong></p>
+<p>update_layout() 方法中，我们通过设置 barmode（柱形排列模式）参数来设置各个柱形 trace 之间的位置关系。可选的参数有：</p>
+<p><strong>·</strong> stack 堆叠模式 后加入柱形会堆在先加入柱形上面<br><strong>·</strong> group 分组模式 后加入柱形排在先加入柱形右边，用于分组柱状图，默认值<br><strong>·</strong> overlay 重叠模式 后加入柱形直接放在和先加入柱形相同的位置，遮盖先加入的图形<br><strong>·</strong> raletive 相对模式 x值相同时，将y值为负的柱形排在y值为正的柱形的正下方</p>
+<h3 id="宽度、颜色"><a href="#宽度、颜色" class="headerlink" title="宽度、颜色"></a>宽度、颜色</h3><p>宽度：**figure.update_traces(width=0.4)**设置宽度为0.4<br>颜色：<br>    figure.update_traces(selector={‘name’:’老会员’},marker_color=’CadetBlue’)<br>    figure.update_traces(selector={‘name’:’新会员’},marker_color=’MediumAquamarine’)</p>
+<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><pre><code>#引入layout子模块
+from plotly.graph_objects import layout
+#定义一个字典
+font=dict(size=20,color=&#39;CadetBlue&#39;,family=&#39;宋体&#39;)
+fig_title=layout.Title(text=&#39;健身俱乐部每月客流人数&#39;,font=dict(size=20,color =&#39;CadetBlue&#39;),x=0.5)
+figure.update_layout(title=fig_title)
+figure.show()</code></pre>
+<p>size大小，color颜色，x位置(0左，1右，0.5居中)</p>
+<h3 id="代码示例："><a href="#代码示例：" class="headerlink" title="代码示例："></a>代码示例：</h3><pre><code>from plotly.graph_objects import Figure,Bar
+#引入layout子模块
+from plotly.graph_objects import layout
+figure = Figure()
+months=[&#39;1月&#39;,&#39;2月&#39;,&#39;3月&#39;,&#39;4月&#39;,&#39;5月&#39;,&#39;6月&#39;,&#39;7月&#39;,&#39;8月&#39;,&#39;9月&#39;,&#39;10月&#39;,&#39;11月&#39;,&#39;12月&#39;]
+traffics2019=[2279,4228,4728,3641,3655,3675,3938,4075,3884,3036,2838,2621]
+traffics2020=[1807,0,0,0,1342,1898,2745,2996,2843,2557,2311,2002]
+trace1=Bar(x=months,y=traffics2019,name=&#39;2019年客流人数&#39;)
+trace2=Bar(x=months,y=traffics2020,name=&#39;2020年客流人数&#39;)
+figure.add_trace(trace1)
+figure.add_trace(trace2)
+figure.update_layout(barmode=&quot;group&quot;)
+figure.update_traces(width=0.4)
+figure.update_traces(selector=&#123;&#39;name&#39;:&#39;2019年客流人数&#39;&#125;,marker_color=&#39;CadetBlue&#39;)
+figure.update_traces(selector=&#123;&#39;name&#39;:&#39;2020年客流人数&#39;&#125;,marker_color=&#39;MediumAquamarine&#39;)
+#定义一个字典
+font=dict(size=20,color=&#39;CadetBlue&#39;,family=&#39;宋体&#39;)
+fig_title=layout.Title(text=&#39;2019年及2020年健身俱乐部每月客流人数&#39;,font=dict(size=20,color =&#39;CadetBlue&#39;),x=0.5)
+figure.update_layout(title=fig_title)
+figure.show()</code></pre>
+<h3 id="饼图："><a href="#饼图：" class="headerlink" title="饼图："></a>饼图：</h3><pre><code>from plotly.graph_objects import Figure,Pie
+industry = [&#39;互联网&#39;, &#39;学生&#39;, &#39;教育&#39;, &#39;金融&#39;, &#39;其他&#39;]
+number = [10281, 5811, 4871, 3305, 2227]
+figure = Figure()
+#values数值，labels标签，hole环形图(不加这个参数为饼图)
+trace=Pie(values=number,labels=industry,hole=0.8)
+figure.add_trace(trace)
+figure.show()</code></pre>
+<h2 id="拖拽"><a href="#拖拽" class="headerlink" title="拖拽"></a>拖拽</h2><p>figure.update_traces(pull=[0.1,0,0.1,0,0])</p>
+<h2 id="散点图-导入数据"><a href="#散点图-导入数据" class="headerlink" title="散点图+导入数据"></a>散点图+导入数据</h2><pre><code>import pandas as pd
+#path两种方式r&#39;或者\\
+path=r&#39;C:\Users\28557\Documents\Tencent Files\2855773204\FileRecv\数据可视化-plotly-散点图\数据可视化-Plotly-散点图\奶茶行业分析.xlsx&#39;
+data1=pd.read_excel(path,sheet_name=0,header=0)
+brand1=data1[&#39;品牌&#39;]
+shop_number1=data1[&#39;门店数&#39;]
+avrg_price1=data1[&#39;客单价&#39;]
+data2=pd.read_excel(path,sheet_name=1,header=0)
+brand2=data2[&#39;品牌&#39;]
+shop_number2=data2[&#39;门店数&#39;]
+avrg_price2=data2[&#39;客单价&#39;]
+from plotly.graph_objects import Figure,Scatter
+figure=Figure()
+trace1=Scatter(x=shop_number1,y=avrg_price1,name=&#39;直营模式&#39;,mode=&#39;markers&#39;,marker_color=&#39;Pink&#39;,marker_size=6,text = brand1)
+trace2=Scatter(x=shop_number2,y=avrg_price2,name=&#39;加盟模式&#39;,mode=&#39;markers&#39;,marker_color=&#39;SkyBlue&#39;,marker_size=6,text = brand2)
+figure.add_trace(trace1)
+figure.add_trace(trace2)
+figure.show()</code></pre>
+
+            
+        </article>
+    </div>
+    
+    <div class="nexmoe-post">
+        <a href="/2021/06/21/python/">
+            
+                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 66.66666666666666%;"> 
+                    <img data-src="https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg" data-sizes="auto" alt="python" class="lazyload">
+                    <h1>python</h1>
+                </div>
+            
+        </a>
+
+        <div class="nexmoe-post-meta nexmoe-rainbow">
+            <a><i class="nexmoefont icon-calendar-fill"></i>2021年06月21日</a>
+            <a><i class="nexmoefont icon-areachart"></i>306 字</a>
+            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
+        </div>
+
+        <article>
+            
+                <h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><p>//:整除<br>**:幂<br>and:与<br>or:或</p>
+<h2 id="列表list"><a href="#列表list" class="headerlink" title="列表list"></a>列表list</h2><p>append(插在最后的元素)<br>insert(下标,要插入的元素)<br>pop()删除最后一个元素<br>remove(n)删除n，返回none<br>pop(n)删除下标为n的元素，返回删除值<br>del(list[n])删除下标为n的元素<br>正向下标：0<del>n-1<br>反向下标：-n</del>-1</p>
+<h3 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h3><p>list[start:end]<br>start默认从头<br>end默认到尾<br>end为复数就是从最后一个开始计算，算去掉n个<br>list[start:end：-1]-1表示反向取</p>
+<h2 id="元组tuple"><a href="#元组tuple" class="headerlink" title="元组tuple"></a>元组tuple</h2><p>不可以修改元素值<br>一个元素的tuple：t=(1,)逗号要加，不然编译器会认为是一个1</p>
+<h2 id="字典dict"><a href="#字典dict" class="headerlink" title="字典dict"></a>字典dict</h2><p>创建方式一：d={‘hello’:123,’world’:456}<br>:前为key，后为value<br>创建方式二：d=dict(hello=123,world=456)</p>
+<p>Image(url=’链接’)<br>输出方式：1、print  2、代码最后一行直接输出</p>
+<h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><p>for 变量 in [1,2,3,4,5]:<br>for 变量 in range(n):从0到n的循环<br>for 变量 in range(a,b):从a，b的循环<br>for 变量 in range(a,b,c)在a到b范围内，增量为5的循环</p>
+<h2 id="引号"><a href="#引号" class="headerlink" title="引号"></a>引号</h2><p>‘’’段落’’’可以由多行组成</p>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><pre><code># 注释
+&#39;&#39;&#39;&#39;&#39;&#39;
+多行注释
+多行注释
+&#39;&#39;&#39;&#39;&#39;&#39;
+
+&#39;&#39;&#39;
+多行注释
+多行注释
+&#39;&#39;&#39;</code></pre>
+
+            
+        </article>
+    </div>
+    
+    <div class="nexmoe-post">
+        <a href="/2021/06/07/PTA%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+            
+                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 66.66666666666666%;"> 
+                    <img data-src="https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg" data-sizes="auto" alt="PTA数据结构" class="lazyload">
+                    <h1>PTA数据结构</h1>
+                </div>
+            
+        </a>
+
+        <div class="nexmoe-post-meta nexmoe-rainbow">
+            <a><i class="nexmoefont icon-calendar-fill"></i>2021年06月07日</a>
+            <a><i class="nexmoefont icon-areachart"></i>1,149 字</a>
+            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
+        </div>
+
+        <article>
+            
+                <h2 id="第一章-绪论"><a href="#第一章-绪论" class="headerlink" title="第一章 绪论"></a>第一章 绪论</h2><h3 id="填空"><a href="#填空" class="headerlink" title="填空"></a>填空</h3><p>1、_________ 是指数据元素之间的关系。<br>(结构)</p>
+<h2 id="第二章-线性表"><a href="#第二章-线性表" class="headerlink" title="第二章 线性表"></a>第二章 线性表</h2><h3 id="填空-1"><a href="#填空-1" class="headerlink" title="填空"></a>填空</h3><p>1、有一个长度为n的循环单链表L，在p所指的结点之前插入一个新结点，其时间复杂度为_________。<br>(O(n))<br><em>要遍历到p</em></p>
+<p>2、有一个含有n个元素的线性表，可以采用单链表或双链表存储，其主要的操作是插入和删除第一个元素，最好选择________作为存储结构。<br>(单链表)<br><em>因为只操作第一个元素，不用遍历，只需单链表，双链表反而多占用了存储空间，还要改变前驱后继，而单链表只有后继</em></p>
+<p>3、某个含有n个元素的线性表可以采用单链表或双链表存储结构，但要求快速删除指定位置的结点，应采用________。<br>(双链表)<br><em>因为单链表要保存前驱，需要两个指针，时间为2i，而双链表自带前驱，只需要一个指针，时间为i</em></p>
+<h2 id="第三章-栈和队列"><a href="#第三章-栈和队列" class="headerlink" title="第三章 栈和队列"></a>第三章 栈和队列</h2><h3 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h3><p>1、循环队列存储在数组A[0..m]中，其头尾指针分别为front和rear，头指针front总是指向队头元素，尾指针rear总是指向队尾元素的下一个位置，则入队时的操作为（ ）。<br>A.rear=rear+1<br>B.rear=(rear+1)%(m-1)<br>C.rear=(rear+1)%m<br>D.rear=(rear+1)%(m+1)<br>(D)<br><em>数组从0开始，容量为m+1</em></p>
+<h2 id="第四章-串、数组、广义表"><a href="#第四章-串、数组、广义表" class="headerlink" title="第四章 串、数组、广义表"></a>第四章 串、数组、广义表</h2><h3 id="选择-1"><a href="#选择-1" class="headerlink" title="选择"></a>选择</h3><p>1、若对n阶对称矩阵A以行序为主序方式将其下三角形的元素(包括主对角线上所有元素)依次存放于一维数组B[1..(n(n+1))/2]中，则在B中确定aij（i&lt;j）的位置k的关系为（ ）。<br>A.j*(j-1)/2+i<br>B.i*(i+1)/2+j<br>C.i*(i-1)/2+j<br>D.j*(j+1)/2+i<br>(A)</p>
+<h2 id="第八章-排序"><a href="#第八章-排序" class="headerlink" title="第八章 排序"></a>第八章 排序</h2><h3 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h3><p>1、对N个记录进行快速排序，在最坏的情况下，其时间复杂度是O(NlogN)。(错)<br><em>快速排序最好O(nlogn),最坏O(n^2^)</em></p>
+<p>2、内排序要求数据一定要以顺序方式存储。(错)<br><em>也可以采用链式存储方式，只是复杂度会比较高</em></p>
+<p>3、当待排序记录已经从小到大排序或者已经从大到小排序时，快速排序的执行时间最省。(错)<br><em>冒泡插入最省，时间复杂度为O(n),只要遍历一边即可</em></p>
+<p>4、希尔排序是稳定的算法。(错)<br><em>由于多次插入排序，我们知道一次插入排序是稳定的，不会改变相同元素的相对顺序，但在不同的插入排序过程中，相同的元素可能在各自的插入排序中移动，最后其稳定性就会被打乱，所以shell排序是不稳定的。</em></p>
+<p>5、直接插入排序是不稳定的排序方法。(错)<br><em>插入排序是稳定的，不会改变相同元素的相对顺序</em></p>
+<p>6、插入排序算法在每一趟都能选取出一个元素放在其最终的位置上。(错)<br><em>插入排序是将一个个元素，挨个插入一个有序数组，并不一定在最终位置上</em></p>
+<p>7、堆肯定是一棵平衡二叉树。(错)<br><em>平衡二叉树：左子树都比根小，右子树都比根大</em><br><em>堆：子树都比根大（大顶堆），或者都比根小（小顶堆）</em></p>
+<p>8、对N个记录进行堆排序，需要的额外空间为O(N)。(错)<br><em>堆排序是交换，不用额外空间，额外空间为O(1)</em></p>
+<p>9、起泡排序的排序趟数与参加排序的序列原始状态有关。(对)<br><em>主要优化就是记录了前一趟是否冒泡，如果没有产生冒泡就说明数组已经有序，直接return。如果产生了冒泡，才继续执行。</em></p>
+<p>10、给定序列｛100,86,48,73,35,39,42,57,66,21｝，按堆结构的定义，它一定是堆。(对)<br><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/6B057DC8689C4002B12579EFD738E416?method=download&shareKey=7bf43dcb3502f5959b1f03c760aae1a4" alt="avatar" class="lazyload"></p>
+<h3 id="选择-2"><a href="#选择-2" class="headerlink" title="选择"></a>选择</h3><p>1、下述几种排序方法中,( )是稳定的排序方法。(A)<br>A.归并排序<br>B.堆排序<br>C.希尔排序<br>D.快速排序<br><em>稳定性：能保证排序前2个相等的数其在序列的前后位置顺序和排序后它们两个的前后位置顺序相同</em><br><em>选择排序、快速排序、希尔排序、堆排序不是稳定的排序算法，而冒泡排序、插入排序、归并排序和基数排序是稳定的排序算法</em></p>
+
+            
+        </article>
+    </div>
     
     <div class="nexmoe-post">
         <a href="/2021/04/29/%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%9B%BD%E8%B5%9B/">
@@ -1716,234 +1879,10 @@ int main() &#123;
         </article>
     </div>
     
-    <div class="nexmoe-post">
-        <a href="/2021/04/05/queue%E5%AE%B9%E5%99%A8/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 66.66666666666666%;"> 
-                    <img data-src="https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg" data-sizes="auto" alt="queue容器" class="lazyload">
-                    <h1>queue容器</h1>
-                </div>
-            
-        </a>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2021年04月05日</a>
-            <a><i class="nexmoefont icon-areachart"></i>194 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
-        </div>
-
-        <article>
-            
-                <h2 id="queue基本概念"><a href="#queue基本概念" class="headerlink" title="queue基本概念"></a>queue基本概念</h2><p><strong>概念：</strong>queue是一种<strong>先进先出(FIFO)**的数据结构，它有两个出口<br><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/01098DE6754544829AF61E9741BA3E69?method=download&shareKey=a262159694a945ba55f12e544ad818e4" alt="avatar" class="lazyload"><br>队列容器允许从一端新增元素，从另一端移除元素<br>队列中只有对头和队尾才可以被外界使用，因此队列不允许有遍历行为<br>队列中进数据称为 — **入队</strong> push<br>队列中出数据称为 — <strong>出队</strong> pop</p>
-<h2 id="queue常用接口"><a href="#queue常用接口" class="headerlink" title="queue常用接口"></a>queue常用接口</h2><p>功能描述：栈容器常用的对外接口<br>构造函数：</p>
-<pre><code>queue&lt;T&gt; que;//queue采用模板类实现，queue对象的默认构造形式</code></pre>
-<p>赋值操作：</p>
-<pre><code>queue&amp; operator=(const queue &amp;que);//重载等号操作符</code></pre>
-<p>数据存取：</p>
-<pre><code>push(elem);//往队尾添加元素
-pop();//从队头移除第一个元素
-back();//返回最后一个元素
-front()</code></pre>
-
-            
-        </article>
-    </div>
-    
-    <div class="nexmoe-post">
-        <a href="/2021/04/05/stack%E5%AE%B9%E5%99%A8/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 66.66666666666666%;"> 
-                    <img data-src="https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg" data-sizes="auto" alt="stack容器" class="lazyload">
-                    <h1>stack容器</h1>
-                </div>
-            
-        </a>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2021年04月05日</a>
-            <a><i class="nexmoefont icon-areachart"></i>480 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
-        </div>
-
-        <article>
-            
-                <h2 id="stack基本概念"><a href="#stack基本概念" class="headerlink" title="stack基本概念"></a>stack基本概念</h2><p><strong>概念：</strong> stack是一种<strong>先进后出(FILO)</strong> 的数据结构，它只有一个出口<br><img data-fancybox="gallery" data-sizes="auto" data-src="https://note.youdao.com/yws/api/personal/file/C1D7F363201F49FDA0C457E161C98504?method=download&shareKey=92e843870677f529fe02d67424f904c5" alt="avatar" class="lazyload"><br>栈中只有顶端的元素才可以被外界使用，因此栈不允许有遍历行为<br>栈中进入数据称为 — <strong>入栈</strong> push<br>栈中弹出数据称为 — <strong>出栈</strong> pop</p>
-<h2 id="stack常用接口"><a href="#stack常用接口" class="headerlink" title="stack常用接口"></a>stack常用接口</h2><p>功能描述：栈容器常用的对外接口</p>
-<p>构造函数：</p>
-<pre><code>stack&lt;T&gt; stk;//stack采用模板类实现，stack对象的默认构造形式
-stack(const stack &amp;stk);//拷贝构造函数</code></pre>
-<p>赋值操作：</p>
-<pre><code>stack&amp; operator=(const stack &amp;stk);//重载等号重载符</code></pre>
-<p>数据存取：</p>
-<pre><code>push(elem);//向栈顶添加元素
-pop();//从栈顶移除第一个元素
-top();//返回栈顶元素</code></pre>
-<p>大小操作：</p>
-<pre><code>empty();//判断堆栈是否为空
-size();//返回栈的大小
-
-#include&lt;iostream&gt;
-#include&lt;stack&gt;
-using namespace std;
-void test01() &#123;
-    //特点：符合先进后出数据结构
-    stack&lt;int&gt;s;
-    s.push(10);
-    s.push(20);
-    s.push(30);
-    s.push(40);
-    //只要栈不为空，查看栈顶，并且执行出栈操作
-    while (!s.empty()) &#123;
-        //查看栈顶元素
-        cout &lt;&lt; &quot;栈顶元素为： &quot; &lt;&lt; s.top() &lt;&lt; endl;
-        s.pop();
-    &#125;
-    cout &lt;&lt; &quot;栈的大小： &quot; &lt;&lt; s.size() &lt;&lt; endl;//0
-&#125;
-int main() &#123;
-    test01();
-    system(&quot;pause&quot;);
-    return 0;
-&#125;</code></pre>
-<p>总结：<br><strong>·</strong> 入栈 — push<br><strong>·</strong> 出栈 — pop<br><strong>·</strong> 返回栈顶 — top<br><strong>·</strong> 判断栈是否为空 — empty<br><strong>·</strong> 返回栈大小 — size</p>
-<pre><code>#include&lt;iostream&gt;
-#include&lt;queue&gt;
-#include&lt;string&gt;
-using namespace std;
-class person &#123;
-public:
-    string m_name;
-    int m_age;
-    person(string name, int age) &#123;
-        this-&gt;m_name = name;
-        this-&gt;m_age = age;
-    &#125;
-&#125;;
-void test01() &#123;
-    queue&lt;person&gt;q;
-    //准备数据
-    person p1(&quot;唐僧&quot;, 30);
-    person p2(&quot;孙悟空&quot;, 60);
-    person p3(&quot;猪八戒&quot;, 70);
-    q.push(p1);
-    q.push(p2);
-    q.push(p3);
-    while (!q.empty()) &#123;
-        //查看队头
-        cout &lt;&lt; &quot;队头元素 --- &quot; &lt;&lt; q.front().m_name &lt;&lt; &quot; &quot; &lt;&lt; q.front().m_age &lt;&lt; endl;//
-        //查看队尾
-        cout &lt;&lt; &quot;队尾元素 --- &quot; &lt;&lt; q.back().m_name &lt;&lt; &quot; &quot; &lt;&lt; q.back().m_age &lt;&lt; endl;
-        q.pop();//出队
-    &#125;
-    cout &lt;&lt; &quot;大小： &quot; &lt;&lt; q.size() &lt;&lt; endl;
-    //队头元素-- - 唐僧 30
-    //队尾元素-- - 猪八戒 70
-    //队头元素-- - 孙悟空 60
-    //队尾元素-- - 猪八戒 70
-    //队头元素-- - 猪八戒 70
-    //队尾元素-- - 猪八戒 70
-    //大小： 0
-&#125;
-int main() &#123;
-    test01();
-    system(&quot;pause&quot;);
-    return 0;
-&#125;</code></pre>
-
-            
-        </article>
-    </div>
-    
-    <div class="nexmoe-post">
-        <a href="/2021/04/05/%E6%A1%88%E4%BE%8B-%E8%AF%84%E5%A7%94%E6%89%93%E5%88%86/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 66.66666666666666%;"> 
-                    <img data-src="https://www.ghostoact.com/static/arts/img/splash/ahg615rifrrse5hyet6y6ysdfltddov4.jpg" data-sizes="auto" alt="案例-评委打分" class="lazyload">
-                    <h1>案例-评委打分</h1>
-                </div>
-            
-        </a>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2021年04月05日</a>
-            <a><i class="nexmoefont icon-areachart"></i>357 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
-        </div>
-
-        <article>
-            
-                <h2 id="案例描述"><a href="#案例描述" class="headerlink" title="案例描述"></a>案例描述</h2><p>有5名选手：选手ABCDE，10个评委分别对每一名选手打分，去除最高分，去除评委中最低分</p>
-<h2 id="步骤实现"><a href="#步骤实现" class="headerlink" title="步骤实现"></a>步骤实现</h2><p>1、创建五名选手，放到vector中<br>2、遍历vector容器，去除来每一个选手，执行for循环，可以把10个评分存到deque容器中<br>3、sort算法对deque容器中分数排序，去除最高和最低分<br>4、deque容器遍历一遍，累加总分<br>5、获取平均分</p>
-<pre><code>#include&lt;iostream&gt;
-#include&lt;deque&gt;
-#include&lt;vector&gt;
-#include&lt;algorithm&gt;
-#include&lt;string&gt;
-#include&lt;ctime&gt;
-using namespace std;
-class person &#123;
-public:
-    string m_name;
-    int m_score;
-    person(string name, int score) &#123;
-        this-&gt;m_name = name;
-        this-&gt;m_score = score;
-    &#125;
-&#125;;
-void createperson(vector&lt;person&gt;&amp;v) &#123;
-    string nameseed = &quot;ABCDE&quot;;
-    for (int i = 0;i &lt; 5;i++) &#123;
-        string name = &quot;选手&quot;;
-        name += nameseed[i];
-        int score = 0;
-        person p(name, score);
-        v.push_back(p);//将创建的person对象，放入容器中
-    &#125;
-&#125;
-void setscore(vector&lt;person&gt;&amp;v) &#123;
-    for (vector&lt;person&gt;::iterator it = v.begin();it != v.end();it++) &#123;
-        //将评委的分数放到deque容器中
-        deque&lt;int&gt;d;
-        for (int i = 0;i &lt; 10;i++) &#123;
-            int score = rand() % 41 + 60;//随机60-100
-              d.push_back(score);
-        &#125;
-        sort(d.begin(), d.end());
-        //去除最高和最低分
-        d.pop_back();
-        d.pop_front();
-        //取平均分
-        int sum = 0;
-        for (deque&lt;int&gt;::iterator dit = d.begin();dit != d.end();dit++) &#123;
-            sum += (*dit);
-        &#125;
-        int ave = sum / d.size();
-        //将平均分赋值给选手
-        it-&gt;m_score = ave;
-    &#125;
-&#125;
-int main() &#123;
-    //随机数种子
-    srand((unsigned int)time(NULL));
-    vector&lt;person&gt;v;//存放选手的容器
-    createperson(v);
-    //打分
-    setscore(v);
-    for (vector&lt;person&gt;::iterator it = v.begin();it != v.end();it++) &#123;
-        cout &lt;&lt; &quot;姓名： &quot; &lt;&lt; (*it).m_name &lt;&lt; &quot; &quot; &lt;&lt; &quot;分数： &quot; &lt;&lt; (*it).m_score &lt;&lt; endl;
-    &#125;
-    system(&quot;pause&quot;);
-    return 0;
-&#125;</code></pre>
-
-            
-        </article>
-    </div>
-    
 </section>
 
     <nav class="nexmoe-page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="nexmoefont icon-right"></i></a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="nexmoefont icon-right"></i></a>
     </nav>
   
     </div>
@@ -1958,7 +1897,7 @@ int main() &#123;
 
 
 <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
- <script src="/js/app.js?v=1622805824170"></script>
+ <script src="/js/app.js?v=1624596662865"></script>
 
   
 
