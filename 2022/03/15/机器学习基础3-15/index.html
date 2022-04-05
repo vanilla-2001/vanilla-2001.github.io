@@ -1,0 +1,200 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>机器学习基础3.15 | Vanilla's Blog</title><meta name="author" content="vanilla"><meta name="copyright" content="vanilla"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Numpy安装numpypip install numpy archive.ics.uci.edu获取数据集网址 np.array()将序列传入数组 123456789import numpy as npna1&#x3D;np.array([1,2,3])na2&#x3D;np.array((1,2,3),dtype&#x3D;np.float64)#元组，两个参数，元组和类型na3&#x3D;np.array(range(3))pri">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习基础3.15">
+<meta property="og:url" content="http://example.com/2022/03/15/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%803-15/index.html">
+<meta property="og:site_name" content="Vanilla&#39;s Blog">
+<meta property="og:description" content="Numpy安装numpypip install numpy archive.ics.uci.edu获取数据集网址 np.array()将序列传入数组 123456789import numpy as npna1&#x3D;np.array([1,2,3])na2&#x3D;np.array((1,2,3),dtype&#x3D;np.float64)#元组，两个参数，元组和类型na3&#x3D;np.array(range(3))pri">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/03/19/1LBSU2kc3TCn4JZ.png">
+<meta property="article:published_time" content="2022-03-15T05:13:58.000Z">
+<meta property="article:modified_time" content="2022-03-19T10:26:01.223Z">
+<meta property="article:author" content="vanilla">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/03/19/1LBSU2kc3TCn4JZ.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/03/15/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%803-15/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '机器学习基础3.15',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-03-19 18:26:01'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Vanilla's Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">68</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F0389822590d681ba801214550b3e12a.jpg&amp;refer=http%3A%2F%2Fimg.zcool.cn&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1648809656&amp;t=45d3426ae690348bdad2aa916ed5dc60')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Vanilla's Blog</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">机器学习基础3.15</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-03-15T05:13:58.000Z" title="发表于 2022-03-15 13:13:58">2022-03-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-03-19T10:26:01.223Z" title="更新于 2022-03-19 18:26:01">2022-03-19</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="机器学习基础3.15"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h1><p>安装numpy<br>pip install numpy</p>
+<p>archive.ics.uci.edu获取数据集网址</p>
+<p>np.array()将序列传入数组</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">na1=np.array([1,2,3])</span><br><span class="line">na2=np.array((1,2,3),dtype=np.float64)#元组，两个参数，元组和类型</span><br><span class="line">na3=np.array(range(3))</span><br><span class="line">print(na1,type(na1),na1.dtype)</span><br><span class="line">print(na2,type(na2),na2.dtype)</span><br><span class="line">print(na3,type(na3),na3.dtype)</span><br><span class="line">na4=np.array([[1,2,3],[4,5,6]],dtype=complex)</span><br><span class="line">print(na4,type(na4),na4.dtype)</span><br></pre></td></tr></table></figure>
+
+<h2 id="dtypy两个用处"><a href="#dtypy两个用处" class="headerlink" title="dtypy两个用处"></a>dtypy两个用处</h2><p>指定数据类型<br>显示数据类型</p>
+<p>可以用.astype()修改数据类型</p>
+<h2 id="基本属性"><a href="#基本属性" class="headerlink" title="基本属性"></a>基本属性</h2><p>.ndim:秩，即数组维数，返回int<br>.shape：数组的尺寸，对一个n行m列的举证，shape值为(n, m),返回tuple<br>.size:数组中元素的总个数，返回int<br>.dtype:每个元素的类型，如：np.int32,np.int16,np.float64等，返回data-type<br>.itemsize：每个元素所占字节大小，返回int，由dtype决定<br>.data:指向数据内存</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">arr1=np.array([[1,2,3,4,5],[2,3,4,5,6],[3,4,5,6,7]])</span><br><span class="line">print(arr1.ndim)</span><br><span class="line">print(arr1.shape)</span><br><span class="line">print(arr1.size)</span><br><span class="line">print(arr1.dtype)</span><br><span class="line">print(arr1.itemsize)</span><br><span class="line">print(arr1.data)</span><br></pre></td></tr></table></figure>
+
+<p>import numpy as np<br>arr1&#x3D;np.array([[1,2,3,4,5],[2,3,4,5,6],[3,4,5,6,7]])<br>print(arr1.ndim)<br>print(arr1.shape)<br>print(arr1.size)<br>print(arr1.dtype)<br>print(arr1.itemsize)<br>print(arr1.data)<br>import numpy as np<br>arr1&#x3D;np.array([[1,2,3,4,5],[2,3,4,5,6],[3,4,5,6,7]])<br>print(arr1.ndim)<br>print(arr1.shape)<br>print(arr1.size)<br>print(arr1.dtype)<br>print(arr1.itemsize)<br>print(arr1.data)<br>2<br>(3, 5)<br>15<br>int32<br>4<br>‘&lt;’memory at 0x000002B3093CFB40’&gt;’</p>
+<h3 id="reshape改变形状（一维数组变成二维数组）"><a href="#reshape改变形状（一维数组变成二维数组）" class="headerlink" title="reshape改变形状（一维数组变成二维数组）"></a>reshape改变形状（一维数组变成二维数组）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">arr1=np.arange(10)</span><br><span class="line">print(arr1.ndim)</span><br><span class="line">arr2=arr1.reshape(2,5)</span><br><span class="line">print(arr1)</span><br><span class="line">print(arr2)</span><br><span class="line">print(arr2.ndim)</span><br></pre></td></tr></table></figure>
+<p>1<br>[0 1 2 3 4 5 6 7 8 9]<br>[[0 1 2 3 4]<br> [5 6 7 8 9]]<br>2</p>
+<p>reshape():不会改变原数组，返回新数组<br>resize()：会改变原数组，仅仅是一个动作，没有返回值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">arr1=np.arange(10)</span><br><span class="line">print(arr1.ndim)</span><br><span class="line">arr2=arr1.resize(2,5)</span><br><span class="line">print(arr1)</span><br><span class="line">print(arr2)</span><br></pre></td></tr></table></figure>
+
+<p>如果分不成，会报错，例如10分成3，3<br>可以少写一个参数，系统会自动计算，少写的数字用-1</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">arr1=np.arange(10)</span><br><span class="line">print(arr1)</span><br><span class="line">arr2=arr1.reshape(2,-1)</span><br><span class="line">print(arr2)</span><br></pre></td></tr></table></figure>
+<p>import numpy as np<br>arr1&#x3D;np.arange(10)<br>print(arr1)<br>arr2&#x3D;arr1.reshape(2,-1)<br>print(arr2)<br>import numpy as np<br>arr1&#x3D;np.arange(10)<br>print(arr1)<br>arr2&#x3D;arr1.reshape(2,-1)<br>print(arr2)<br>[0 1 2 3 4 5 6 7 8 9]<br>[[0 1 2 3 4]<br> [5 6 7 8 9]]</p>
+<p>arr.shape(n, m)相当于arr.resize(n, m)都是在原数组上改变</p>
+<h1 id="其他创建数组方式"><a href="#其他创建数组方式" class="headerlink" title="其他创建数组方式"></a>其他创建数组方式</h1><h2 id="empty"><a href="#empty" class="headerlink" title="empty()"></a>empty()</h2><ul>
+<li>类似.array()函数，创建一个指定形状、数据类型的空数组</li>
+<li>这个数组没有初始化，内容为空，数组元素值不确定，因为所用空间没有初始化<br><img src="https://s2.loli.net/2022/03/15/HlGLU8652WFsAQX.png" alt="avatar"><br>多次生成都不一样</li>
+</ul>
+<p>.zeros(),.ones()全0全1数组</p>
+<h2 id="产生数列的函数"><a href="#产生数列的函数" class="headerlink" title="产生数列的函数"></a>产生数列的函数</h2><p>range()<br>arange()起始终止和步长可以不是整数<br>linspace()可以决定要不要结束值</p>
+<p>构造二维：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">d=np.array([np.arange(1,3),np.arange(3.3,4.4,0.3)])</span><br><span class="line">print(d)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">x1 = np.linspace(0,10,8,endpoint=False)</span><br><span class="line">x2=np.linspace(0,10,8)</span><br><span class="line">print(x1)</span><br><span class="line">print(x2)</span><br></pre></td></tr></table></figure>
+<p>[0.   1.25 2.5  3.75 5.   6.25 7.5  8.75]<br>[ 0.          1.42857143  2.85714286  4.28571429  5.71428571  7.14285714<br>  8.57142857 10.        ]</p>
+<h2 id="画散点图"><a href="#画散点图" class="headerlink" title="画散点图"></a>画散点图</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">N=8</span><br><span class="line">y=np.zeros(N)</span><br><span class="line">x1 = np.linspace(0,10,N,endpoint=False)</span><br><span class="line">x2=np.linspace(0,10,N)</span><br><span class="line"></span><br><span class="line">plt.rcParams[&#x27;font.sans-serif&#x27;]=&#x27;SimHei&#x27;#统一设定字体</span><br><span class="line">plt.rcParams[&#x27;axes.unicode_minus&#x27;]=False</span><br><span class="line"></span><br><span class="line">plt.title(&#x27;符合均匀分布的数据&#x27;,color=&#x27;r&#x27;,size=&#x27;20&#x27;)</span><br><span class="line">plt.xlabel(&#x27;X值&#x27;,color=&#x27;b&#x27;,size=&#x27;20&#x27;)</span><br><span class="line">plt.ylabel(&#x27;Y值&#x27;,color=&#x27;b&#x27;,size=&#x27;20&#x27;)</span><br><span class="line">plt.ylim((-1,1))#设置坐标值</span><br><span class="line">plt.scatter(x1,y-0.3)</span><br><span class="line">plt.scatter(x2,y+0.3)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure><script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css"></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">vanilla</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/03/15/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%803-15/">http://example.com/2022/03/15/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%803-15/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Vanilla's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://s2.loli.net/2022/03/19/1LBSU2kc3TCn4JZ.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/03/16/%E6%B7%B1%E5%85%A5JSP%E6%8A%80%E6%9C%AF/"><img class="prev-cover" src="https://s2.loli.net/2022/03/19/Sw7LriGDBqFpX58.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">深入JSP技术</div></div></a></div><div class="next-post pull-right"><a href="/2022/03/15/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B03-15/"><img class="next-cover" src="https://s2.loli.net/2022/03/19/hUjbakLGfeMd7E6.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Web课堂笔记3.15</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">vanilla</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">68</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Numpy"><span class="toc-number">1.</span> <span class="toc-text">Numpy</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#dtypy%E4%B8%A4%E4%B8%AA%E7%94%A8%E5%A4%84"><span class="toc-number">1.1.</span> <span class="toc-text">dtypy两个用处</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%B1%9E%E6%80%A7"><span class="toc-number">1.2.</span> <span class="toc-text">基本属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#reshape%E6%94%B9%E5%8F%98%E5%BD%A2%E7%8A%B6%EF%BC%88%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84%E5%8F%98%E6%88%90%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">reshape改变形状（一维数组变成二维数组）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84%E6%96%B9%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">其他创建数组方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#empty"><span class="toc-number">2.1.</span> <span class="toc-text">empty()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%A7%E7%94%9F%E6%95%B0%E5%88%97%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-number">2.2.</span> <span class="toc-text">产生数列的函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%BB%E6%95%A3%E7%82%B9%E5%9B%BE"><span class="toc-number">2.3.</span> <span class="toc-text">画散点图</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/04/05/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A04-5/" title="机器学习4.5"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="机器学习4.5"/></a><div class="content"><a class="title" href="/2022/04/05/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A04-5/" title="机器学习4.5">机器学习4.5</a><time datetime="2022-04-05T05:16:04.000Z" title="发表于 2022-04-05 13:16:04">2022-04-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/05/web%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B04-5/" title="web课堂笔记4.5"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="web课堂笔记4.5"/></a><div class="content"><a class="title" href="/2022/04/05/web%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B04-5/" title="web课堂笔记4.5">web课堂笔记4.5</a><time datetime="2022-04-05T00:15:22.000Z" title="发表于 2022-04-05 08:15:22">2022-04-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%803-29/" title="机器学习基础3.29"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="机器学习基础3.29"/></a><div class="content"><a class="title" href="/2022/03/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%803-29/" title="机器学习基础3.29">机器学习基础3.29</a><time datetime="2022-03-29T05:11:23.000Z" title="发表于 2022-03-29 13:11:23">2022-03-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/29/web%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B03-29/" title="web课堂笔记3.29"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="web课堂笔记3.29"/></a><div class="content"><a class="title" href="/2022/03/29/web%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B03-29/" title="web课堂笔记3.29">web课堂笔记3.29</a><time datetime="2022-03-29T00:17:06.000Z" title="发表于 2022-03-29 08:17:06">2022-03-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/26/web%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B03-26/" title="web课堂笔记3.26"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="web课堂笔记3.26"/></a><div class="content"><a class="title" href="/2022/03/26/web%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B03-26/" title="web课堂笔记3.26">web课堂笔记3.26</a><time datetime="2022-03-26T02:11:11.000Z" title="发表于 2022-03-26 10:11:11">2022-03-26</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By vanilla</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,475 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>C++ 类和对象-封装 | Vanilla's Blog</title><meta name="keywords" content="C++"><meta name="author" content="vanilla"><meta name="copyright" content="vanilla"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="C++面向对象的三大特性为：封装、继承、多态C++认为万事万物皆为对象，对象上有其属性和行为 例如：人可以作为对象，属性有姓名、年龄、身高、体重…，行为有走、跑、跳、吃饭、唱歌…车也可以作为对象，属性有轮胎、方向盘、车灯…，行为有载人、放音乐、放空调…具有相同属性的对象，我们可以抽象称为类，人属于人类，车属于车类 封装的意义封装是C++面向对象的三大特性之一封装的意义：· 将属性和行为作为一个整体">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 类和对象-封装">
+<meta property="og:url" content="http://example.com/2021/01/28/C++%20%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1-%E5%B0%81%E8%A3%85/index.html">
+<meta property="og:site_name" content="Vanilla&#39;s Blog">
+<meta property="og:description" content="C++面向对象的三大特性为：封装、继承、多态C++认为万事万物皆为对象，对象上有其属性和行为 例如：人可以作为对象，属性有姓名、年龄、身高、体重…，行为有走、跑、跳、吃饭、唱歌…车也可以作为对象，属性有轮胎、方向盘、车灯…，行为有载人、放音乐、放空调…具有相同属性的对象，我们可以抽象称为类，人属于人类，车属于车类 封装的意义封装是C++面向对象的三大特性之一封装的意义：· 将属性和行为作为一个整体">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/A4C6DA4F70A3452AB3A6C452979657C0?method=download&shareKey=003485de03acca146ed8042c1f2baee1">
+<meta property="article:published_time" content="2021-01-28T05:56:24.000Z">
+<meta property="article:modified_time" content="2021-01-28T08:02:02.000Z">
+<meta property="article:author" content="vanilla">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/A4C6DA4F70A3452AB3A6C452979657C0?method=download&shareKey=003485de03acca146ed8042c1f2baee1"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/01/28/C++%20%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1-%E5%B0%81%E8%A3%85/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'C++ 类和对象-封装',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-01-28 16:02:02'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Vanilla's Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">68</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://note.youdao.com/yws/api/personal/file/A4C6DA4F70A3452AB3A6C452979657C0?method=download&amp;shareKey=003485de03acca146ed8042c1f2baee1')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Vanilla's Blog</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">C++ 类和对象-封装</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-01-28T05:56:24.000Z" title="发表于 2021-01-28 13:56:24">2021-01-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-28T08:02:02.000Z" title="更新于 2021-01-28 16:02:02">2021-01-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/C/">C++</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="C++ 类和对象-封装"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>C++面向对象的三大特性为：<font color=#FF7171><strong>封装、继承、多态</strong></font><br>C++认为万事万物皆为对象，对象上有其属性和行为</p>
+<p><strong>例如：</strong><br>人可以作为对象，属性有姓名、年龄、身高、体重…，行为有走、跑、跳、吃饭、唱歌…<br>车也可以作为对象，属性有轮胎、方向盘、车灯…，行为有载人、放音乐、放空调…<br>具有相同属性的<font color=#FF7171><strong>对象</strong></font>，我们可以抽象称为<font color=#FF7171><strong>类</strong></font>，人属于人类，车属于车类</p>
+<h2 id="封装的意义"><a href="#封装的意义" class="headerlink" title="封装的意义"></a>封装的意义</h2><p>封装是C++面向对象的三大特性之一<br>封装的意义：<br><strong>·</strong> 将属性和行为作为一个整体，表现生活中的事物<br><strong>·</strong> 将属性和行为加以权限控制</p>
+<h3 id="封装意义一："><a href="#封装意义一：" class="headerlink" title="封装意义一："></a>封装意义一：</h3><p>在设计类的时候，属性和行为写在一起，表现事物<br>语法：class 类名{  访问权限：属性 &#x2F;行为};</p>
+<p>示例1：设计一个圆类，求圈的周长</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+const double PI = 3.14;
+//class代表设计一个类，类后面紧跟的就是类名
+class circle &#123;
+    //访问权限
+    public://公共权限
+    //属性
+    int r;
+    //行为
+    double calculateC() &#123;
+        return 2 * PI * r;
+    &#125;//获取圆的周长
+&#125;;
+int main() &#123;
+    //通过圆类，创建具体的圆（对象）
+    //实例化
+    circle c1;
+    //给圆对象的属性进行赋值
+    c1.r = 10;
+    cout &lt;&lt; &quot;圆的周长为： &quot; &lt;&lt; c1.calculateC() &lt;&lt; endl;
+    system(&quot;pause&quot;);
+    return 0;
+&#125;
+</code></pre>
+<p>示例2：设计一个学生类，属性有姓名和学号，可以给姓名和学号赋值，可以显示学生的姓名和学号</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+//设计学生类
+class student &#123;
+public://公共权限
+    //属性
+    string name;
+    int id;
+    //行为
+    //显示姓名和学号
+    void showstudent() &#123;
+        cout &lt;&lt; &quot;姓名： &quot; &lt;&lt; name &lt;&lt;&quot;\t&quot;&lt;&lt; &quot;学号：&quot; &lt;&lt; id &lt;&lt; endl;
+    &#125;
+    void setname(string Name) &#123;
+        name = Name;
+    &#125;
+&#125;;
+int main() &#123;
+    //创建一个具体的学生  实例化对象
+    student s1;
+    //给s1对象进行属性赋值操作
+    s1.setname(&quot;张三&quot;);//调用函数赋值
+    s1.id = 1;
+    s1.showstudent();
+    student s2;
+    s2.name = &quot;李四&quot;;//直接赋值
+    s2.id = 2;
+    s2.showstudent();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;
+</code></pre>
+<p>类中的属性和行为，我们统一称为成员<br><font color=#FF7171>属性</font>也称为<font color=#FF7171>成员属性、成员变量</font><br><font color=#FF7171>行为</font>也称为<font color=#FF7171>成员函数、成员方法</font></p>
+<h3 id="封装意义二："><a href="#封装意义二：" class="headerlink" title="封装意义二："></a>封装意义二：</h3><p>类在设计时，可以把属性和行为放在不同的权限下，加以控制<br>访问权限有三种：<br>1、puclic    公共权限    类内可以访问    类外可以访问<br>2、protected 保护权限    类内可以访问    类外不可以访问    儿子也可以访问父亲中的保护内容<br>3、private   私有权限    类内可以访问    类外不可以访问    儿子不可以访问父亲中的私有内容</p>
+<pre><code>class person &#123;
+public://公共权限
+    string name;
+protected://保护权限
+    string car;
+private://私有权限
+    int password;
+public:
+    void func() &#123;
+        name = &quot;张三&quot;;
+        car = &quot;拖拉机&quot;;
+        password = 123456;
+    &#125;//类内全可以访问，合法
+&#125;;
+int main() &#123;
+    person p1;//实例化具体对象
+    p1.name = &quot;李四&quot;;//合法
+    p1.car = &quot;奔驰&quot;;//非法报错，保护权限的内容在类外无法访问
+    p1.password = 123;//非法报错，私有权限的内容在类外无法访问
+    system(&quot;pause&quot;);
+    return 0;
+&#125;
+</code></pre>
+<h2 id="struct和class区别"><a href="#struct和class区别" class="headerlink" title="struct和class区别"></a>struct和class区别</h2><p>在C++中struct和class唯一的<strong>区别</strong>就在于<strong>默认的访问权限不同</strong><br>区别：<br><strong>·</strong> struct默认权限为公开<br><strong>·</strong> class默认权限为私有</p>
+<pre><code>class c1 &#123;
+    int a;//默认是私有权限private
+&#125;;
+struct c2 &#123;
+    int a;//默认是公共权限public
+&#125;;
+int main() &#123;
+    c1 x;
+    x.a = 100;//非法，报错，在class里默认权限是私有，类外不可访问
+    c2 y;
+    y.a = 100;//合法，在struct里默认权限是公共，类外可以访问
+    system(&quot;pause&quot;);
+    return 0;
+&#125;
+</code></pre>
+<h2 id="成员属性私有化"><a href="#成员属性私有化" class="headerlink" title="成员属性私有化"></a>成员属性私有化</h2><p><strong>优点1：</strong>将所有成员属性设置为私有，可以自己控制读写权限<br><strong>优点2：</strong>对于写权限，我们可以检测数据的有效性</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+class person &#123;
+public:
+    //设置姓名
+    void setname(string Name) &#123;
+        name = Name;
+    &#125;
+    //获取姓名
+    string getname() &#123;
+        return name;
+    &#125;
+    //设置年龄
+    void setage(int Age) &#123;
+        if (Age &lt; 0 || Age &gt; 150) &#123;
+            return;
+        &#125;
+        age = Age;
+    &#125;
+    //获取年龄
+    int getage() &#123;
+        return age;
+    &#125;
+    //设置情人 只写
+    void setlover(string Lover) &#123;
+        lover = Lover;
+    &#125;
+private:
+    string name;//可读可写
+    int age;//可读可写
+    string lover;//只写
+&#125;;
+int main() &#123;
+    person p;
+    p.setname(&quot;张三&quot;);
+    cout &lt;&lt; &quot;姓名为： &quot; &lt;&lt; p.getname() &lt;&lt; endl;
+    p.setage(15);
+    cout &lt;&lt; &quot;年龄为： &quot; &lt;&lt; p.getage() &lt;&lt; endl;
+    p.setlover(&quot;苍井&quot;);
+    system(&quot;pause&quot;);
+    return 0;
+&#125;
+</code></pre>
+<h2 id="练习案例1：设计立方体类"><a href="#练习案例1：设计立方体类" class="headerlink" title="练习案例1：设计立方体类"></a>练习案例1：设计立方体类</h2><p>设计立方体类<br>求出立方体的面积和体积<br>分别用全局函数和成员函数判断两个立方体是否相等</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+class cube &#123;
+public:
+    //行为
+    //设置获取长宽高
+    void setl(int l) &#123;
+        m_l = l;
+    &#125;
+    void setw(int w) &#123;
+        m_w = w;
+    &#125;
+    void seth(int h) &#123;
+        m_h = h;
+    &#125;
+    int getl() &#123;
+        return m_l;
+    &#125;
+    int getw() &#123;
+        return m_w;
+    &#125;
+    int geth() &#123;
+        return m_h;
+    &#125;
+    //获取立方体面积
+    int calculates() &#123;
+        return 2 * m_l * m_w + 2 * m_l * m_h + 2 * m_w * m_h;
+    &#125;
+    //获取立方体体积
+    int calculatev() &#123;
+        return m_l * m_w * m_h;
+    &#125;
+    //利用成员函数来判断两个立方体是否相等
+    bool issamebyclass(cube &amp;c) &#123;
+        if (m_l == c.getl() &amp;&amp; m_w == c.getw() &amp;&amp; m_h == c.geth())
+            return true;
+        else return false;
+    &#125;
+private:
+    //属性
+    int m_l;
+    int m_w;
+    int m_h;
+&#125;;
+//利用全局函数来判断两个立方体是否相等
+bool issame(cube &amp;c1,cube &amp;c2) &#123;
+    if (c1.getl() == c2.getl() &amp;&amp; c1.getw() == c2.getw() &amp;&amp; c1.geth() == c2.geth())
+        return true;
+    else return false;
+&#125;
+int main() &#123;
+    cube c1;//创建立方体对象
+    c1.seth(10);
+    c1.setl(10);
+    c1.setw(10);
+    cube c2;//创建第二个立方体对象
+    c2.seth(10);
+    c2.setl(10);
+    c2.setw(11);
+    //利用全局函数判断
+    bool ret1 = issame(c1, c2);
+    if (ret1) &#123;
+        cout &lt;&lt; &quot;全局函数  相等&quot; &lt;&lt; endl;
+    &#125;
+    else cout &lt;&lt; &quot;全局函数  不相等&quot; &lt;&lt; endl;
+    //利用成员函数判断
+    bool ret2 = c1.issamebyclass(c2);
+    if (ret2) &#123;
+        cout &lt;&lt; &quot;成员函数  相等&quot; &lt;&lt; endl;
+    &#125;
+    else cout &lt;&lt; &quot;成员函数  不相等&quot; &lt;&lt; endl;
+    cout &lt;&lt; &quot;c1的面积为&quot; &lt;&lt; c1.calculates() &lt;&lt; endl;
+    cout &lt;&lt; &quot;c1的体积为&quot; &lt;&lt; c1.calculatev() &lt;&lt; endl;
+    system(&quot;pause&quot;);
+    return 0;
+&#125;
+</code></pre>
+<p><img src="https://note.youdao.com/yws/api/personal/file/425BCDF0E8B349DC89F1552DC597C41B?method=download&shareKey=ac33d663777a01a8ff55d5758d8d12ea" alt="avatar"></p>
+<h2 id="练习案例2-点和圆的关系"><a href="#练习案例2-点和圆的关系" class="headerlink" title="练习案例2:点和圆的关系"></a>练习案例2:点和圆的关系</h2><p>设计一个圆类，和一个点类，计算点和圆的关系</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+//点类
+class point &#123;
+public:
+    void setx(int x) &#123;
+        m_x = x;
+    &#125;
+    int getx() &#123;
+        return m_x;
+    &#125;
+    void sety(int y) &#123;
+        m_y = y;
+    &#125;
+    int gety() &#123;
+        return m_y;
+    &#125;
+private:
+    int m_x;
+    int m_y;
+&#125;;
+//圆类
+class circle &#123;
+public:
+    void setr(int r) &#123;
+        m_r = r;
+    &#125;
+    int getr() &#123;
+        return m_r;
+    &#125;
+    void setcenter(point center) &#123;
+        m_center = center;
+    &#125;
+     point getcenter() &#123;
+        return m_center;
+    &#125;
+private:
+    int m_r;
+    point m_center;//在类中，可以让另一个类作为本类中的成员
+&#125;;
+//判断点和圆关系
+void isin(circle &amp;c, point &amp;p) &#123;
+    //计算两点之间距离的平方
+    int distance = (c.getcenter().getx() - p.getx())*(c.getcenter().getx() - p.getx()) + (c.getcenter().gety() - p.gety())*(c.getcenter().gety() - p.gety());
+        //半径的平方
+    int rdistance = c.getr()*c.getr();
+    //判断关系
+    if (distance == rdistance) &#123;
+        cout &lt;&lt; &quot;点在圆上&quot; &lt;&lt; endl;
+    &#125;  
+    else if (distance &gt; rdistance) &#123;
+        cout &lt;&lt; &quot;点在圆外&quot; &lt;&lt; endl;
+    &#125;
+    else cout &lt;&lt; &quot;点在圆内&quot; &lt;&lt; endl;
+&#125;
+    int main() &#123;
+    //创建圆
+    circle c;
+    c.setr(10);
+    point center;
+    center.setx(10);
+    center.sety(0);
+      c.setcenter(center);
+    //创建点
+    point p;
+    p.setx(10);
+    p.sety(10);
+    //判断关系
+    isin(c, p);
+    system(&quot;pause&quot;);
+    return 0;
+&#125;
+</code></pre>
+<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css"></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">vanilla</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/01/28/C++%20%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1-%E5%B0%81%E8%A3%85/">http://example.com/2021/01/28/C++%20%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1-%E5%B0%81%E8%A3%85/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Vanilla's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/C/">C++</a></div><div class="post_share"><div class="social-share" data-image="https://note.youdao.com/yws/api/personal/file/A4C6DA4F70A3452AB3A6C452979657C0?method=download&amp;shareKey=003485de03acca146ed8042c1f2baee1" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/01/30/C++%20%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E5%92%8C%E6%B8%85%E7%90%86/"><img class="prev-cover" src="https://note.youdao.com/yws/api/personal/file/4C197C267DFE4E44A587BEC7050D5608?method=download&amp;shareKey=a58ebe8fcff8e01cbd237cad24ec7659" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">C++ 类和对象-对象的初始化和清理</div></div></a></div><div class="next-post pull-right"><a href="/2021/01/27/C++%20%E5%87%BD%E6%95%B0%E9%AB%98%E7%BA%A7/"><img class="next-cover" src="https://note.youdao.com/yws/api/personal/file/A928FDE83B4541719282F00FC2844949?method=download&amp;shareKey=9e97abaf8be866113b9fc6db3f2d6971" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">C++ 函数高级</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/01/27/C++%20%E5%87%BD%E6%95%B0%E9%AB%98%E7%BA%A7/" title="C++ 函数高级"><img class="cover" src="https://note.youdao.com/yws/api/personal/file/A928FDE83B4541719282F00FC2844949?method=download&shareKey=9e97abaf8be866113b9fc6db3f2d6971" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-27</div><div class="title">C++ 函数高级</div></div></a></div><div><a href="/2021/01/26/C++%20%E5%BC%95%E7%94%A8/" title="C++ 引用"><img class="cover" src="https://note.youdao.com/yws/api/personal/file/7A63DF0D8B52446EAF09E56D6D27FE77?method=download&shareKey=1b6ca930a7c8973613ba1cf4031b3c86" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-26</div><div class="title">C++ 引用</div></div></a></div><div><a href="/2021/01/25/C++%20%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" title="C++ 程序的内存模型"><img class="cover" src="https://note.youdao.com/yws/api/personal/file/63EE22859F764A779D7128D35367936C?method=download&shareKey=b694824726181a2ad22b64fafed15688" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-25</div><div class="title">C++ 程序的内存模型</div></div></a></div><div><a href="/2021/01/30/C++%20%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E5%92%8C%E6%B8%85%E7%90%86/" title="C++ 类和对象-对象的初始化和清理"><img class="cover" src="https://note.youdao.com/yws/api/personal/file/4C197C267DFE4E44A587BEC7050D5608?method=download&shareKey=a58ebe8fcff8e01cbd237cad24ec7659" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-30</div><div class="title">C++ 类和对象-对象的初始化和清理</div></div></a></div><div><a href="/2021/01/20/C++%20%E9%80%9A%E8%AE%AF%E5%BD%95%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" title="C++ 通讯录管理系统"><img class="cover" src="https://note.youdao.com/yws/api/personal/file/168C4EB054A546CDADF8C6BF304BD36A?method=download&shareKey=4d193f0d3c96d4f0511c3d4ed0193159" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-20</div><div class="title">C++ 通讯录管理系统</div></div></a></div><div><a href="/2021/03/09/C-%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B%E5%92%8Cthis%E6%8C%87%E9%92%88/" title="C++ 对象模型和this指针"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-09</div><div class="title">C++ 对象模型和this指针</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">vanilla</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">68</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%81%E8%A3%85%E7%9A%84%E6%84%8F%E4%B9%89"><span class="toc-number">1.</span> <span class="toc-text">封装的意义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%81%E8%A3%85%E6%84%8F%E4%B9%89%E4%B8%80%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">封装意义一：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%81%E8%A3%85%E6%84%8F%E4%B9%89%E4%BA%8C%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">封装意义二：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#struct%E5%92%8Cclass%E5%8C%BA%E5%88%AB"><span class="toc-number">2.</span> <span class="toc-text">struct和class区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%90%E5%91%98%E5%B1%9E%E6%80%A7%E7%A7%81%E6%9C%89%E5%8C%96"><span class="toc-number">3.</span> <span class="toc-text">成员属性私有化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E6%A1%88%E4%BE%8B1%EF%BC%9A%E8%AE%BE%E8%AE%A1%E7%AB%8B%E6%96%B9%E4%BD%93%E7%B1%BB"><span class="toc-number">4.</span> <span class="toc-text">练习案例1：设计立方体类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E6%A1%88%E4%BE%8B2-%E7%82%B9%E5%92%8C%E5%9C%86%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">5.</span> <span class="toc-text">练习案例2:点和圆的关系</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/04/05/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A04-5/" title="机器学习4.5"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="机器学习4.5"/></a><div class="content"><a class="title" href="/2022/04/05/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A04-5/" title="机器学习4.5">机器学习4.5</a><time datetime="2022-04-05T05:16:04.000Z" title="发表于 2022-04-05 13:16:04">2022-04-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/05/web%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B04-5/" title="web课堂笔记4.5"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="web课堂笔记4.5"/></a><div class="content"><a class="title" href="/2022/04/05/web%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B04-5/" title="web课堂笔记4.5">web课堂笔记4.5</a><time datetime="2022-04-05T00:15:22.000Z" title="发表于 2022-04-05 08:15:22">2022-04-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%803-29/" title="机器学习基础3.29"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="机器学习基础3.29"/></a><div class="content"><a class="title" href="/2022/03/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%803-29/" title="机器学习基础3.29">机器学习基础3.29</a><time datetime="2022-03-29T05:11:23.000Z" title="发表于 2022-03-29 13:11:23">2022-03-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/29/web%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B03-29/" title="web课堂笔记3.29"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="web课堂笔记3.29"/></a><div class="content"><a class="title" href="/2022/03/29/web%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B03-29/" title="web课堂笔记3.29">web课堂笔记3.29</a><time datetime="2022-03-29T00:17:06.000Z" title="发表于 2022-03-29 08:17:06">2022-03-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/26/web%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B03-26/" title="web课堂笔记3.26"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="web课堂笔记3.26"/></a><div class="content"><a class="title" href="/2022/03/26/web%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B03-26/" title="web课堂笔记3.26">web课堂笔记3.26</a><time datetime="2022-03-26T02:11:11.000Z" title="发表于 2022-03-26 10:11:11">2022-03-26</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By vanilla</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

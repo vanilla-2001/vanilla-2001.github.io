@@ -1,0 +1,218 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>深入JSP技术 | Vanilla's Blog</title><meta name="author" content="vanilla"><meta name="copyright" content="vanilla"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="JSP简介通过Servlet生成html技术1234567891011121314protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException &amp;#123;        response.setContentType(&amp;quot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入JSP技术">
+<meta property="og:url" content="http://example.com/2022/03/16/%E6%B7%B1%E5%85%A5JSP%E6%8A%80%E6%9C%AF/index.html">
+<meta property="og:site_name" content="Vanilla&#39;s Blog">
+<meta property="og:description" content="JSP简介通过Servlet生成html技术1234567891011121314protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException &amp;#123;        response.setContentType(&amp;quot">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/03/19/Sw7LriGDBqFpX58.jpg">
+<meta property="article:published_time" content="2022-03-16T01:11:58.000Z">
+<meta property="article:modified_time" content="2022-03-19T10:27:44.339Z">
+<meta property="article:author" content="vanilla">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/03/19/Sw7LriGDBqFpX58.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/03/16/%E6%B7%B1%E5%85%A5JSP%E6%8A%80%E6%9C%AF/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '深入JSP技术',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-03-19 18:27:44'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Vanilla's Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">68</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F0389822590d681ba801214550b3e12a.jpg&amp;refer=http%3A%2F%2Fimg.zcool.cn&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1648809656&amp;t=45d3426ae690348bdad2aa916ed5dc60')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Vanilla's Blog</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">深入JSP技术</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-03-16T01:11:58.000Z" title="发表于 2022-03-16 09:11:58">2022-03-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-03-19T10:27:44.339Z" title="更新于 2022-03-19 18:27:44">2022-03-19</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="深入JSP技术"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="JSP简介"><a href="#JSP简介" class="headerlink" title="JSP简介"></a>JSP简介</h1><h2 id="通过Servlet生成html技术"><a href="#通过Servlet生成html技术" class="headerlink" title="通过Servlet生成html技术"></a>通过Servlet生成html技术</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException &#123;</span><br><span class="line">        response.setContentType(&quot;text/html;charset=utf-8&quot;);</span><br><span class="line">        PrintWriter writer=response.getWriter();</span><br><span class="line">        writer.write(&quot;&lt;!DOCTYPE html&gt;&quot;);</span><br><span class="line">        writer.write(&quot;&lt;html lang=\&quot;en\&quot;&gt;&quot;);</span><br><span class="line">        writer.write(&quot;&lt;head&gt;&quot;);</span><br><span class="line">        writer.write(&quot;    &lt;meta charset=\&quot;UTF-8\&quot;&gt;&quot;);</span><br><span class="line">        writer.write(&quot;    &lt;title&gt;Title&lt;/title&gt;&quot;);</span><br><span class="line">        writer.write(&quot;&lt;/head&gt;&quot;);</span><br><span class="line">        writer.write(&quot;&lt;body&gt;&quot;);</span><br><span class="line">        writer.write(&quot;&lt;h1&gt;这是我的首页，欢迎访问&lt;/h1&gt;&quot;);</span><br><span class="line">        writer.write(&quot;&lt;/body&gt;&quot;);</span><br><span class="line">        writer.write(&quot;&lt;/html&gt;&quot;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>比较麻烦</p>
+<h2 id="什么是JSP"><a href="#什么是JSP" class="headerlink" title="什么是JSP"></a>什么是JSP</h2><p>JSP全名为Java Server Page，是为了简化servlet的工作而出现的替代品。<br>在JSP中java代码与HTML共同存在，其中HTML代码用于展示静态的内容，java代码用于展示动态的内容。</p>
+<h2 id="为什么出现JSP技术"><a href="#为什么出现JSP技术" class="headerlink" title="为什么出现JSP技术"></a>为什么出现JSP技术</h2><p>1997年Java Web中只有servlet，生成html技术也需要在servlet中完成，虽然servlet也可以完成所有的输出工作，但是使用过程比较麻烦，部署也比较复杂，为了克服这些缺点，1999年SUN公司推出了JSP技术，该技术在生成HTML代码的时候相比servlet方便了许多。</p>
+<h2 id="对于servlet和JSP技术的理解"><a href="#对于servlet和JSP技术的理解" class="headerlink" title="对于servlet和JSP技术的理解"></a>对于servlet和JSP技术的理解</h2><p>servlet：在java代码中嵌入html代码，更擅长编写java业务代码<br>JSP：在html中嵌入java代码，更擅长页面展示</p>
+<h1 id="JSP运行原理"><a href="#JSP运行原理" class="headerlink" title="JSP运行原理"></a>JSP运行原理</h1><p>jsp在第一次被访问时会被Web容器翻译成Servlet，即jsp本质上就是Servlet</p>
+<h2 id="过程："><a href="#过程：" class="headerlink" title="过程："></a>过程：</h2><p>第一次访问—&gt;helloServlet.jsp—&gt;helloServlet_jsp.java—&gt;编译运行<br>被翻译后的servlet在Tomcat的work目录中可以找到，使用IDEA会单独为项目维护一个目录</p>
+<p>HttpJspBase继承HttpServlet接口</p>
+<h1 id="JSP脚本与注释"><a href="#JSP脚本与注释" class="headerlink" title="JSP脚本与注释"></a>JSP脚本与注释</h1><h2 id="JSP脚本"><a href="#JSP脚本" class="headerlink" title="JSP脚本"></a>JSP脚本</h2><p>1.&lt;%Java代码%&gt;—–内部的java代码翻译到service方法的内部<br>2.&lt;%&#x3D;java变量或表达式%&gt;—–会被翻译成service方法内部out.print()<br>3.&lt;%!java代码%&gt;—–会被翻译成servlet的成员的内容</p>
+<h2 id="JSP注释"><a href="#JSP注释" class="headerlink" title="JSP注释"></a>JSP注释</h2><p>1.Html注释：<!--注释内容--><br>2.Java注释：&#x2F;&#x2F;单行注释<br>           &#x2F;*多行注释*&#x2F;<br>3.jsp注释：&lt;%注释内容%&gt;</p>
+<h2 id="JSP指令"><a href="#JSP指令" class="headerlink" title="JSP指令"></a>JSP指令</h2><h3 id="page"><a href="#page" class="headerlink" title="page"></a>page</h3><p>属性最多的指令，实际开发中page默认指令<br>格式：&lt;% page 属性名1&#x3D;”属性值1” 属性值2&#x3D;”属性值2” …… %&gt;</p>
+<h4 id="常用属性"><a href="#常用属性" class="headerlink" title="常用属性"></a>常用属性</h4><p>language： jsp脚本中可以嵌入的语言种类<br>contentType： response.setContentType(text&#x2F;html;charset&#x3D;UTF-8)<br>session:  是否jsp在翻译时自动创建session<br>import： 导入java的包<br>errorPage： 当当前页面出错后跳转到哪个页面</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; session=&quot;true&quot; %&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page import=&quot;java.util.Map&quot; %&gt;</span><br><span class="line">&lt;%@ page import=&quot;java.util.HashMap&quot; %&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="include指令"><a href="#include指令" class="headerlink" title="include指令"></a>include指令</h2><p>页面包含（静态包含）指令，可以将一个jsp页面包含到另一个jsp页面中<br>格式：&lt;%@ include file&#x3D;”被包含的文件地址”%&gt;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@include file=&quot;/include.jsp&quot;%&gt;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="taglib指令"><a href="#taglib指令" class="headerlink" title="taglib指令"></a>taglib指令</h2><p>在jsp页面中引入标签库（jstl标签库、struts2标签库）<br>格式：&lt;%@ taglib uri&#x3D;”标签库地址” prefix&#x3D;”前缀”%&gt;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@taglib uri=&quot;xxx&quot; prefix=&quot;c&quot;%&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="JSP隐式对象概述"><a href="#JSP隐式对象概述" class="headerlink" title="JSP隐式对象概述"></a>JSP隐式对象概述</h1><h2 id="什么时JSP隐式对象"><a href="#什么时JSP隐式对象" class="headerlink" title="什么时JSP隐式对象"></a>什么时JSP隐式对象</h2><p>当jsp被翻译成servlet时，service方法内有九个对象定义并初始化，这九个对象被称为隐式对象</p>
+<p>| 对象 | 描述 | 范围 |<br>|——–|——–|<br>| request|HttpServletRequest类的实例,触发服务的请求|request|<br>| response|HttpServletResponse类的实例，对应请求的应答    |page|<br>| out|JspWriter类的实例，向输出流写入内容的对象    |page|<br>| session|HttpSession类的实例，为请求的客户创建的session对象    |session|<br>| application|ServletContext类的实例，与应用上下文有关，它代表当前web应用。|application|<br>| config|ServletConfig类的实例，本jsp页面的ServletConfig对象实例    |page|<br>| pageContext|PageContext类的实例，提供对JSP页面所有对象以及命名空间的访问，是页面上下文对象(this)|page|<br>| page|类似于Java类中的this关键字，代表当前被访问JSP页面的实例化    |page|<br>| Exception|Exception类的对象，代表发生错误的JSP页面中对应的异常对象    |page|</p>
+<p>page属性，isErrorPage设置为true时，这个页面就是一个错误页面，用来接收其他页面的错误信息，并且显示出来</p>
+<h1 id="JSP九大隐式对象详解-out"><a href="#JSP九大隐式对象详解-out" class="headerlink" title="JSP九大隐式对象详解-out"></a>JSP九大隐式对象详解-out</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">    response.getWriter().write(&quot;22222&quot;);</span><br><span class="line">    out.write(&quot;33333&quot;);</span><br><span class="line">%&gt;</span><br><span class="line">&lt;%=&quot;44444&quot;%&gt;</span><br></pre></td></tr></table></figure>
+<p>页面输出：<br>22222 11111 33333 44444</p>
+<h3 id="原因（缓冲区）"><a href="#原因（缓冲区）" class="headerlink" title="原因（缓冲区）"></a>原因（缓冲区）</h3><p><img src="https://s2.loli.net/2022/03/16/16NU5L2gTRxV4Hz.png" alt="avatar"></p>
+<p>page中的buffer属性可以调整out缓冲区的大小<br>如果调成0kb，那么就会输出：11111 2222233333 44444<br>因为没有out缓冲区，会直接到response缓冲区</p>
+<h1 id="JSP九大隐式对象-pageContext"><a href="#JSP九大隐式对象-pageContext" class="headerlink" title="JSP九大隐式对象-pageContext"></a>JSP九大隐式对象-pageContext</h1><p>pageContext对象就是jsp页面的上下文对象<br>1.pageContext是一个域对象</p>
+<ul>
+<li>setAttribute(String name,Object obj)</li>
+<li>getAttribute(String name)</li>
+<li>removeAttribute(String name)</li>
+</ul>
+<p>2.pageContext可以向指定的其他域中存取数据<br>setAttribute(String name, Object obj, int scope)<br>getAttribute(String name, int scope)<br>removeAttribute(String name, int scope)<br>findAttribute(String name)&#x2F;&#x2F;获取顺序一次从pageContext域，request域,session域，application域中获取属性</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">    pageContext.setAttribute(&quot;name&quot;,&quot;xiaoming&quot;);</span><br><span class="line">    //第三个参数是修改作用范围</span><br><span class="line">    pageContext.setAttribute(&quot;name&quot;,&quot;zhangsan&quot;,PageContext.REQUEST_SCOPE);</span><br><span class="line">    pageContext.setAttribute(&quot;name&quot;,&quot;lisi&quot;,PageContext.SESSION_SCOPE);</span><br><span class="line">    pageContext.setAttribute(&quot;name&quot;,&quot;wangwu&quot;,PageContext.APPLICATION_SCOPE);</span><br><span class="line">%&gt;</span><br><span class="line">&lt;%=pageContext.getAttribute(&quot;name&quot;,PageContext.REQUEST_SCOPE)%&gt;</span><br><span class="line">&lt;%=pageContext.getAttribute(&quot;name&quot;,PageContext.APPLICATION_SCOPE)%&gt;</span><br></pre></td></tr></table></figure>
+
+<p>另一个获取属性的方法<br>&lt;%&#x3D;pageContext.findAttribute(“name”)%&gt;<br>所有域都可以获取到，有顺序</p>
+<p>3.可以获得其他8大隐式对象<br>例如：pageContext.getRequest()<br>pageContext.getSession()</p>
+<h2 id="四大作用域的区别"><a href="#四大作用域的区别" class="headerlink" title="四大作用域的区别"></a>四大作用域的区别</h2><p>page域：当前jsp页面范围<br>request域：一次请求<br>session域：一次会话<br>application域：整个web应用</p>
+<h1 id="JSP标签"><a href="#JSP标签" class="headerlink" title="JSP标签"></a>JSP标签</h1><h2 id="什么是JSP标签"><a href="#什么是JSP标签" class="headerlink" title="什么是JSP标签"></a>什么是JSP标签</h2><p>JSP标签用来控制JSP的行为，执行一些常用的JSP页面动作，通过标签可以实现很多java代码才能实现的功能，比如请求转发功能</p>
+<h2 id="常用的jsp标签"><a href="#常用的jsp标签" class="headerlink" title="常用的jsp标签"></a>常用的jsp标签</h2><ul>
+<li>页面包含（动态包含）：&lt;jsp:include page&#x3D;”被包含的页面”&#x2F;&gt;</li>
+</ul>
+<p>动态和静态的区别：<br><img src="https://s2.loli.net/2022/03/16/yaBTbivxhzoZqRd.png" alt="avatar">&#96;</p>
+<ul>
+<li>请求转发：&lt;jsp:forward page&#x3D;”要转发的资源” &#x2F;&gt;<br>地址栏还是原来的地址，显示的是转发的网页的内容</li>
+</ul>
+<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css"></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">vanilla</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/03/16/%E6%B7%B1%E5%85%A5JSP%E6%8A%80%E6%9C%AF/">http://example.com/2022/03/16/%E6%B7%B1%E5%85%A5JSP%E6%8A%80%E6%9C%AF/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Vanilla's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://s2.loli.net/2022/03/19/Sw7LriGDBqFpX58.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/03/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%803-16/"><img class="prev-cover" src="https://s2.loli.net/2022/03/19/LRA6ohu8Gjw2MxC.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">机器学习基础3.16</div></div></a></div><div class="next-post pull-right"><a href="/2022/03/15/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%803-15/"><img class="next-cover" src="https://s2.loli.net/2022/03/19/1LBSU2kc3TCn4JZ.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">机器学习基础3.15</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">vanilla</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">68</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JSP%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">JSP简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87Servlet%E7%94%9F%E6%88%90html%E6%8A%80%E6%9C%AF"><span class="toc-number">1.1.</span> <span class="toc-text">通过Servlet生成html技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFJSP"><span class="toc-number">1.2.</span> <span class="toc-text">什么是JSP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%87%BA%E7%8E%B0JSP%E6%8A%80%E6%9C%AF"><span class="toc-number">1.3.</span> <span class="toc-text">为什么出现JSP技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8Eservlet%E5%92%8CJSP%E6%8A%80%E6%9C%AF%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-number">1.4.</span> <span class="toc-text">对于servlet和JSP技术的理解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JSP%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">JSP运行原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="toc-number">2.1.</span> <span class="toc-text">过程：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JSP%E8%84%9A%E6%9C%AC%E4%B8%8E%E6%B3%A8%E9%87%8A"><span class="toc-number">3.</span> <span class="toc-text">JSP脚本与注释</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JSP%E8%84%9A%E6%9C%AC"><span class="toc-number">3.1.</span> <span class="toc-text">JSP脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSP%E6%B3%A8%E9%87%8A"><span class="toc-number">3.2.</span> <span class="toc-text">JSP注释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSP%E6%8C%87%E4%BB%A4"><span class="toc-number">3.3.</span> <span class="toc-text">JSP指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#page"><span class="toc-number">3.3.1.</span> <span class="toc-text">page</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7"><span class="toc-number">3.3.1.1.</span> <span class="toc-text">常用属性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#include%E6%8C%87%E4%BB%A4"><span class="toc-number">3.4.</span> <span class="toc-text">include指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#taglib%E6%8C%87%E4%BB%A4"><span class="toc-number">3.5.</span> <span class="toc-text">taglib指令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JSP%E9%9A%90%E5%BC%8F%E5%AF%B9%E8%B1%A1%E6%A6%82%E8%BF%B0"><span class="toc-number">4.</span> <span class="toc-text">JSP隐式对象概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6JSP%E9%9A%90%E5%BC%8F%E5%AF%B9%E8%B1%A1"><span class="toc-number">4.1.</span> <span class="toc-text">什么时JSP隐式对象</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JSP%E4%B9%9D%E5%A4%A7%E9%9A%90%E5%BC%8F%E5%AF%B9%E8%B1%A1%E8%AF%A6%E8%A7%A3-out"><span class="toc-number">5.</span> <span class="toc-text">JSP九大隐式对象详解-out</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%9B%A0%EF%BC%88%E7%BC%93%E5%86%B2%E5%8C%BA%EF%BC%89"><span class="toc-number">5.0.1.</span> <span class="toc-text">原因（缓冲区）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JSP%E4%B9%9D%E5%A4%A7%E9%9A%90%E5%BC%8F%E5%AF%B9%E8%B1%A1-pageContext"><span class="toc-number">6.</span> <span class="toc-text">JSP九大隐式对象-pageContext</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E5%A4%A7%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">6.1.</span> <span class="toc-text">四大作用域的区别</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JSP%E6%A0%87%E7%AD%BE"><span class="toc-number">7.</span> <span class="toc-text">JSP标签</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFJSP%E6%A0%87%E7%AD%BE"><span class="toc-number">7.1.</span> <span class="toc-text">什么是JSP标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84jsp%E6%A0%87%E7%AD%BE"><span class="toc-number">7.2.</span> <span class="toc-text">常用的jsp标签</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/04/05/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A04-5/" title="机器学习4.5"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="机器学习4.5"/></a><div class="content"><a class="title" href="/2022/04/05/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A04-5/" title="机器学习4.5">机器学习4.5</a><time datetime="2022-04-05T05:16:04.000Z" title="发表于 2022-04-05 13:16:04">2022-04-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/05/web%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B04-5/" title="web课堂笔记4.5"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="web课堂笔记4.5"/></a><div class="content"><a class="title" href="/2022/04/05/web%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B04-5/" title="web课堂笔记4.5">web课堂笔记4.5</a><time datetime="2022-04-05T00:15:22.000Z" title="发表于 2022-04-05 08:15:22">2022-04-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%803-29/" title="机器学习基础3.29"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="机器学习基础3.29"/></a><div class="content"><a class="title" href="/2022/03/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%803-29/" title="机器学习基础3.29">机器学习基础3.29</a><time datetime="2022-03-29T05:11:23.000Z" title="发表于 2022-03-29 13:11:23">2022-03-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/29/web%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B03-29/" title="web课堂笔记3.29"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="web课堂笔记3.29"/></a><div class="content"><a class="title" href="/2022/03/29/web%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B03-29/" title="web课堂笔记3.29">web课堂笔记3.29</a><time datetime="2022-03-29T00:17:06.000Z" title="发表于 2022-03-29 08:17:06">2022-03-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/26/web%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B03-26/" title="web课堂笔记3.26"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="web课堂笔记3.26"/></a><div class="content"><a class="title" href="/2022/03/26/web%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B03-26/" title="web课堂笔记3.26">web课堂笔记3.26</a><time datetime="2022-03-26T02:11:11.000Z" title="发表于 2022-03-26 10:11:11">2022-03-26</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By vanilla</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

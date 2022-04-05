@@ -1,0 +1,291 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>机器学习基础3.2 | Vanilla's Blog</title><meta name="author" content="vanilla"><meta name="copyright" content="vanilla"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据集：训练集，测试集，验证集样本或实例：行特征或属性：列过拟合：训练集好，测试集差欠拟合：训练集差 优化机器学习目的：使得训练的模型很好的适用新样本分类常用：准确率，精度，召回率回归：方差和MSE，绝对值误差和MAE没有一个机器学习模型是通用的，因此要根据具体业务场景更换机器学习模型 流程问题建模，数据收集，数据预处理，特征工程，模型训练，模型优化。。。 主要工作 机器学习是人工智能的一个分支，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习基础3.2">
+<meta property="og:url" content="http://example.com/2022/03/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%803-2/index.html">
+<meta property="og:site_name" content="Vanilla&#39;s Blog">
+<meta property="og:description" content="数据集：训练集，测试集，验证集样本或实例：行特征或属性：列过拟合：训练集好，测试集差欠拟合：训练集差 优化机器学习目的：使得训练的模型很好的适用新样本分类常用：准确率，精度，召回率回归：方差和MSE，绝对值误差和MAE没有一个机器学习模型是通用的，因此要根据具体业务场景更换机器学习模型 流程问题建模，数据收集，数据预处理，特征工程，模型训练，模型优化。。。 主要工作 机器学习是人工智能的一个分支，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/03/03/O5TDoJgMzC3eqUj.png">
+<meta property="article:published_time" content="2022-03-02T05:17:31.000Z">
+<meta property="article:modified_time" content="2022-03-03T03:26:48.099Z">
+<meta property="article:author" content="vanilla">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/03/03/O5TDoJgMzC3eqUj.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/03/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%803-2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '机器学习基础3.2',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-03-03 11:26:48'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Vanilla's Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">68</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F0389822590d681ba801214550b3e12a.jpg&amp;refer=http%3A%2F%2Fimg.zcool.cn&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1648809656&amp;t=45d3426ae690348bdad2aa916ed5dc60')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Vanilla's Blog</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">机器学习基础3.2</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-03-02T05:17:31.000Z" title="发表于 2022-03-02 13:17:31">2022-03-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-03-03T03:26:48.099Z" title="更新于 2022-03-03 11:26:48">2022-03-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="机器学习基础3.2"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>数据集：训练集，测试集，验证集<br>样本或实例：行<br>特征或属性：列<br>过拟合：训练集好，测试集差<br>欠拟合：训练集差</p>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><p>机器学习目的：使得训练的模型很好的适用新样本<br>分类常用：准确率，精度，召回率<br>回归：方差和MSE，绝对值误差和MAE<br>没有一个机器学习模型是通用的，因此要根据具体业务场景更换机器学习模型</p>
+<h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3><p>问题建模，数据收集，数据预处理，特征工程，模型训练，模型优化。。。</p>
+<h3 id="主要工作"><a href="#主要工作" class="headerlink" title="主要工作"></a>主要工作</h3><ul>
+<li>机器学习是人工智能的一个分支，是实现人工智能的一个途径</li>
+<li>学习方式：监督学习，非监督学习，强化学习</li>
+<li>学习任务：分类，回归，聚类，降维<br>分类：事先给类别名称<br>聚类：没有给类别名称<br>监督学习：从数据中学习（分类，无人驾驶）<br>无监督学习：分析无经验的新问题（聚类）<br>强化学习：边行动变学习</li>
+</ul>
+<h3 id="测验："><a href="#测验：" class="headerlink" title="测验："></a>测验：</h3><ul>
+<li>已知数字0-9的央视，从信封上识别邮政编码–监督学习</li>
+<li>将教师里的学生随机搭配，分成多个三人小组–聚类</li>
+<li>根据股票走势，预测将来价格–回归</li>
+</ul>
+<h5 id="人工智能-gt-机器学习-gt-深度学习"><a href="#人工智能-gt-机器学习-gt-深度学习" class="headerlink" title="人工智能&gt;机器学习&gt;深度学习"></a>人工智能&gt;机器学习&gt;深度学习</h5><h3 id="开发环境：python"><a href="#开发环境：python" class="headerlink" title="开发环境：python"></a>开发环境：python</h3><p>解释型、动态、强类型编程语言，既支持面向过程编程，又支持面向对象编程<br>常用库：Numpy Pandas Matplptlib scilit-learn(sklearn)</p>
+<p>np.array创建多维数组<br>pandas：Panel *DataFrame *Series</p>
+<h3 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h3><ul>
+<li>anaconda</li>
+<li>jupyter<br>快捷键：代码Y，标记M 上面添加单元格A 面添加单元格B 删除单元格DD</li>
+<li>Spyder</li>
+</ul>
+<h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><p>C-like，脚本语言，面向对象（一切皆是对象），解释型语言</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import random</span><br><span class="line">def fib_loop(n):</span><br><span class="line">    listNum=[]</span><br><span class="line">    a,b=0,1</span><br><span class="line">    for i in range(n):</span><br><span class="line">        a,b=b,a+b</span><br><span class="line">        listNum.append(a)</span><br><span class="line">    return listNum</span><br><span class="line">    </span><br><span class="line">listPlan=[&#x27;吃零食&#x27;,&#x27;学习&#x27;,&#x27;学习&#x27;,&#x27;学习&#x27;,&#x27;看电影&#x27;,&#x27;学习&#x27;,&#x27;旅游&#x27;,&#x27;睡觉&#x27;,&#x27;学习&#x27;]</span><br><span class="line">listNum=fib_loop(6)</span><br><span class="line">varIdx=random.randint(0,5)</span><br><span class="line">varRandom=listNum[varIdx]</span><br><span class="line">print(&#x27;今日计划是：&#x27;,listPlan[varRandom])</span><br></pre></td></tr></table></figure>
+<p>输出：<br>今日计划是： 学习</p>
+<h6 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h6><p>fib_loop函数是斐波那契数列，12358……<br>只能得到下标是斐波那契数列的值<br>def定义函数</p>
+<ul>
+<li>变量名规则同C</li>
+<li>全局变量在函数之外声明，局部变量在函数内部声明</li>
+<li>要想在函数内部用全局同名的变量，用<strong>global</strong>声明</li>
+<li>函数参数是局部变量，不用在函数内部再声明</li>
+</ul>
+<h4 id="转义字符输出"><a href="#转义字符输出" class="headerlink" title="转义字符输出"></a>转义字符输出</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(r&#x27;i\\sdf99&#x27;)</span><br></pre></td></tr></table></figure>
+<p>i\sdf99<br><strong>r:忽略转义字符</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(&#x27;i\\sdf99&#x27;)</span><br></pre></td></tr></table></figure>
+<p>i\sdf99<br><em>不用r的情况</em></p>
+<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">i=3</span><br><span class="line">print(id(i))</span><br><span class="line">j=3</span><br><span class="line">k=3</span><br><span class="line">print(id(j))</span><br><span class="line">print(id(k))</span><br><span class="line">i+=1</span><br><span class="line">print(id(i))</span><br></pre></td></tr></table></figure>
+<p>140730157952832<br>140730157952832<br>140730157952832<br>140730157952864</p>
+<p>同一个数字地址相同，id()返回括号内量的地址<br>因此python里面没有自增自减<br>i+&#x3D;1，i变成了4，地址也改变</p>
+<h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><ul>
+<li>变量在程序中起到指向数据对象的作用，变量赋值实际是吧数据对象和变量关联起来</li>
+<li>标准数据类型 number str list tuple set dictionary</li>
+<li>前两种是基础数据类型，后四是复合数据类型</li>
+<li>list，set，dictiona是可变数据类型，number，str，tuple是不可变数据类型</li>
+<li>可以使用type()查看数据类型，numpy中有dtype属性，查看数组中元素数据类型</li>
+<li>’123‘+5隐式类型转换，int(i)显式类型转换</li>
+</ul>
+<h5 id="number"><a href="#number" class="headerlink" title="number"></a>number</h5><ul>
+<li>数值型，存储数值，不可变</li>
+<li>没有++，–符号</li>
+<li>int float bool complex</li>
+<li>0b 0o 0x +数字 二进制 八进制 十六进制</li>
+<li>bin() oct() hex()上述各进制转换<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a=0b101</span><br><span class="line">b=0o101</span><br><span class="line">c=0x101</span><br><span class="line">d=18</span><br><span class="line">print(a,b,c,d)</span><br><span class="line">print(bin(d),oct(d),hex(d))</span><br></pre></td></tr></table></figure>
+5 65 257 18<br>0b10010 0o22 0x12</li>
+</ul>
+<h5 id="str"><a href="#str" class="headerlink" title="str"></a>str</h5><ul>
+<li>可以用单双三引号，三引号一般用来注释</li>
+<li>单行注释用#</li>
+<li>如果用‘作为普通字符输出，则用”引出</li>
+<li>不能交叉使用</li>
+</ul>
+<p><strong>访问：</strong><br>1.索引</p>
+<ul>
+<li>获得单个字符</li>
+<li>从0开始，可以使用<strong>负索引</strong>，最后一个是-1</li>
+<li>通过函数len()获取字符串的长度<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">str1=&#x27;this&quot;s a&quot; 890&#x27;</span><br><span class="line">print(str1[-1])</span><br><span class="line">print(len(str1))</span><br><span class="line">print(len(str1))</span><br></pre></td></tr></table></figure>
+0<br>13<br>13<br>函数：函数名（变量）<br>方法：变量.方法名（参数）</li>
+</ul>
+<p>2.切片<br>字符串名[l:r:步长],l取，r不取</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">str1=&#x27;this&quot;s a&quot; 890&#x27;</span><br><span class="line">print(str1[2:6])</span><br></pre></td></tr></table></figure>
+<p>is”s</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">str1=&#x27;1234567890&#x27;</span><br><span class="line">print(str1[2:-2:2])</span><br><span class="line">print(str1[2:-2])</span><br><span class="line">print(str1[::-1])</span><br><span class="line">print(str1[::-2])</span><br></pre></td></tr></table></figure>
+<p>357<br>345678<br>0987654321<br>08642</p>
+<ul>
+<li>l不写，默认从0开始；r不写默认到最后一个</li>
+<li>步长负数反序排列</li>
+<li>切片的结束索引娶不到</li>
+<li>可以使用+ *实现字符串的连接和重复</li>
+<li>可以对字符串整体进行修改，不可以对单个字符修改<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">str1=&#x27;1234567890&#x27;</span><br><span class="line">str1=&#x27;333&#x27;#√</span><br><span class="line">str1[0]=5#×</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="字符串常用方法："><a href="#字符串常用方法：" class="headerlink" title="字符串常用方法："></a>字符串常用方法：</h5><p>.strip()        删除首尾空格<br>.lstrip()        删除左边空格<br>.rstrip()        删除右边空格<br>.upper()        字符全大写<br>.lower()        字符全小写<br>.swapcase()        字符大小写转换<br>.capitalize()    仅首字母大写<br>.title()        各单词首字母都大写<br>.replace()        替换字符</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">str1=&#x27;  ab ccc sj  &#x27;</span><br><span class="line">print(str1)</span><br><span class="line">print(str1.strip())</span><br><span class="line">print(str1.lstrip())</span><br><span class="line">print(str1.upper())</span><br><span class="line">print(str1.capitalize())</span><br><span class="line">print(str1.title())</span><br><span class="line">print(str1.replace(&#x27;g&#x27;,&#x27;5&#x27;))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  ab ccc sj  </span><br><span class="line">ab ccc sj</span><br><span class="line">ab ccc sj  </span><br><span class="line">  AB CCC SJ  </span><br><span class="line">  ab ccc sj  </span><br><span class="line">  Ab Ccc Sj  </span><br><span class="line">  ab ccc sj </span><br></pre></td></tr></table></figure>
+<ul>
+<li>用r让字符串中的转义字符不转义</li>
+<li>字符串格式化</li>
+<li>f’{a}{b}’</li>
+<li>‘ab{}cd{}’.format(‘aaa’,’bbb’)</li>
+<li>‘{1}{0}{1}’.format(‘aaa’,’bbb’)<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s1=&#x27;aaa&#x27;</span><br><span class="line">s2=&#x27;AAA&#x27;</span><br><span class="line">print(f&#x27;&#123;s1&#125;啦啦啦&#123;s2&#125;&#x27;)</span><br><span class="line">print(&#x27;123&#123;&#125;456&#123;&#125;&#x27;.format(s2,s1))</span><br><span class="line">print(&#x27;123&#123;1&#125;456&#123;0&#125;789&#123;1&#125;&#x27;.format(s1,s2))</span><br></pre></td></tr></table></figure>
+s1&#x3D;’aaa’<br>s2&#x3D;’AAA’<br>print(f’{s1}啦啦啦{s2}’)<br>print(‘123{}456{}’.format(s2,s1))<br>print(‘123{1}456{0}789{1}’.format(s1,s2))<br>s1&#x3D;’aaa’<br>s2&#x3D;’AAA’<br>print(f’{s1}啦啦啦{s2}’)<br>print(‘123{}456{}’.format(s2,s1))<br>print(‘123{1}456{0}789{1}’.format(s1,s2))<br>aaa啦啦啦AAA<br>123AAA456aaa<br>123AAA456aaa789AAA</li>
+</ul>
+<h5 id="list"><a href="#list" class="headerlink" title="list"></a>list</h5><ul>
+<li>列表里的数据项可以是不同的数据类型</li>
+<li>列表可以通过[]创建，数据项之间用，分割</li>
+<li>也可以用list()函数创建</li>
+<li>列表的索引和切片同字符串，但列表的单个字符可以改变<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">list1=[1,2,3,4,5]</span><br><span class="line">list(range(10))</span><br></pre></td></tr></table></figure>
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">l=[1,2,3,&#x27;a&#x27;,7,&#x27;b&#x27;]</span><br><span class="line">for i in l:</span><br><span class="line">    print(i,end=&quot;,&quot;)</span><br><span class="line">for i in enumerate(l):</span><br><span class="line">    print(i,end=&quot; &quot;)</span><br><span class="line">for i in range(len(l)):</span><br><span class="line">    print(i,end=&quot;, &quot;)</span><br></pre></td></tr></table></figure>
+1,2,3,a,7,b,(0, 1) (1, 2) (2, 3) (3, ‘a’) (4, 7) (5, ‘b’) 0, 1, 2, 3, 4, 5,</li>
+</ul>
+<p><em>for i in 列表名循环</em><br><em>end&#x3D;“”不换行</em><br><em>enumerate(l)会输出下标和内容</em></p>
+<h5 id="tuple"><a href="#tuple" class="headerlink" title="tuple"></a>tuple</h5><ul>
+<li>元组写到()中，元素之间用逗号分割，元素可以具有不同的类型</li>
+<li>与列表相似，但不允许单个修改，允许整体改</li>
+<li>如果元组内部的数据项是可变类型，则该数据项可以修改，比如数据项为列表</li>
+</ul>
+<h5 id="dict"><a href="#dict" class="headerlink" title="dict"></a>dict</h5><ul>
+<li>字典是可变容器模型，可存储任意类型对象</li>
+<li>用{}定义，如d&#x3D;{key1:value1,key2:value2}</li>
+<li>字典的键是唯一的，如果重复，后面的键值替换前面的键值对</li>
+<li>字典名[key]访问</li>
+<li>方法update()添加或修改 运算符del删除 方法clear()清空</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">dict=&#123;&#x27;name&#x27;:&#x27;zhangsan&#x27;,&#x27;age&#x27;:20&#125;</span><br><span class="line">print(&#x27;原字典：&#x27;)</span><br><span class="line">print(dict)</span><br><span class="line">#添加</span><br><span class="line">dict[&#x27;gender&#x27;]=&#x27;female&#x27;</span><br><span class="line">print(&#x27;添加后：&#x27;)</span><br><span class="line">print(dict)</span><br><span class="line">#修改</span><br><span class="line">dict.update(&#123;&#x27;No&#x27;:1,&#x27;age&#x27;:22&#125;)</span><br><span class="line">print(&#x27;修改后：&#x27;)</span><br><span class="line">print(dict)</span><br><span class="line">#删除</span><br><span class="line">del dict[&#x27;gender&#x27;]</span><br><span class="line">print(&#x27;删除后：&#x27;)</span><br><span class="line">print(dict)</span><br><span class="line">#清空</span><br><span class="line">dict.clear()</span><br><span class="line">print(&#x27;清空后：&#x27;)</span><br><span class="line">print(dict)</span><br><span class="line">dict=&#123;&#x27;name&#x27;:&#x27;zhangsan&#x27;,&#x27;age&#x27;:20&#125;</span><br><span class="line">#查看所有的键</span><br><span class="line">print(dict.keys())</span><br><span class="line">#查看所有的值</span><br><span class="line">print(dict.values())</span><br><span class="line">#查看所有的键值</span><br><span class="line">print(dict.items())</span><br></pre></td></tr></table></figure>
+<p>原字典：<br>{‘name’: ‘zhangsan’, ‘age’: 20}<br>添加后：<br>{‘name’: ‘zhangsan’, ‘age’: 20, ‘gender’: ‘female’}<br>修改后：<br>{‘name’: ‘zhangsan’, ‘age’: 22, ‘gender’: ‘female’, ‘No’: 1}<br>删除后：<br>{‘name’: ‘zhangsan’, ‘age’: 22, ‘No’: 1}<br>清空后：<br>{}<br>dict_keys([‘name’, ‘age’])<br>dict_values([‘zhangsan’, 20])<br>dict_items([(‘name’, ‘zhangsan’), (‘age’, 20)])</p>
+<h5 id="set"><a href="#set" class="headerlink" title="set"></a>set</h5><ul>
+<li>集合的主要作用是去重</li>
+<li>集合里每个元素都是唯一的</li>
+<li>无序，不能索引</li>
+<li>创建：{}或者set()函数，set()函数的参数是str，会将该str拆分成单个字符<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">set1=&#123;&#125;#空字典</span><br><span class="line">set2=set()#空集合</span><br><span class="line">print(type(set1))</span><br><span class="line">print(type(set2))</span><br></pre></td></tr></table></figure>
+&lt;class ‘dict’&gt;<br>&lt;class ‘set’&gt;</li>
+<li>创建空集合必须使用set</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var=&#123;&#x27;zhangsan&#x27;,&#x27;lisi&#x27;,&#x27;wangwu&#x27;&#125;</span><br><span class="line">var.add(&#x27;zhaoliu&#x27;)</span><br><span class="line">print(var)</span><br><span class="line">var.update(&#x27;libai&#x27;)</span><br><span class="line">print(var)</span><br><span class="line">var.remove(&#x27;zhaoliu&#x27;)</span><br><span class="line">print(var)</span><br></pre></td></tr></table></figure>
+<p>{‘lisi’, ‘zhaoliu’, ‘wangwu’, ‘zhangsan’}<br>{‘l’, ‘lisi’, ‘wangwu’, ‘a’, ‘i’, ‘zhangsan’, ‘b’, ‘zhaoliu’}<br>{‘l’, ‘lisi’, ‘wangwu’, ‘a’, ‘i’, ‘zhangsan’, ‘b’}</p>
+<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css"></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">vanilla</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/03/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%803-2/">http://example.com/2022/03/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%803-2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Vanilla's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://s2.loli.net/2022/03/03/O5TDoJgMzC3eqUj.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/03/02/%E6%90%AD%E5%BB%BAweb%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"><img class="prev-cover" src="https://s2.loli.net/2022/03/03/7eDgvuQStsnLd16.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">搭建web开发环境</div></div></a></div><div class="next-post pull-right"><a href="/2022/03/01/Web%E5%BC%80%E5%8F%91%E6%A6%82%E8%BF%B0/"><img class="next-cover" src="https://s2.loli.net/2022/03/02/K3kXbYPl6ZhHWos.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Web开发概述</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">vanilla</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">68</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96"><span class="toc-number">1.</span> <span class="toc-text">优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%B7%A5%E4%BD%9C"><span class="toc-number">3.</span> <span class="toc-text">主要工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E9%AA%8C%EF%BC%9A"><span class="toc-number">4.</span> <span class="toc-text">测验：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-gt-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-gt-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0"><span class="toc-number">4.0.1.</span> <span class="toc-text">人工智能&gt;机器学习&gt;深度学习</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%EF%BC%9Apython"><span class="toc-number">5.</span> <span class="toc-text">开发环境：python</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">6.</span> <span class="toc-text">环境配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python"><span class="toc-number"></span> <span class="toc-text">Python</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%88%86%E6%9E%90%EF%BC%9A"><span class="toc-number">0.0.0.1.</span> <span class="toc-text">分析：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6%E8%BE%93%E5%87%BA"><span class="toc-number">0.1.</span> <span class="toc-text">转义字符输出</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-number">0.2.</span> <span class="toc-text">变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">0.3.</span> <span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#number"><span class="toc-number">0.3.1.</span> <span class="toc-text">number</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#str"><span class="toc-number">0.3.2.</span> <span class="toc-text">str</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-number">0.3.3.</span> <span class="toc-text">字符串常用方法：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#list"><span class="toc-number">0.3.4.</span> <span class="toc-text">list</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#tuple"><span class="toc-number">0.3.5.</span> <span class="toc-text">tuple</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#dict"><span class="toc-number">0.3.6.</span> <span class="toc-text">dict</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#set"><span class="toc-number">0.3.7.</span> <span class="toc-text">set</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/04/05/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A04-5/" title="机器学习4.5"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="机器学习4.5"/></a><div class="content"><a class="title" href="/2022/04/05/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A04-5/" title="机器学习4.5">机器学习4.5</a><time datetime="2022-04-05T05:16:04.000Z" title="发表于 2022-04-05 13:16:04">2022-04-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/05/web%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B04-5/" title="web课堂笔记4.5"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="web课堂笔记4.5"/></a><div class="content"><a class="title" href="/2022/04/05/web%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B04-5/" title="web课堂笔记4.5">web课堂笔记4.5</a><time datetime="2022-04-05T00:15:22.000Z" title="发表于 2022-04-05 08:15:22">2022-04-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%803-29/" title="机器学习基础3.29"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="机器学习基础3.29"/></a><div class="content"><a class="title" href="/2022/03/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%803-29/" title="机器学习基础3.29">机器学习基础3.29</a><time datetime="2022-03-29T05:11:23.000Z" title="发表于 2022-03-29 13:11:23">2022-03-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/29/web%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B03-29/" title="web课堂笔记3.29"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="web课堂笔记3.29"/></a><div class="content"><a class="title" href="/2022/03/29/web%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B03-29/" title="web课堂笔记3.29">web课堂笔记3.29</a><time datetime="2022-03-29T00:17:06.000Z" title="发表于 2022-03-29 08:17:06">2022-03-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/26/web%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B03-26/" title="web课堂笔记3.26"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="web课堂笔记3.26"/></a><div class="content"><a class="title" href="/2022/03/26/web%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B03-26/" title="web课堂笔记3.26">web课堂笔记3.26</a><time datetime="2022-03-26T02:11:11.000Z" title="发表于 2022-03-26 10:11:11">2022-03-26</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By vanilla</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

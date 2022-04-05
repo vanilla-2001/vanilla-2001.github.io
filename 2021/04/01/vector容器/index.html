@@ -1,0 +1,488 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>vector容器 | Vanilla's Blog</title><meta name="keywords" content="C++"><meta name="author" content="vanilla"><meta name="copyright" content="vanilla"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="vector基本概念功能：· vector数据结构和数组非常相似，也称为单端数组 vector与普通数组区别：· 不同之处在于数组是静态空间，而vector可以动态扩展动态扩展：· 并不是在原空间之后续接新空间，而是找更大的内存空间，然后将原数据拷贝新空间，释放原空间· vector容器的迭代器是支持随机访问的迭代器 vector构造函数功能描述：· 创建vector容器函数原型： vector&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vector容器">
+<meta property="og:url" content="http://example.com/2021/04/01/vector%E5%AE%B9%E5%99%A8/index.html">
+<meta property="og:site_name" content="Vanilla&#39;s Blog">
+<meta property="og:description" content="vector基本概念功能：· vector数据结构和数组非常相似，也称为单端数组 vector与普通数组区别：· 不同之处在于数组是静态空间，而vector可以动态扩展动态扩展：· 并不是在原空间之后续接新空间，而是找更大的内存空间，然后将原数据拷贝新空间，释放原空间· vector容器的迭代器是支持随机访问的迭代器 vector构造函数功能描述：· 创建vector容器函数原型： vector&amp;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+<meta property="article:published_time" content="2021-04-01T11:43:14.000Z">
+<meta property="article:modified_time" content="2021-04-03T03:09:08.000Z">
+<meta property="article:author" content="vanilla">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/04/01/vector%E5%AE%B9%E5%99%A8/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'vector容器',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-04-03 11:09:08'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Vanilla's Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">68</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Vanilla's Blog</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">vector容器</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-04-01T11:43:14.000Z" title="发表于 2021-04-01 19:43:14">2021-04-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-04-03T03:09:08.000Z" title="更新于 2021-04-03 11:09:08">2021-04-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="vector容器"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="vector基本概念"><a href="#vector基本概念" class="headerlink" title="vector基本概念"></a>vector基本概念</h2><p><strong>功能：</strong><br><strong>·</strong> vector数据结构和<strong>数组非常相似</strong>，也称为<strong>单端数组</strong></p>
+<p><strong>vector与普通数组区别：</strong><br><strong>·</strong> 不同之处在于数组是静态空间，而vector可以动态扩展<br><strong>动态扩展：</strong><br><strong>·</strong> 并不是在原空间之后续接新空间，而是找更大的内存空间，然后将原数据拷贝新空间，释放原空间<br><img src="https://note.youdao.com/yws/api/personal/file/F42334DD2D964198A435777585D5B931?method=download&shareKey=42a559af6ccac3417cd820502a340016" alt="avatar"><br><strong>·</strong> vector容器的迭代器是支持随机访问的迭代器</p>
+<h2 id="vector构造函数"><a href="#vector构造函数" class="headerlink" title="vector构造函数"></a>vector构造函数</h2><p><strong>功能描述：</strong><br><strong>·</strong> 创建vector容器<br><strong>函数原型：</strong></p>
+<pre><code>vector&lt;T&gt; v;//采用模板实现类实现，默认构造函数
+vector(v.begin(),v.end());//将v[begin(),end()]的区间中的元素拷贝给本身
+vector(n,elem);//构造函数将n个elem拷贝给本身
+vector(const vector &amp;vec);//拷贝构造函数
+
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+using namespace std;
+void print(vector&lt;int&gt;&amp;v) &#123;
+    for (vector&lt;int&gt;::iterator it = v.begin();it != v.end();it++) &#123;
+        cout &lt;&lt; *it &lt;&lt; &quot; &quot;;
+    &#125;
+    cout &lt;&lt; endl;
+&#125; 
+void test01() &#123;
+    vector&lt;int&gt; v1;//默认构造
+    for (int i = 0;i &lt; 10;i++) &#123;
+        v1.push_back(i);
+    &#125;
+    print(v1);
+    //通过区间方式进行构造
+    vector&lt;int&gt; v2(v1.begin(), v1.end());//传入两个迭代器，将两个迭代器之间的数据赋值
+    print(v2);
+    //n个elem方式构造
+    vector&lt;int&gt; v3(10, 100);//10个100
+    print(v3);
+    //拷贝构造
+    vector&lt;int&gt; v4(v3);
+    print(v4);
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;
+</code></pre>
+<h2 id="vector赋值操作"><a href="#vector赋值操作" class="headerlink" title="vector赋值操作"></a>vector赋值操作</h2><p><strong>功能描述：</strong><br><strong>·</strong> 给vector容器进行赋值<br><strong>函数原型：</strong></p>
+<pre><code>vector&amp; operator=(const  vector &amp;vec);//重载等号操作符
+assign(beg,end);将[beg,end]区间中的数据拷贝赋值给本身
+assign(n,elem);//将n个elem拷贝赋值给本身
+
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+using namespace std;
+void print(vector&lt;int&gt;&amp;v) &#123;
+    for (vector&lt;int&gt;::iterator it = v.begin();it != v.end();it++) &#123;
+        cout &lt;&lt; *it &lt;&lt; &quot; &quot;;
+    &#125;
+    cout &lt;&lt; endl;
+&#125;
+void test01() &#123;
+    vector&lt;int&gt; v1;
+    for (int i = 0;i &lt; 10;i++) &#123;
+        v1.push_back(i);
+    &#125;
+    print(v1);
+    vector&lt;int&gt; v2;
+    v2 = v1;//等号赋值
+    print(v2);
+    vector&lt;int&gt; v3;
+    v3.assign(v1.begin(), v1.end());//前闭后开
+    print(v3);
+    vector&lt;int&gt; v4;
+    v4.assign(10, 100);//10个100
+    print(v4);
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;
+</code></pre>
+<h2 id="vector容量和大小"><a href="#vector容量和大小" class="headerlink" title="vector容量和大小"></a>vector容量和大小</h2><p><strong>功能描述：</strong><br><strong>·</strong> 对vector容器的容量和大小操作<br><strong>函数原型：</strong></p>
+<pre><code>empty();//判断容器是否为空
+capacity();//容器的容量
+size();//返回容器中元素的个数
+resize(int num);//重新指定容器的长度num，若容器变长，则以默认值(0)填充新位置
+//如果容器变短，则末尾超出容器长度的元素被删除
+resize(int num,elem);//重新指定容器的长度num，若容器变长，则以elem填充新位置
+//如果容器变短，则末尾超出容器长度的元素被删除
+
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+using namespace std;
+void print(vector&lt;int&gt;&amp;v) &#123;
+    for (vector&lt;int&gt;::iterator it = v.begin();it != v.end();it++) &#123;
+        cout &lt;&lt; *it &lt;&lt; &quot; &quot;;
+    &#125;
+    cout &lt;&lt; endl;
+&#125;
+void test01() &#123;
+    vector&lt;int&gt; v1;
+    for (int i = 0;i &lt; 10;i++) &#123;
+        v1.push_back(i);
+    &#125;
+    print(v1);
+    if (v1.empty()) &#123;
+        cout &lt;&lt; &quot;v1为空&quot; &lt;&lt; endl;
+    &#125;
+    else cout &lt;&lt; &quot;v1不为空&quot; &lt;&lt; endl;
+    cout &lt;&lt; &quot;v1的容量为： &quot; &lt;&lt; v1.capacity() &lt;&lt; endl;
+    cout&lt;&lt;&quot;v1的大小为： &quot;&lt;&lt;v1.size()&lt;&lt;endl;
+    //重新指定大小
+    v1.resize(15);
+    print(v1);//比原来长，0 1 2 3 4 5 6 7 8 9 0 0 0 0 0默认用0填充
+    v1.resize(16, 100);//参数2可自定义填充值
+    print(v1);
+    v1.resize(5);
+    print(v1);//0 1 2 3 4，比原来短，超出的部分被删除
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;
+</code></pre>
+<p>总结：<br><strong>·</strong> 判断是否为空 — empty<br><strong>·</strong> 返回元素个数 — size<br><strong>·</strong> 返回容器容量 — capacity<br><strong>·</strong> 重新指定大小 — resize</p>
+<h2 id="vector插入和删除"><a href="#vector插入和删除" class="headerlink" title="vector插入和删除"></a>vector插入和删除</h2><p><strong>功能描述：</strong><br><strong>·</strong> 对vector容器进行插入、删除操作<br><strong>函数原型：</strong></p>
+<pre><code>push_back(ele);//尾部插入元素ele
+pop_back();//删除最后一个元素
+insert(const_iterator pos,ele);//迭代器指向位置pos插入元素ele
+insert(const_iterator pos,int count,ele);//迭代器指向位置pos插入count个元素ele
+erase(const_iterator pos);//删除迭代器指向的元素
+erase(const_iterator start,const_iterator end);//删除迭代器从start到end之间的元素
+clear ();//删除容器中所有的元素
+
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+using namespace std;
+void print(vector&lt;int&gt;&amp;v) &#123;
+    for (vector&lt;int&gt;::iterator it = v.begin();it != v.end();it++) &#123;
+        cout &lt;&lt; *it &lt;&lt; &quot; &quot;;
+    &#125;
+    cout &lt;&lt; endl;
+&#125;
+void test01() &#123;
+    vector&lt;int&gt; v1;
+    //尾插
+    v1.push_back(10);
+    v1.push_back(20);
+    v1.push_back(30);
+    v1.push_back(40);
+    v1.push_back(50);
+    print(v1);//10 20 30 40 50
+    //尾删
+    v1.pop_back();
+    print(v1);//10 20 30 40
+    v1.insert(v1.begin(), 100);
+    print(v1);//100 10 20 30 40,第一个参数是迭代器
+    v1.insert(v1.begin(), 2, 1000);//在指定位置插入2个1000
+    print(v1);//1000 1000 100 10 20 30 40
+    v1.erase(v1.begin());//删除指定位置的元素,参数是迭代器
+    print(v1);//1000 100 10 20 30 40
+    v1.erase(v1.begin(), v1.end());
+    v1.clear();//清空
+    print(v1);//空
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;
+</code></pre>
+<h2 id="vector数据存取"><a href="#vector数据存取" class="headerlink" title="vector数据存取"></a>vector数据存取</h2><p><strong>功能描述：</strong><br><strong>·</strong> 对vector中的数据的存取操作<br><strong>函数原型：</strong></p>
+<pre><code>at(int idx);//返回索引idx所指的数据
+operator[];//返回索引idx所指的数据
+front();//返回容器中第一个数据元素
+back();//返回容器中最后一个数据元素
+
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+using namespace std;
+void test01() &#123;
+    vector&lt;int&gt; v1;
+    for (int i = 0;i &lt; 10;i++) &#123;
+        v1.push_back(i);
+    &#125;
+    for (int i = 0;i &lt; v1.size();i++) &#123;
+        cout &lt;&lt; v1[i] &lt;&lt; &quot; &quot;;//利用[]来访问
+    &#125;
+    cout &lt;&lt; endl;
+    for (int i = 0;i &lt; v1.size();i++) &#123;
+        cout &lt;&lt; v1.at(i) &lt;&lt; &quot; &quot;;//利用at来访问
+    &#125;
+    cout &lt;&lt; endl;
+    //获取第一个元素
+    cout &lt;&lt; &quot;第一个元素为： &quot; &lt;&lt; v1.front() &lt;&lt; endl;
+    //获取最后一个元素
+    cout &lt;&lt; &quot;最后一个元素为： &quot; &lt;&lt; v1.back() &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;
+</code></pre>
+<h2 id="vector互换容器"><a href="#vector互换容器" class="headerlink" title="vector互换容器"></a>vector互换容器</h2><p><strong>功能描述：</strong><br><strong>·</strong> 实现两个容器内元素进行互换<br><strong>函数原型：</strong></p>
+<pre><code>swap(vec);//将vec与本身的元素互换
+
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+using namespace std;
+void print(vector&lt;int&gt;&amp;v) &#123;
+    for (vector&lt;int&gt;::iterator it = v.begin();it != v.end();it++) &#123;
+        cout &lt;&lt; *it &lt;&lt; &quot; &quot;;
+    &#125;
+    cout &lt;&lt; endl;
+&#125;
+void test01() &#123;
+    vector&lt;int&gt; v1;
+    vector&lt;int&gt; v2;
+    for (int i = 0;i &lt; 10;i++) &#123;
+        v1.push_back(i);
+    &#125;
+    cout &lt;&lt; &quot;v1: &quot;;
+    print(v1);
+    for (int i = 10;i &gt; 0;i--) &#123;
+        v2.push_back(i);
+    &#125;
+    cout &lt;&lt; &quot;v2: &quot;;
+    print(v2);
+    cout &lt;&lt; &quot;交换后： &quot; &lt;&lt; endl;
+    v1.swap(v2);
+    cout &lt;&lt; &quot;v1: &quot;;
+    print(v1);
+    cout &lt;&lt; &quot;v2: &quot;;
+    print(v2);
+&#125;
+//实际用途
+//巧用swap可以收缩内存空间
+void test02() &#123;
+    vector&lt;int&gt;v;
+    for (int i = 0;i &lt; 100000;i++) &#123;
+        v.push_back(i);
+    &#125;
+    cout &lt;&lt; &quot;v的容量： &quot; &lt;&lt; v.capacity() &lt;&lt; endl;//138255
+    cout &lt;&lt; &quot;v的大小： &quot; &lt;&lt; v.size() &lt;&lt; endl;//100000
+    v.resize(3);//重新指定大小
+     cout &lt;&lt; &quot;v的容量： &quot; &lt;&lt; v.capacity() &lt;&lt; endl;//138255，容量没有变小
+    cout &lt;&lt; &quot;v的大小： &quot; &lt;&lt; v.size() &lt;&lt; endl;//3
+    //巧用swap收缩内存
+    vector&lt;int&gt;(v).swap(v);
+    cout &lt;&lt; &quot;v的容量： &quot; &lt;&lt; v.capacity() &lt;&lt; endl;//3
+    cout &lt;&lt; &quot;v的大小： &quot; &lt;&lt; v.size() &lt;&lt; endl;//3
+&#125;
+int main() &#123;
+    test02();
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;
+</code></pre>
+<p><img src="https://note.youdao.com/yws/api/personal/file/C681E11AFEB44FDE9DDC9060047BD938?method=download&shareKey=b936af1be758b3283dbfb649313204db" alt="avatar"><br>匿名对象用完立刻回收</p>
+<h2 id="vector预留空间"><a href="#vector预留空间" class="headerlink" title="vector预留空间"></a>vector预留空间</h2><p><strong>功能描述：</strong><br>减少vector在动态扩展容量时的扩展次数<br><strong>函数原型：</strong></p>
+<pre><code>reserve(int len);//容器预留len个元素长度，预留位置不初始化，元素不可访问
+</code></pre>
+<p>没预留：</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;vector&gt;
+using namespace std;
+void print(vector&lt;int&gt;&amp;v) &#123;
+    for (vector&lt;int&gt;::iterator it = v.begin();it != v.end();it++) &#123;
+        cout &lt;&lt; *it &lt;&lt; &quot; &quot;;
+    &#125;
+    cout &lt;&lt; endl;
+&#125;
+void test01() &#123;
+    vector&lt;int&gt;v;
+    int num = 0;//统计开辟的次数
+    int * p = NULL;
+    for (int i = 0;i &lt; 100000;i++) &#123;
+        v.push_back(i);
+        if (p != &amp;v[0]) &#123;
+            p = &amp;v[0];//每次开辟都会换一块更大的内存空间，因此v[0]地址会发生改变
+            num++;
+        &#125;
+    &#125;
+    cout &lt;&lt; &quot;num = &quot; &lt;&lt; num &lt;&lt; endl;//30
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;
+</code></pre>
+<p>预留了：</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;vector&gt;
+using namespace std;
+void print(vector&lt;int&gt;&amp;v) &#123;
+    for (vector&lt;int&gt;::iterator it = v.begin();it != v.end();it++) &#123;
+        cout &lt;&lt; *it &lt;&lt; &quot; &quot;;
+    &#125;
+    cout &lt;&lt; endl;
+&#125;
+void test01() &#123;
+    vector&lt;int&gt;v;
+    v.reserve(100000);//预留
+    int num = 0;//统计开辟的次数
+    int * p = NULL;
+    for (int i = 0;i &lt; 100000;i++) &#123;
+        v.push_back(i);
+        if (p != &amp;v[0]) &#123;
+            p = &amp;v[0];//每次开辟都会换一块更大的内存空间，因此v[0]地址会发生改变
+            num++;
+        &#125;
+    &#125;
+    cout &lt;&lt; &quot;num = &quot; &lt;&lt; num &lt;&lt; endl;//1
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0;
+&#125;
+</code></pre>
+<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css"></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">vanilla</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/04/01/vector%E5%AE%B9%E5%99%A8/">http://example.com/2021/04/01/vector%E5%AE%B9%E5%99%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Vanilla's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/C/">C++</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/04/03/deque%E5%AE%B9%E5%99%A8/"><img class="prev-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">deque容器</div></div></a></div><div class="next-post pull-right"><a href="/2021/03/30/string%E5%AE%B9%E5%99%A8/"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">string容器</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/01/27/C++%20%E5%87%BD%E6%95%B0%E9%AB%98%E7%BA%A7/" title="C++ 函数高级"><img class="cover" src="https://note.youdao.com/yws/api/personal/file/A928FDE83B4541719282F00FC2844949?method=download&shareKey=9e97abaf8be866113b9fc6db3f2d6971" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-27</div><div class="title">C++ 函数高级</div></div></a></div><div><a href="/2021/01/26/C++%20%E5%BC%95%E7%94%A8/" title="C++ 引用"><img class="cover" src="https://note.youdao.com/yws/api/personal/file/7A63DF0D8B52446EAF09E56D6D27FE77?method=download&shareKey=1b6ca930a7c8973613ba1cf4031b3c86" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-26</div><div class="title">C++ 引用</div></div></a></div><div><a href="/2021/01/25/C++%20%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" title="C++ 程序的内存模型"><img class="cover" src="https://note.youdao.com/yws/api/personal/file/63EE22859F764A779D7128D35367936C?method=download&shareKey=b694824726181a2ad22b64fafed15688" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-25</div><div class="title">C++ 程序的内存模型</div></div></a></div><div><a href="/2021/01/30/C++%20%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E5%92%8C%E6%B8%85%E7%90%86/" title="C++ 类和对象-对象的初始化和清理"><img class="cover" src="https://note.youdao.com/yws/api/personal/file/4C197C267DFE4E44A587BEC7050D5608?method=download&shareKey=a58ebe8fcff8e01cbd237cad24ec7659" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-30</div><div class="title">C++ 类和对象-对象的初始化和清理</div></div></a></div><div><a href="/2021/01/28/C++%20%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1-%E5%B0%81%E8%A3%85/" title="C++ 类和对象-封装"><img class="cover" src="https://note.youdao.com/yws/api/personal/file/A4C6DA4F70A3452AB3A6C452979657C0?method=download&shareKey=003485de03acca146ed8042c1f2baee1" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-28</div><div class="title">C++ 类和对象-封装</div></div></a></div><div><a href="/2021/01/20/C++%20%E9%80%9A%E8%AE%AF%E5%BD%95%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" title="C++ 通讯录管理系统"><img class="cover" src="https://note.youdao.com/yws/api/personal/file/168C4EB054A546CDADF8C6BF304BD36A?method=download&shareKey=4d193f0d3c96d4f0511c3d4ed0193159" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-20</div><div class="title">C++ 通讯录管理系统</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">vanilla</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">68</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#vector%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">vector基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vector%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">vector构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vector%E8%B5%8B%E5%80%BC%E6%93%8D%E4%BD%9C"><span class="toc-number">3.</span> <span class="toc-text">vector赋值操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vector%E5%AE%B9%E9%87%8F%E5%92%8C%E5%A4%A7%E5%B0%8F"><span class="toc-number">4.</span> <span class="toc-text">vector容量和大小</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vector%E6%8F%92%E5%85%A5%E5%92%8C%E5%88%A0%E9%99%A4"><span class="toc-number">5.</span> <span class="toc-text">vector插入和删除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vector%E6%95%B0%E6%8D%AE%E5%AD%98%E5%8F%96"><span class="toc-number">6.</span> <span class="toc-text">vector数据存取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vector%E4%BA%92%E6%8D%A2%E5%AE%B9%E5%99%A8"><span class="toc-number">7.</span> <span class="toc-text">vector互换容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vector%E9%A2%84%E7%95%99%E7%A9%BA%E9%97%B4"><span class="toc-number">8.</span> <span class="toc-text">vector预留空间</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/04/05/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A04-5/" title="机器学习4.5"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="机器学习4.5"/></a><div class="content"><a class="title" href="/2022/04/05/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A04-5/" title="机器学习4.5">机器学习4.5</a><time datetime="2022-04-05T05:16:04.000Z" title="发表于 2022-04-05 13:16:04">2022-04-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/05/web%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B04-5/" title="web课堂笔记4.5"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="web课堂笔记4.5"/></a><div class="content"><a class="title" href="/2022/04/05/web%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B04-5/" title="web课堂笔记4.5">web课堂笔记4.5</a><time datetime="2022-04-05T00:15:22.000Z" title="发表于 2022-04-05 08:15:22">2022-04-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%803-29/" title="机器学习基础3.29"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="机器学习基础3.29"/></a><div class="content"><a class="title" href="/2022/03/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%803-29/" title="机器学习基础3.29">机器学习基础3.29</a><time datetime="2022-03-29T05:11:23.000Z" title="发表于 2022-03-29 13:11:23">2022-03-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/29/web%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B03-29/" title="web课堂笔记3.29"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="web课堂笔记3.29"/></a><div class="content"><a class="title" href="/2022/03/29/web%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B03-29/" title="web课堂笔记3.29">web课堂笔记3.29</a><time datetime="2022-03-29T00:17:06.000Z" title="发表于 2022-03-29 08:17:06">2022-03-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/26/web%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B03-26/" title="web课堂笔记3.26"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="web课堂笔记3.26"/></a><div class="content"><a class="title" href="/2022/03/26/web%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B03-26/" title="web课堂笔记3.26">web课堂笔记3.26</a><time datetime="2022-03-26T02:11:11.000Z" title="发表于 2022-03-26 10:11:11">2022-03-26</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By vanilla</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
